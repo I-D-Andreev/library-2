@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RequestedResourcesController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="460.79998168945315" minHeight="10.0" prefHeight="460.79998168945315" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="194.0" minHeight="10.0" prefHeight="75.20001831054685" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <HBox alignment="CENTER_RIGHT" prefHeight="96.0" prefWidth="600.0" GridPane.rowIndex="1">
+         <children>
+            <Button fx:id="okButton" mnemonicParsing="false" onAction="#okButtonClicked" prefHeight="42.0" prefWidth="82.0" text="OK">
+               <HBox.margin>
+                  <Insets right="60.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <TableView fx:id="requestedResourcesTable" prefHeight="410.0" prefWidth="659.0">
+         <GridPane.margin>
+            <Insets left="20.0" right="20.0" top="20.0" />
+         </GridPane.margin>
+         <columns>
+            <TableColumn fx:id="resourceID" prefWidth="141.60003662109375" text="Resource ID" />
+            <TableColumn fx:id="resourceName" prefWidth="177.60009765625" text="Name" />
+            <TableColumn fx:id="resourceType" prefWidth="158.39990234375" text="Type" />
+            <TableColumn fx:id="numberInQueue" prefWidth="180.80001831054688" text="Position in Queue" />
+         </columns>
+      </TableView>
+   </children>
+</GridPane>

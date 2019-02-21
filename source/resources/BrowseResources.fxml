@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BrowseResourcesController">
+  <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="583.0" minWidth="10.0" prefWidth="35.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="583.0" minWidth="10.0" prefWidth="78.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="694.0" minWidth="10.0" prefWidth="417.5999938964843" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="618.0" minWidth="10.0" prefWidth="153.60000610351562" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="589.0" minWidth="10.0" prefWidth="13.600024414062545" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="129.0" minHeight="0.0" prefHeight="38.399993896484375" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="267.0" minHeight="10.0" prefHeight="52.00000610351563" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="214.0" minHeight="10.0" prefHeight="143.6" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="169.0" minHeight="10.0" prefHeight="91.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="217.0" minHeight="10.0" prefHeight="99.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="256.0" minHeight="10.0" prefHeight="120.79997558593755" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="251.0" minHeight="5.6000244140625455" prefHeight="5.6000244140625455" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <TextField fx:id="browseResourcesSearchTextField" minWidth="150.0" prefHeight="31.0" prefWidth="298.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <Button fx:id="searchButton" mnemonicParsing="false" onAction="#updateTable" text="Search" GridPane.columnIndex="3" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin></Button>
+      <HBox GridPane.columnIndex="2">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Browse Resources" wrappingWidth="129.57177734375">
+               <HBox.margin>
+                  <Insets left="130.0" top="27.0" />
+               </HBox.margin>
+            </Text>
+         </children>
+      </HBox>
+      <CheckBox fx:id="dvdFilter" mnemonicParsing="false" onAction="#updateTable" text="DVD" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <CheckBox fx:id="bookFilter" mnemonicParsing="false" onAction="#updateTable" text="Book" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <CheckBox fx:id="laptopFilter" mnemonicParsing="false" onAction="#updateTable" text="Laptop" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <TableView fx:id="displayTable" prefHeight="384.0" prefWidth="575.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="3">
+        <columns>
+          <TableColumn fx:id="uniqueIDColumn" prefWidth="138.40002596378326" text="Unique ID" />
+          <TableColumn fx:id="titleColumn" minWidth="5.0" prefWidth="154.39996337890625" text="Title" />
+            <TableColumn fx:id="yearColumn" minWidth="5.0" prefWidth="131.19992065429688" text="Year" />
+            <TableColumn fx:id="typeColumn" minWidth="5.0" prefWidth="144.00003051757812" text="Type" />
+        </columns>
+      </TableView>
+      <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="42.0" prefWidth="66.0" text="Back" GridPane.columnIndex="3" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets left="20.0" />
+         </GridPane.margin>
+      </Button>
+   </children>
+</GridPane>

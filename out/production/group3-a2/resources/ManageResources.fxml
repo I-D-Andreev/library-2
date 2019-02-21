@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="702.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ManageResourcesController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="175.9999755859375" minHeight="10.0" prefHeight="92.60001220703126" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="508.5999877929688" minHeight="10.0" prefHeight="508.5999877929688" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="356.0" prefWidth="702.0" tabClosingPolicy="UNAVAILABLE" GridPane.rowIndex="1">
+        <tabs>
+          <Tab fx:id="borrowTab" text="Borrow">
+               <content>
+                  <GridPane prefHeight="401.0" prefWidth="670.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="User Username:">
+                                 <padding>
+                                    <Insets left="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="borrowUserUsernameTextField" prefHeight="31.0" prefWidth="333.0">
+                                 <VBox.margin>
+                                    <Insets left="20.0" right="20.0" top="20.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                           <children>
+                              <Label text="Resource ID:">
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="borrowResourceIDTextField" prefHeight="31.0" prefWidth="333.0">
+                                 <VBox.margin>
+                                    <Insets left="20.0" right="20.0" top="20.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                        <Button fx:id="borrowButton" mnemonicParsing="false" onAction="#borrowButtonClicked" prefHeight="31.0" prefWidth="90.0" text="Borrow" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+               </content>
+            </Tab>
+            <Tab fx:id="borrowTab1" text="Reserve">
+               <content>
+                  <GridPane>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="User Username:">
+                                 <padding>
+                                    <Insets left="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="reserveUserUsernameTextField" prefHeight="31.0" prefWidth="333.0">
+                                 <VBox.margin>
+                                    <Insets left="20.0" right="20.0" top="20.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                           <children>
+                              <Label text="Resource ID:">
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="reserveResourceIDTextField" prefHeight="31.0" prefWidth="333.0">
+                                 <VBox.margin>
+                                    <Insets left="20.0" right="20.0" top="20.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                        <Button fx:id="reserveButton" mnemonicParsing="false" onAction="#reserveButtonClicked" prefHeight="31.0" prefWidth="90.0" text="Reserve" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+               </content>
+            </Tab>
+            <Tab fx:id="returnTab" text="Return">
+               <content>
+                  <GridPane>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="202.0" minHeight="10.0" prefHeight="48.000024414062494" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="173.0" minHeight="10.0" prefHeight="156.5999755859375" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="83.0" minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <VBox prefHeight="224.0" prefWidth="600.0" GridPane.rowIndex="1" GridPane.rowSpan="2">
+                           <children>
+                              <Label text="Copy ID:">
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="returnCopyIDTextField" prefHeight="31.0" prefWidth="333.0">
+                                 <VBox.margin>
+                                    <Insets left="20.0" right="20.0" top="20.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                        <Button fx:id="returnButton" mnemonicParsing="false" onAction="#returnButtonClicked" prefHeight="31.0" prefWidth="90.0" text="Return" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+               </content>
+            </Tab>
+            <Tab fx:id="fineTab" text="Fine">
+               <content>
+                  <GridPane prefHeight="308.0" prefWidth="706.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="223.0" minHeight="10.0" prefHeight="106.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="205.0" minHeight="10.0" prefHeight="178.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="User Username:">
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <TextField fx:id="fineUserUsernameTextField" prefHeight="31.0" prefWidth="447.0">
+                                       <HBox.margin>
+                                          <Insets left="20.0" top="20.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchButtonClicked" prefHeight="31.0" prefWidth="90.0" text="Search">
+                                       <HBox.margin>
+                                          <Insets left="20.0" top="20.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <HBox prefHeight="212.0" prefWidth="710.0" GridPane.rowIndex="1">
+                           <children>
+                              <Label text="Outstanding Amount:">
+                                 <HBox.margin>
+                                    <Insets left="20.0" top="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="outstandingAmountLabel" text=".......">
+                                 <HBox.margin>
+                                    <Insets left="5.0" top="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <VBox prefHeight="178.0" prefWidth="278.0">
+                                 <children>
+                                    <Label text="Pay:">
+                                       <VBox.margin>
+                                          <Insets left="40.0" top="20.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="payTextField" prefHeight="31.0" prefWidth="260.0">
+                                       <VBox.margin>
+                                          <Insets left="40.0" right="20.0" top="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Button fx:id="payButton" mnemonicParsing="false" onAction="#payButtonClicked" prefHeight="31.0" prefWidth="90.0" text="Pay">
+                                       <VBox.margin>
+                                          <Insets left="40.0" top="4.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </GridPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <HBox prefHeight="78.0" prefWidth="702.0">
+         <children>
+            <Label text="TaweLib">
+               <padding>
+                  <Insets left="20.0" top="10.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets top="50.0" />
+               </HBox.margin>
+            </Label>
+            <Label text="Manage Resources">
+               <HBox.margin>
+                  <Insets left="20.0" top="60.0" />
+               </HBox.margin>
+            </Label>
+            <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="50.0" prefWidth="78.0" text="Back">
+               <HBox.margin>
+                  <Insets left="330.0" top="40.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</GridPane>

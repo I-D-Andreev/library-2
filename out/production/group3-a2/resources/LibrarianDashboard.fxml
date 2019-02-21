@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LibrarianDashboardController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="354.20001220703125" minWidth="10.0" prefWidth="251.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="373.00001525878906" minWidth="10.0" prefWidth="344.6" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="204.0" minHeight="7.0" prefHeight="66.40001525878907" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="396.3999877929687" minHeight="10.0" prefHeight="391.999951171875" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="364.0" minHeight="2.9999816894531364" prefHeight="113.40004882812502" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label text="TaweLib">
+         <GridPane.margin>
+            <Insets left="20.0" />
+         </GridPane.margin>
+      </Label>
+      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+         <children>
+            <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#logOutButtonClicked" prefHeight="34.0" prefWidth="81.0" text="Log Out">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <VBox prefHeight="71.0" prefWidth="597.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+         <children>
+            <HBox prefHeight="43.0" prefWidth="596.0">
+               <children>
+                  <Button fx:id="viewUserButton" minWidth="120.0" mnemonicParsing="false" onAction="#viewUserButtonClicked" text="Create/Check User">
+                     <HBox.margin>
+                        <Insets left="40.0" right="15.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="usersBorrowing" minWidth="160.0" mnemonicParsing="false" onAction="#usersBorrowingButtonClicked" text="Users Currently Borrowing">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="overdueResourcesButton" minWidth="105.0" mnemonicParsing="false" onAction="#overdueResourcesButtonClicked" text="Overdue Copies">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="copyHistoryButton" minWidth="90.0" mnemonicParsing="false" onAction="#copyHistoryButtonClicked" text="Copy History">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox prefHeight="45.0" prefWidth="597.0">
+               <children>
+                  <Button fx:id="createEditResourcesButton" mnemonicParsing="false" onAction="#createEditButtonClicked" text="Create/Edit Resources">
+                     <HBox.margin>
+                        <Insets left="110.0" right="30.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="manageResourcesButton" minWidth="150.0" mnemonicParsing="false" onAction="#manageResourcesButtonClicked" prefHeight="27.0" prefWidth="137.0" text="Manage Resources" wrapText="true">
+                     <HBox.margin>
+                        <Insets right="30.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="browseResourcesButton" mnemonicParsing="false" onAction="#browseButtonClicked" text="Browse Resources">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="109.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <HBox prefHeight="30.0" prefWidth="322.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="315.0" text="Username :" textAlignment="CENTER">
+                     <HBox.margin>
+                        <Insets top="30.0" />
+                     </HBox.margin></Label>
+                  <Label fx:id="usernameLabel" prefHeight="17.0" prefWidth="315.0" text="Refresh to load" textAlignment="CENTER">
+                     <HBox.margin>
+                        <Insets top="30.0" />
+                     </HBox.margin></Label>
+               </children>
+               <VBox.margin>
+                  <Insets top="-27.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="33.0" prefWidth="322.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="312.0" text="First Name :">
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="firstNameLabel" prefHeight="17.0" prefWidth="312.0" text="Refresh to load">
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin></Label>
+               </children>
+               <VBox.margin>
+                  <Insets top="6.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="40.0" prefWidth="322.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="342.0" text="Last Name :">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></Label>
+                  <Label fx:id="lastNameLabel" prefHeight="17.0" prefWidth="342.0" text="Refresh to load" />
+               </children>
+               <VBox.margin>
+                  <Insets top="3.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="34.0" prefWidth="322.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="338.0" text="Phone Number :" />
+                  <Label fx:id="phoneNumberLabel" prefHeight="17.0" prefWidth="338.0" text="Refresh to load" />
+               </children>
+               <VBox.margin>
+                  <Insets top="-10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="34.0" prefWidth="322.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="338.0" text="Staff ID:" />
+                  <Label fx:id="staffIDLabel" prefHeight="17.0" prefWidth="338.0" text="Refresh to load" />
+               </children>
+               <VBox.margin>
+                  <Insets top="-2.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="32.0" prefWidth="347.0">
+               <children>
+                  <Label text="Employment Date:" />
+                  <Label fx:id="employmentDateLabel" text="Refresh to load">
+                     <HBox.margin>
+                        <Insets left="60.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets top="7.0" />
+               </VBox.margin>
+               <children>
+                  <Button fx:id="editAccountButton" mnemonicParsing="false" onAction="#editAccountButtonClicked" prefHeight="57.0" prefWidth="110.0" text="Edit Account">
+                     <HBox.margin>
+                        <Insets right="15.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets top="35.0" />
+         </padding>
+      </VBox>
+      <ImageView fx:id="librarianImage" fitHeight="237.0" fitWidth="310.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
+   </children>
+</GridPane>

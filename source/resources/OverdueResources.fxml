@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OverdueResourcesController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="483.9999755859375" minHeight="10.0" prefHeight="483.9999755859375" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="195.0" minHeight="10.0" prefHeight="112.00002441406252" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+         <children>
+            <Button fx:id="okButton" mnemonicParsing="false" onAction="#okButtonClicked" prefHeight="50.0" prefWidth="97.0" text="OK">
+               <HBox.margin>
+                  <Insets right="60.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <TableView fx:id="overdueResourcesTable" prefHeight="382.0" prefWidth="662.0">
+         <GridPane.margin>
+            <Insets left="20.0" right="20.0" top="20.0" />
+         </GridPane.margin>
+         <columns>
+            <TableColumn fx:id="copyIDColumn" prefWidth="124.0000057220459" text="CopyID" />
+            <TableColumn fx:id="borrowedOnColumn" prefWidth="155.20001220703125" text="Borrowed On" />
+            <TableColumn fx:id="dueDateColumn" prefWidth="194.4000244140625" text="Due Date" />
+            <TableColumn fx:id="daysOverdueColumn" prefWidth="179.19998168945312" text="Days Overdue" />
+         </columns>
+      </TableView>
+   </children>
+</GridPane>

@@ -14,13 +14,17 @@ import java.io.*;
 
 public class ResourceManager implements Serializable {
 
+    // reference to the library
+    private Library library;
     private ArrayList<Resource> resources;
 
     /**
      * Initializes the resource manager.
      */
-    public ResourceManager() {
+    public ResourceManager(Library library) {
+        this.library = library;
         resources = new ArrayList<>();
+
         this.selfPopulate();
 
         // assign next ID static variable to the user class
@@ -123,6 +127,21 @@ public class ResourceManager implements Serializable {
      */
     public void addResource(Resource resource) {
         this.resources.add(resource);
+        this.updateNewAdditions(resource);
+    }
+
+    // Adds the new resource as a New Addition to the users
+    private void updateNewAdditions(Resource resource) {
+        ArrayList<User> allUsers = library.getUserManager().getAllUsers();
+        for (User user : allUsers) {
+
+            // only show new additions to normal users
+            // add the new resource to every normal user
+            if(user instanceof NormalUser){
+                NormalUser normalUser = (NormalUser) user;
+                normalUser.getNewAdditions().add(resource);
+            }
+        }
     }
 
     /**

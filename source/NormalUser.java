@@ -10,6 +10,7 @@ import java.util.Date;
 public class NormalUser extends User implements Serializable {
     private double balance;
     private ArrayList<Copy> borrowedCopies;
+    private ArrayList<Resource> newAdditions;
     private History transactionHistory;
 
     /**
@@ -28,6 +29,7 @@ public class NormalUser extends User implements Serializable {
         this.balance = 0;
         this.transactionHistory = new History();
         this.borrowedCopies = new ArrayList<>();
+        this.newAdditions = new ArrayList<>();
     }
 
 
@@ -114,6 +116,10 @@ public class NormalUser extends User implements Serializable {
             }
         }
         return hasOverdueCopies;
+    }
+
+    public ArrayList<Resource> getNewAdditions() {
+        return newAdditions;
     }
 
     /**

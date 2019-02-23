@@ -14,7 +14,7 @@ public class Library {
      */
     public Library() {
         userManager = new UserManager();
-        resourceManager = new ResourceManager();
+        resourceManager = new ResourceManager(this);
     }
 
     /**

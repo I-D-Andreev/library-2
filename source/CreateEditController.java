@@ -499,6 +499,101 @@ public class CreateEditController extends Controller {
     @FXML
     private Button drawButtonEditLaptop;
 
+    /**
+     * The tab to create a game resource.
+     */
+    @FXML
+    private Tab createGameTab;
+
+    /**
+     * The text field to type the game resource title.
+     */
+    @FXML
+    private TextField createGameTitleTextField;
+
+    /**
+     * The text field to type the game resource year.
+     */
+    @FXML
+    private TextField createGameYearTextField;
+
+    /**
+     * The text field to display the image path for the game resource thumbnail.
+     */
+    @FXML
+    private TextField createGameImagePathTextField;
+
+    /**
+     * The button to find the location of the image thumbnail for the game resource.
+     */
+    @FXML
+    private Button createGameFindImageButton;
+
+    /**
+     * The button to draw an avatar for the thumbnail of the game resource.
+     */
+    @FXML
+    private Button createGameDrawButton;
+
+    /**
+     * The text field to type the game resource publisher.
+     */
+    @FXML
+    private TextField createGamePublisherTextField;
+
+    /**
+     * The text field to type the game resource genre.
+     */
+    @FXML
+    private TextField createGameGenreTextField;
+
+    /**
+     * The choice box to choose a certification rating for the game resource.
+     */
+    @FXML
+    private ChoiceBox<?> createGameCertRatingChoiceBox;
+
+    /**
+     * The choice box to choose whether the game resource is multiplayer.
+     */
+    @FXML
+    private ChoiceBox<?> createGameMultiplayerChoiceBox;
+
+    /**
+     * The button that adds the new game resource to the resources.
+     */
+    @FXML
+    private Button createGameCreateButton;
+
+    /**
+     * Creates a new game resource when the button is clicked.
+     *
+     * @param event When the create button is clicked.
+     */
+    @FXML
+    void createGameCreateButtonClicked(ActionEvent event) {
+
+    }
+
+    /**
+     * Opens the drawing interface.
+     *
+     * @param event When the draw button is clicked.
+     */
+    @FXML
+    void createGameDrawButtonClicked(ActionEvent event) {
+
+    }
+
+    /**
+     * Opens file explorer so that an image for the game resource can be chosen.
+     *
+     * @param event When the find image button is clicked.
+     */
+    @FXML
+    void createGameFindImageButtonClicked(ActionEvent event) {
+
+    }
 
     /**
      * Goes back to the librarian dashboard when clicked.

@@ -80,6 +80,22 @@ public class LibrarianResourceController extends Controller {
     private Button okButton;
 
     /**
+     * Button to view trailer for DVD resource.
+     */
+    @FXML
+    private Button trailerButton;
+
+    /**
+     * Opens the trailer for the DVD resource.
+     *
+     * @param event When the trailer button is clicked.
+     */
+    @FXML
+    void trailerButtonClicked(ActionEvent event) {
+
+    }
+
+    /**
      * The resource we clicked on the table.
      */
     @FXML

@@ -49,6 +49,12 @@ public class BrowseResourcesController extends Controller {
     private CheckBox laptopFilter;
 
     /**
+     * The button to filter the data to show games.
+     */
+    @FXML
+    private CheckBox gameFilter;
+
+    /**
      * The button to browse resources for resources.
      */
     @FXML
@@ -220,6 +226,11 @@ public class BrowseResourcesController extends Controller {
 
         if (laptopFilter.isSelected()) {
             acceptableTypes.add("Laptop");
+        }
+
+        if(gameFilter.isSelected()) {
+
+            acceptableTypes.add("Game");
         }
     }
 }

@@ -75,6 +75,12 @@ public class UserResourceController extends Controller {
     private ObservableList<TableRepresentationCopyAvailable> data;
 
     /**
+     * The trailer button to view DVD trailer.
+     */
+    @FXML
+    private Button trailerButton;
+
+    /**
      * Takes the user to the browse resource tab after the button is clicked.
      *
      * @param event The button is clicked.
@@ -84,6 +90,16 @@ public class UserResourceController extends Controller {
         clickedResource = null;
         new NewWindow("resources/BrowseResources.fxml", event,
                 "Browse Resources - TaweLib", getLibrary());
+    }
+
+    /**
+     * Opens window to view trailer for DVD resource.
+     *
+     * @param event When the trailer button is clicked.
+     */
+    @FXML
+    void trailerButtonClicked(ActionEvent event) {
+
     }
 
     /**

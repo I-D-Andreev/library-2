@@ -499,6 +499,235 @@ public class CreateEditController extends Controller {
     @FXML
     private Button drawButtonEditLaptop;
 
+    /**
+     * The tab to create a game resource.
+     */
+    @FXML
+    private Tab createGameTab;
+
+    /**
+     * The text field to type the game resource title.
+     */
+    @FXML
+    private TextField createGameTitleTextField;
+
+    /**
+     * The text field to type the game resource year.
+     */
+    @FXML
+    private TextField createGameYearTextField;
+
+    /**
+     * The text field to display the image path for the game resource thumbnail.
+     */
+    @FXML
+    private TextField createGameImagePathTextField;
+
+    /**
+     * The button to find the location of the image thumbnail for the game resource.
+     */
+    @FXML
+    private Button createGameFindImageButton;
+
+    /**
+     * The button to draw an avatar for the thumbnail of the game resource.
+     */
+    @FXML
+    private Button createGameDrawButton;
+
+    /**
+     * The text field to type the game resource publisher.
+     */
+    @FXML
+    private TextField createGamePublisherTextField;
+
+    /**
+     * The text field to type the game resource genre.
+     */
+    @FXML
+    private TextField createGameGenreTextField;
+
+    /**
+     * The choice box to choose a certification rating for the game resource.
+     */
+    @FXML
+    private ChoiceBox<?> createGameCertRatingChoiceBox;
+
+    /**
+     * The choice box to choose whether the game resource is multiplayer.
+     */
+    @FXML
+    private ChoiceBox<?> createGameMultiplayerChoiceBox;
+
+    /**
+     * The button that adds the new game resource to the resources.
+     */
+    @FXML
+    private Button createGameCreateButton;
+
+    /**
+     * The tab to edit a game resource.
+     */
+    @FXML
+    private Tab editGameTab;
+
+    /**
+     * The text field to input a game resource ID.
+     */
+    @FXML
+    private TextField editGameUniqueIDSearchTextField;
+
+    /**
+     * The button to search for the game resource.
+     */
+    @FXML
+    private Button editGameSearchButton;
+
+    /**
+     * The text field to input the game resource title.
+     */
+    @FXML
+    private TextField editGameTitleTextField;
+
+    /**
+     * The text field to input the game resource year.
+     */
+    @FXML
+    private TextField editGameYearTextField;
+
+    /**
+     * The text field to input the game resource thumbnail image path.
+     */
+    @FXML
+    private TextField editGameImagePathTextField;
+
+    /**
+     * The text field to input the game resource publisher.
+     */
+    @FXML
+    private TextField editGamePublisherTextField;
+
+    /**
+     * The text field to input the game resource genre.
+     */
+    @FXML
+    private TextField editGameGenreTextField;
+
+    /**
+     * The choice box to choose the game resource certificate rating.
+     */
+    @FXML
+    private ChoiceBox<?> editGameCertRatingChoiceBox;
+
+    /**
+     * The choice box to choose whether the game resource supports multiplayer.
+     */
+    @FXML
+    private ChoiceBox<?> editGameMultiplayerChoiceBox;
+
+    /**
+     * The button to choose the image path for the game resource thumbnail.
+     */
+    @FXML
+    private Button editGameImagePathButton;
+
+    /**
+     * The button to draw an avatar for the game resource thumbnail.
+     */
+    @FXML
+    private Button editGameDrawButton;
+
+    /**
+     * The button to delete the game resource.
+     */
+    @FXML
+    private Button editGameDeleteButton;
+
+    /**
+     * The button to submit the changes made to the game resource.
+     */
+    @FXML
+    private Button editGameEditButton;
+
+    /**
+     * Creates a new game resource when the button is clicked.
+     *
+     * @param event When the create button is clicked.
+     */
+    @FXML
+    void createGameCreateButtonClicked(ActionEvent event) {
+
+    }
+
+    /**
+     * Opens the drawing interface.
+     *
+     * @param event When the draw button is clicked.
+     */
+    @FXML
+    void createGameDrawButtonClicked(ActionEvent event) {
+
+    }
+
+    /**
+     * Opens file explorer so that an image for the game resource can be chosen.
+     *
+     * @param event When the find image button is clicked.
+     */
+    @FXML
+    void createGameFindImageButtonClicked(ActionEvent event) {
+
+    }
+
+    /**
+     * Deleted the game resource.
+     *
+     * @param event When the delete button is clicked.
+     */
+    @FXML
+    void editGameDeleteButtonClicked(ActionEvent event) {
+
+    }
+
+    /**
+     * Opens the drawing interface.
+     *
+     * @param event When the draw button is clicked.
+     */
+    @FXML
+    void editGameDrawButtonClicked(ActionEvent event) {
+
+    }
+
+    /**
+     * Saves the changes made to the game resource.
+     *
+     * @param event When the edit button is clicked.
+     */
+    @FXML
+    void editGameEditButtonClicked(ActionEvent event) {
+
+    }
+
+    /**
+     * Opens file explorer so an image can be chosen for the game resource thumbnail.
+     *
+     * @param event When the image path button is clicked.
+     */
+    @FXML
+    void editGameImagePathButtonClicked(ActionEvent event) {
+
+    }
+
+    /**
+     * Finds the game resource with the unique ID input in the search text field.
+     *
+     * @param event When the search button is clicked.
+     */
+    @FXML
+    void editGameSearchButtonClicked(ActionEvent event) {
+
+    }
 
     /**
      * Goes back to the librarian dashboard when clicked.

@@ -176,6 +176,13 @@ public abstract class Resource implements Serializable {
     }
 
     /**
+     * Gets the resource cap contribution of the resource.
+     *
+     * @rerturn null to be overwritten by subclasses.
+     */
+    public abstract int getCapContribution();
+
+    /**
      * Checks that the resource is equal to an object of type resource.
      *
      * @param obj The resource to be checked.

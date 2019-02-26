@@ -32,6 +32,11 @@ public class Laptop extends Resource {
     private final double maxFineAmount;
 
     /**
+     * The amount of points the resource contributions towards the resource cap.
+     */
+    private final int resourceCapContribution;
+
+    /**
      * Creates a new laptop.
      *
      * @param title        The title of the laptop
@@ -48,6 +53,7 @@ public class Laptop extends Resource {
         this.installedOS = installedOS;
         this.lateReturnFinePerDay = 10.0;
         this.maxFineAmount = 100.0;
+        this.resourceCapContribution = 3;
     }
 
     /**
@@ -130,4 +136,11 @@ public class Laptop extends Resource {
     public String getType() {
         return "Laptop";
     }
+
+    /**
+     * Gets the resource cap contribution of the resource.
+     *
+     * @rerturn Returns the resource cap contribution of the particular resource.
+     */
+    public int getCapContribution() { return resourceCapContribution; }
 }

@@ -12,6 +12,7 @@ public class NormalUser extends User implements Serializable {
     private ArrayList<Copy> borrowedCopies;
     private ArrayList<Resource> newAdditions;
     private History transactionHistory;
+    private final int resourceCap;
 
     /**
      * Creates a normal users account with the inputted information.
@@ -30,6 +31,7 @@ public class NormalUser extends User implements Serializable {
         this.transactionHistory = new History();
         this.borrowedCopies = new ArrayList<>();
         this.newAdditions = new ArrayList<>();
+        this.resourceCap = 5;
     }
 
 
@@ -67,6 +69,13 @@ public class NormalUser extends User implements Serializable {
     }
 
     /**
+     * Gets the users resource cap.
+     *
+     * @return The resource cap of the user.
+     */
+    public int getResourceCap() { return resourceCap;}
+
+    /**
      * Checks if the user has admin access.
      *
      * @return false Normal users don't have admin access.
@@ -100,6 +109,22 @@ public class NormalUser extends User implements Serializable {
      */
     public boolean canBorrowCopy() {
         return !(balance > 0 || hasOverdueCopies());
+    }
+
+    /**
+     * Checks number of resources the user has taken out in regards to the resource cap.
+     *
+     * @return an int that represents the amount of "points" the user has accumulated.
+     */
+    public int resourceCapCheck() {
+        ArrayList<Copy> borrowedCopies = getBorrowedCopies();
+
+        int counter = 0;
+        for(int i = 0; i < borrowedCopies.size(); i++) {
+            counter += borrowedCopies.get(i).getCopyOf().getCapContribution();
+        }
+
+        return counter;
     }
 
     /**

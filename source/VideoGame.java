@@ -12,6 +12,11 @@ public class VideoGame extends Resource {
     private double lateReturnFinePerDay;
     private double maxFineAmount;
 
+    /**
+     * The amount of points the resource contributions towards the resource cap.
+     */
+    private final int resourceCapContribution;
+
     public VideoGame(String title, int year, String thumbnailImagePath, String publisher, String genre,
                      double certificateRating, boolean hasMultiplayerSupport) {
         super(title, year, thumbnailImagePath);
@@ -22,6 +27,7 @@ public class VideoGame extends Resource {
 
         this.lateReturnFinePerDay = 2.00;
         this.maxFineAmount = 25.00;
+        this.resourceCapContribution = 1;
     }
 
     public String getPublisher() {
@@ -67,4 +73,11 @@ public class VideoGame extends Resource {
     public double getMaxFineAmount(){
         return maxFineAmount;
     }
+
+    /**
+     * Gets the resource cap contribution of the resource.
+     *
+     * @rerturn Returns the resource cap contribution of the particular resource.
+     */
+    public int getCapContribution() { return resourceCapContribution; }
 }

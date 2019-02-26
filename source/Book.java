@@ -41,6 +41,11 @@ public class Book extends Resource {
     private final double maxFineAmount;
 
     /**
+     * The amount of points the resource contributions towards the resource cap.
+     */
+    private final int resourceCapContribution;
+
+    /**
      * The constructor for a book.
      *
      * @param title     The title of the book.
@@ -56,6 +61,7 @@ public class Book extends Resource {
 
         this.lateReturnFinePerDay = 2.00;
         this.maxFineAmount = 25.00;
+        this.resourceCapContribution = 1;
     }
 
     /**
@@ -195,4 +201,11 @@ public class Book extends Resource {
     public String getType() {
         return "Book";
     }
+
+    /**
+     * Gets the resource cap contribution of the resource.
+     *
+     * @rerturn Returns the resource cap contribution of the particular resource.
+     */
+    public int getCapContribution() { return resourceCapContribution; }
 }

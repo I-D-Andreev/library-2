@@ -141,6 +141,12 @@ public class ManageResourcesController extends Controller {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid resource ID.",
                     ButtonType.OK);
             alert.show();
+        } else if (!((((NormalUser) user).resourceCapCheck() + resource.getCapContribution()) <=
+                ((NormalUser) user).getResourceCap())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "User has reached resource cap\n"
+                    + "the user must return items to borrow more copies.",
+                    ButtonType.OK);
+            alert.show();
         } else {
             // Successfully lend a copy.
             Copy copy = getLibrary().getResourceManager().loanCopy(resource, user);

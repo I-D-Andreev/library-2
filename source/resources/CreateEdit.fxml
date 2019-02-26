@@ -125,26 +125,26 @@
                         <Button fx:id="createGameDrawButton" layoutX="410.0" layoutY="126.0" mnemonicParsing="false" onAction="#createGameDrawButtonClicked" text="Draw" />
                         <TextField fx:id="createGamePublisherTextField" layoutX="197.0" layoutY="182.0" />
                         <TextField fx:id="createGameGenreTextField" layoutX="197.0" layoutY="236.0" />
-                        <ChoiceBox fx:id="createGameCertRatingChoiceBox" layoutX="206.0" layoutY="290.0" prefWidth="150.0">
-                            <items>
-                                <FXCollections fx:factory="observableArrayList">
-                                    <String fx:value="Early Childhood" />
-                                    <String fx:value="Everyone" />
-                                    <String fx:value="Everyone 10+" />
-                                    <String fx:value="Teen" />
-                                    <String fx:value="Mature" />
-                                    <String fx:value="Adults Only" />
-                                </FXCollections>
-                            </items>
-                        </ChoiceBox>
-                        <ChoiceBox fx:id="createGameMultiplayerChoiceBox" layoutX="206.0" layoutY="348.0" prefWidth="150.0">
-                            <items>
-                                <FXCollections fx:factory="observableArrayList">
-                                    <String fx:value="Yes"/>
-                                    <String fx:value="No"/>
-                                </FXCollections>
-                            </items>
-                        </ChoiceBox>
+                         <ChoiceBox fx:id="createGameCertRatingChoiceBox" layoutX="206.0" layoutY="290.0" prefWidth="150.0">
+                             <items>
+                                 <FXCollections fx:factory="observableArrayList">
+                                     <String fx:value="Early Childhood" />
+                                     <String fx:value="Everyone" />
+                                     <String fx:value="Everyone 10+" />
+                                     <String fx:value="Teen" />
+                                     <String fx:value="Mature" />
+                                     <String fx:value="Adults Only" />
+                                 </FXCollections>
+                             </items>
+                         </ChoiceBox>
+                         <ChoiceBox fx:id="createGameMultiplayerChoiceBox" layoutX="206.0" layoutY="348.0" prefWidth="150.0">
+                             <items>
+                                 <FXCollections fx:factory="observableArrayList">
+                                     <String fx:value="Yes"/>
+                                     <String fx:value="No"/>
+                                 </FXCollections>
+                             </items>
+                         </ChoiceBox>
                         <Button fx:id="createGameCreateButton" layoutX="518.0" layoutY="440.0" mnemonicParsing="false" onAction="#createGameCreateButtonClicked" text="Create" />
                      </children>
                   </AnchorPane>
@@ -239,6 +239,54 @@
                      </children>
                   </AnchorPane>
                </content>
+            </Tab>
+            <Tab fx:id="editGameTab" text="Edit Game">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="51.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unique ID Search" />
+                        <TextField fx:id="editGameUniqueIDSearchTextField" layoutX="213.0" layoutY="28.0" />
+                        <Button fx:id="editGameSearchButton" layoutX="422.0" layoutY="28.0" mnemonicParsing="false" onAction="#editGameSearchButtonClicked" text="Search" />
+                        <Line endX="608.7999877929688" endY="-1.52587890625E-5" layoutX="91.0" layoutY="84.0" startX="-91.0" startY="-3.0517578125E-5" />
+                        <Text layoutX="91.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" />
+                        <Text layoutX="91.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year" />
+                        <Text layoutX="37.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thumbnail Image Path" />
+                        <Text layoutX="76.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Publisher" />
+                        <Text layoutX="85.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Genre" />
+                        <Text layoutX="52.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Certificate Rating" />
+                        <Text layoutX="45.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Multiplayer Support" wrappingWidth="120.70068359375" />
+                        <TextField fx:id="editGameTitleTextField" layoutX="213.0" layoutY="92.0" />
+                        <TextField fx:id="editGameYearTextField" layoutX="213.0" layoutY="127.0" />
+                        <TextField fx:id="editGameImagePathTextField" disable="true" layoutX="213.0" layoutY="170.0" />
+                        <TextField fx:id="editGamePublisherTextField" layoutX="213.0" layoutY="210.0" />
+                        <TextField fx:id="editGameGenreTextField" layoutX="213.0" layoutY="256.0" />
+                        <ChoiceBox fx:id="editGameCertRatingChoiceBox" layoutX="222.0" layoutY="301.0" prefWidth="150.0">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Early Childhood" />
+                                    <String fx:value="Everyone" />
+                                    <String fx:value="Everyone 10+" />
+                                    <String fx:value="Teen" />
+                                    <String fx:value="Mature" />
+                                    <String fx:value="Adults Only" />
+                                </FXCollections>
+                            </items>
+                        </ChoiceBox>
+                        <ChoiceBox fx:id="editGameMultiplayerChoiceBox" layoutX="222.0" layoutY="344.0" prefWidth="150.0" >
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Yes"/>
+                                    <String fx:value="No"/>
+                                </FXCollections>
+                            </items>
+                        </ChoiceBox>
+                        <Button fx:id="editGameImagePathButton" layoutX="380.0" layoutY="170.0" mnemonicParsing="false" onAction="#editGameImagePathButtonClicked" text="..." />
+                        <Button fx:id="editGameDrawButton" layoutX="428.0" layoutY="170.0" mnemonicParsing="false" onAction="#editGameDrawButtonClicked" text="Draw" />
+                        <Button fx:id="editGameDeleteButton" layoutX="74.0" layoutY="437.0" mnemonicParsing="false" onAction="#editGameDeleteButtonClicked" text="Delete" />
+                        <Button fx:id="editGameEditButton" layoutX="544.0" layoutY="437.0" mnemonicParsing="false" onAction="#editGameEditButtonClicked" text="Edit" />
+                     </children>
+                  </AnchorPane>
+              </content>
             </Tab>
             <Tab text="Copy">
               <content>

@@ -9,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 import java.io.File;
 
@@ -98,8 +99,14 @@ public class UserResourceController extends Controller {
      * @param event When the trailer button is clicked.
      */
     @FXML
-    void trailerButtonClicked(ActionEvent event) {
-
+    void trailerButtonClicked(ActionEvent event) throws Exception {
+            if (clickedResource.getType().equals("Video Game")) {
+                VideoPlayer trailer = new VideoPlayer(clickedResource.getTitle() + " video game");
+                trailer.start(new Stage());
+            } else if (clickedResource.getType().equals("DVD")) {
+                VideoPlayer trailer = new VideoPlayer(clickedResource.getTitle());
+                trailer.start(new Stage());
+            }
     }
 
     /**
@@ -116,6 +123,11 @@ public class UserResourceController extends Controller {
      */
     @Override
     public void onStart() {
+
+        if (!(clickedResource.getType().equals("DVD") || clickedResource.getType().equals("Video Game"))) {
+            trailerButton.setVisible(false);
+        }
+
         data = FXCollections.observableArrayList();
         uniqueIDColumn.setCellValueFactory(new PropertyValueFactory<TableRepresentationCopyAvailable, String>("uniqueCopyID"));
         isAvailableColumn.setCellValueFactory(new PropertyValueFactory<TableRepresentationCopyAvailable, String>("isAvailable"));
@@ -128,6 +140,8 @@ public class UserResourceController extends Controller {
         tableView.getItems().addAll(data);
 
         this.loadImage();
+
+
 
     }
 

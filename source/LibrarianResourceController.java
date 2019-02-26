@@ -9,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 import java.io.File;
 
@@ -91,8 +92,14 @@ public class LibrarianResourceController extends Controller {
      * @param event When the trailer button is clicked.
      */
     @FXML
-    void trailerButtonClicked(ActionEvent event) {
-
+    void trailerButtonClicked(ActionEvent event) throws Exception {
+        if (clickedResource.getType().equals("Video Game")) {
+            VideoPlayer trailer = new VideoPlayer(clickedResource.getTitle() + " video game");
+            trailer.start(new Stage());
+        } else if (clickedResource.getType().equals("DVD")) {
+            VideoPlayer trailer = new VideoPlayer(clickedResource.getTitle());
+            trailer.start(new Stage());
+        }
     }
 
     /**
@@ -126,6 +133,10 @@ public class LibrarianResourceController extends Controller {
      */
     @Override
     public void onStart() {
+        if (!(clickedResource.getType().equals("DVD") || clickedResource.getType().equals("Video Game"))) {
+            trailerButton.setVisible(false);
+        }
+
         data = FXCollections.observableArrayList();
         copyIDColumn.setCellValueFactory(new PropertyValueFactory<TableRepresentationCopyAvailable, String>("uniqueCopyID"));
         copyAvailableColumn.setCellValueFactory(new PropertyValueFactory<TableRepresentationCopyAvailable, String>("isAvailable"));

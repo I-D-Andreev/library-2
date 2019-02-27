@@ -131,6 +131,22 @@ public class UserDashboardController extends Controller {
     private Label accountCreationLabel;
 
     /**
+     * Button to open new additions window
+     */
+    @FXML
+    private Button newAdditionsButton;
+
+    /**
+     * Opens the new additions window.
+     *
+     * @param event When the new additions button is clicked.
+     */
+    @FXML
+    void newAdditionsButtonClicked(ActionEvent event) {
+
+    }
+
+    /**
      * Takes the user to the borrowed resources tab after the button is clicked.
      *
      * @param event The button is clicked.

@@ -656,13 +656,13 @@ public class CreateEditController extends Controller {
     private Button editGameEditButton;
 
     /**
-     * Creates a new game resource when the button is clicked.
+     * Creates a new video game resource when the button is clicked.
      *
      * @param event When the create button is clicked.
      */
     @FXML
     void createGameCreateButtonClicked(ActionEvent event) {
-        // mandatory information- all fields
+        // mandatory information - all fields
 
         if (createGameTitleTextField.getText().isEmpty() || createGameYearTextField.getText().isEmpty()
                 || createGameImagePathTextField.getText().isEmpty() || createGamePublisherTextField.getText().isEmpty()
@@ -766,7 +766,48 @@ public class CreateEditController extends Controller {
      */
     @FXML
     void editGameSearchButtonClicked(ActionEvent event) {
+        String gameID = editGameUniqueIDSearchTextField.getText();
 
+        Resource resource = getLibrary().getResourceManager().getResourceById(gameID);
+
+        if (resource == null || !resource.getType().equals("Video Game")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Couldn't find a video game with such ID.",
+                    ButtonType.OK);
+            alert.show();
+        } else {
+            // Video game is successfully found.
+            VideoGame videoGame = (VideoGame) resource;
+
+            // fill the fields with data
+            editGameTitleTextField.setText(videoGame.getTitle());
+            editGameYearTextField.setText(String.valueOf(videoGame.getYear()));
+            editGameImagePathTextField.setText(videoGame.getThumbnailImagePath());
+            editGamePublisherTextField.setText(videoGame.getPublisher());
+            editGameGenreTextField.setText(videoGame.getGenre());
+
+
+
+            // choose age rating in the box
+            String rating = videoGame.getCertificateRating();
+
+            for(int i=0; i<editGameCertRatingChoiceBox.getItems().size(); i++){
+                // if the choice box has the same String as the rating, then select it
+                if(editGameCertRatingChoiceBox.getItems().get(i).equals(rating)){
+                    System.out.println(editGameCertRatingChoiceBox.getItems().get(i));
+                    editGameCertRatingChoiceBox.getSelectionModel().select(i);
+                }
+            }
+
+            // set Yes/No of multiplayer support
+            if(videoGame.hasMultiplayerSupport()){
+                editGameMultiplayerChoiceBox.getSelectionModel().select(0);
+            } else {
+                editGameMultiplayerChoiceBox.getSelectionModel().select(1);
+            }
+
+            // lock the id field
+            editGameUniqueIDSearchTextField.setDisable(true);
+        }
     }
 
     /**

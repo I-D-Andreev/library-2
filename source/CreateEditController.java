@@ -684,11 +684,11 @@ public class CreateEditController extends Controller {
             String genre = createGameGenreTextField.getText();
             String rating = createGameCertRatingChoiceBox.getSelectionModel().getSelectedItem().toString();
             boolean hasMultiplayer = createGameMultiplayerChoiceBox.getSelectionModel()
-                    .getSelectedItem().toString().equals("Yes") ? true: false;
+                    .getSelectedItem().toString().equals("Yes") ? true : false;
 
             // create a Video Game and add it
             getLibrary().getResourceManager().addResource(new VideoGame(title, year, thumbnail,
-                    publisher, genre,rating, hasMultiplayer));
+                    publisher, genre, rating, hasMultiplayer));
 
             // notify the user
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Video game resource created successfully.",
@@ -727,6 +727,24 @@ public class CreateEditController extends Controller {
      */
     @FXML
     void editGameDeleteButtonClicked(ActionEvent event) {
+        Resource resource = getLibrary().getResourceManager().
+                getResourceById(editGameUniqueIDSearchTextField.getText());
+
+        if (!canDeleteResource(resource)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Can't delete resource, because some of its" +
+                    " copies are still in use!",
+                    ButtonType.OK);
+            alert.show();
+        } else {
+            getLibrary().getResourceManager().removeResource(editGameUniqueIDSearchTextField.getText());
+            this.clearAllEditGameFields();
+            editGameUniqueIDSearchTextField.setDisable(false);
+
+            // notify the user
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Video Game deleted successfully.",
+                    ButtonType.OK);
+            alert.show();
+        }
     }
 
     /**
@@ -746,6 +764,48 @@ public class CreateEditController extends Controller {
      */
     @FXML
     void editGameEditButtonClicked(ActionEvent event) {
+        // mandatory information - all
+
+        if (editGameTitleTextField.getText().isEmpty() || editGameYearTextField.getText().isEmpty()
+                || editGameImagePathTextField.getText().isEmpty() || editGamePublisherTextField.getText().isEmpty()
+                || editGameGenreTextField.getText().isEmpty() || editGameCertRatingChoiceBox.getSelectionModel().isEmpty()
+                || editGameMultiplayerChoiceBox.getSelectionModel().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all the required fields.",
+                    ButtonType.OK);
+            alert.show();
+        } else if (!isStringNumber(editGameYearTextField.getText())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "The year text field must be a number.",
+                    ButtonType.OK);
+            alert.show();
+        } else {
+            // gather the information
+            String title = editGameTitleTextField.getText();
+            int year = Integer.parseInt(editGameYearTextField.getText());
+            String thumbnail = editGameImagePathTextField.getText();
+            String publisher = editGamePublisherTextField.getText();
+            String genre = editGameGenreTextField.getText();
+
+            String rating = editGameCertRatingChoiceBox.getSelectionModel().getSelectedItem().toString();
+            boolean hasMultiplayer = editGameMultiplayerChoiceBox.getSelectionModel()
+                    .getSelectedItem().toString().equals("Yes") ? true : false;
+
+            // get the game
+            VideoGame videoGame = (VideoGame) getLibrary().getResourceManager()
+                    .getResourceById(editGameUniqueIDSearchTextField.getText());
+
+            // edit the game
+            getLibrary().getResourceManager().editVideoGame(videoGame, title, year, thumbnail,
+                    publisher, genre, rating, hasMultiplayer);
+
+            // notify the user
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Video game resource edited successfully.",
+                    ButtonType.OK);
+            alert.show();
+
+            // enable the search ID again and clear all the fields
+            editGameUniqueIDSearchTextField.setDisable(false);
+            this.clearAllEditGameFields();
+        }
 
     }
 
@@ -786,20 +846,18 @@ public class CreateEditController extends Controller {
             editGameGenreTextField.setText(videoGame.getGenre());
 
 
-
             // choose age rating in the box
             String rating = videoGame.getCertificateRating();
 
-            for(int i=0; i<editGameCertRatingChoiceBox.getItems().size(); i++){
+            for (int i = 0; i < editGameCertRatingChoiceBox.getItems().size(); i++) {
                 // if the choice box has the same String as the rating, then select it
-                if(editGameCertRatingChoiceBox.getItems().get(i).equals(rating)){
-                    System.out.println(editGameCertRatingChoiceBox.getItems().get(i));
+                if (editGameCertRatingChoiceBox.getItems().get(i).equals(rating)) {
                     editGameCertRatingChoiceBox.getSelectionModel().select(i);
                 }
             }
 
             // set Yes/No of multiplayer support
-            if(videoGame.hasMultiplayerSupport()){
+            if (videoGame.hasMultiplayerSupport()) {
                 editGameMultiplayerChoiceBox.getSelectionModel().select(0);
             } else {
                 editGameMultiplayerChoiceBox.getSelectionModel().select(1);
@@ -1644,7 +1702,6 @@ public class CreateEditController extends Controller {
     @FXML
     public void drawButtonEditLaptopClicked(ActionEvent event) {
         callDrawingInterface(imagePathEditLaptop);
-
     }
 
     /**
@@ -1778,7 +1835,7 @@ public class CreateEditController extends Controller {
     /**
      * Empties all fields for create game.
      */
-    private void clearAllCreateGameFields(){
+    private void clearAllCreateGameFields() {
         createGameTitleTextField.clear();
         createGameYearTextField.clear();
         createGameImagePathTextField.clear();
@@ -1786,6 +1843,20 @@ public class CreateEditController extends Controller {
         createGamePublisherTextField.clear();
         createGameMultiplayerChoiceBox.getSelectionModel().clearSelection();
         createGameCertRatingChoiceBox.getSelectionModel().clearSelection();
+    }
+
+    /**
+     * Empties all fields for edit game.
+     */
+    private void clearAllEditGameFields() {
+        editGameUniqueIDSearchTextField.clear();
+        editGameTitleTextField.clear();
+        editGameYearTextField.clear();
+        editGameImagePathTextField.clear();
+        editGameGenreTextField.clear();
+        editGamePublisherTextField.clear();
+        editGameMultiplayerChoiceBox.getSelectionModel().clearSelection();
+        editGameCertRatingChoiceBox.getSelectionModel().clearSelection();
     }
 }
 

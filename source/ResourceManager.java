@@ -137,7 +137,7 @@ public class ResourceManager implements Serializable {
 
             // only show new additions to normal users
             // add the new resource to every normal user
-            if(user instanceof NormalUser){
+            if (user instanceof NormalUser) {
                 NormalUser normalUser = (NormalUser) user;
                 normalUser.getNewAdditions().add(resource);
             }
@@ -241,6 +241,8 @@ public class ResourceManager implements Serializable {
     }
 
     /**
+     * Method to edit a DVD resource.
+     *
      * @param dvd                     The dvd resource to be edited.
      * @param title                   The new title of the dvd.
      * @param year                    The new year the dvd came out.
@@ -257,6 +259,28 @@ public class ResourceManager implements Serializable {
         dvd.setRuntime(runtime);
         dvd.setLanguage(language);
         dvd.setListOfSubtitleLanguages(listOfSubtitleLanguages);
+    }
+
+
+    /**
+     * Method to edit a video game resource.
+     *
+     * @param videoGame             The video game resource to be edited.
+     * @param title                 The new title of the video game resource.
+     * @param year                  The new year of the video game resource.
+     * @param imagePath             The new thumbnail image path of the video game.
+     * @param publisher             The new publisher of the video game.
+     * @param genre                 The new genre of the video game.
+     * @param certificateRating     The new certificate rating of the video game.
+     * @param hasMultiplayerSupport The new multiplayer supporting of the video game.
+     */
+    public void editVideoGame(VideoGame videoGame, String title, int year, String imagePath,
+                              String publisher, String genre, String certificateRating, boolean hasMultiplayerSupport) {
+        editResource(videoGame, title, year, imagePath);
+        videoGame.setPublisher(publisher);
+        videoGame.setGenre(genre);
+        videoGame.setCertificateRating(certificateRating);
+        videoGame.setHasMultiplayerSupport(hasMultiplayerSupport);
     }
 
     /**

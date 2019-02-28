@@ -143,7 +143,8 @@ public class UserDashboardController extends Controller {
      */
     @FXML
     void newAdditionsButtonClicked(ActionEvent event) {
-
+        new NewWindow("resources/NewAdditions.fxml", event, "New additions - TaweLib",
+                getLibrary());
     }
 
     /**

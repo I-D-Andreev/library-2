@@ -696,7 +696,7 @@ public class CreateEditController extends Controller {
             alert.show();
 
             // clear all the fields
-            this.clearAllCreateBookFields();
+            this.clearAllCreateGameFields();
         }
     }
 
@@ -1773,6 +1773,19 @@ public class CreateEditController extends Controller {
         runtimeEditDVDTextField.setText("");
         languageEditDVDTextField.setText("");
         languageSubtitlesEditDVDTextField.setText("");
+    }
+
+    /**
+     * Empties all fields for create game.
+     */
+    private void clearAllCreateGameFields(){
+        createGameTitleTextField.clear();
+        createGameYearTextField.clear();
+        createGameImagePathTextField.clear();
+        createGameGenreTextField.clear();
+        createGamePublisherTextField.clear();
+        createGameMultiplayerChoiceBox.getSelectionModel().clearSelection();
+        createGameCertRatingChoiceBox.getSelectionModel().clearSelection();
     }
 }
 

@@ -6,7 +6,7 @@ public class VideoGame extends Resource {
 
     private String publisher;
     private String genre;
-    private double certificateRating;
+    private String certificateRating;
     private boolean hasMultiplayerSupport;
 
     private double lateReturnFinePerDay;
@@ -18,7 +18,7 @@ public class VideoGame extends Resource {
     private final int resourceCapContribution;
 
     public VideoGame(String title, int year, String thumbnailImagePath, String publisher, String genre,
-                     double certificateRating, boolean hasMultiplayerSupport) {
+                     String certificateRating, boolean hasMultiplayerSupport) {
         super(title, year, thumbnailImagePath);
         this.publisher = publisher;
         this.genre = genre;
@@ -46,11 +46,11 @@ public class VideoGame extends Resource {
         this.genre = genre;
     }
 
-    public double getCertificateRating() {
+    public String getCertificateRating() {
         return certificateRating;
     }
 
-    public void setCertificateRating(double certificateRating) {
+    public void setCertificateRating(String certificateRating) {
         this.certificateRating = certificateRating;
     }
 

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -15,9 +17,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="597.0" prefWidth="693.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CreateEditController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CreateEditController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="611.0" minWidth="10.0" prefWidth="611.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.0" minWidth="10.0" prefWidth="82.0" />
@@ -140,12 +140,12 @@
                          <ChoiceBox fx:id="createGameMultiplayerChoiceBox" layoutX="206.0" layoutY="348.0" prefWidth="150.0">
                              <items>
                                  <FXCollections fx:factory="observableArrayList">
-                                     <String fx:value="Yes"/>
-                                     <String fx:value="No"/>
+                                     <String fx:value="Yes" />
+                                     <String fx:value="No" />
                                  </FXCollections>
                              </items>
                          </ChoiceBox>
-                        <Button fx:id="createGameCreateButton" layoutX="518.0" layoutY="440.0" mnemonicParsing="false" onAction="#createGameCreateButtonClicked" text="Create" />
+                        <Button fx:id="createGameCreateButton" layoutX="515.0" layoutY="418.0" mnemonicParsing="false" onAction="#createGameCreateButtonClicked" text="Create" />
                      </children>
                   </AnchorPane>
               </content>
@@ -272,11 +272,11 @@
                                 </FXCollections>
                             </items>
                         </ChoiceBox>
-                        <ChoiceBox fx:id="editGameMultiplayerChoiceBox" layoutX="222.0" layoutY="344.0" prefWidth="150.0" >
+                        <ChoiceBox fx:id="editGameMultiplayerChoiceBox" layoutX="222.0" layoutY="344.0" prefWidth="150.0">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
-                                    <String fx:value="Yes"/>
-                                    <String fx:value="No"/>
+                                    <String fx:value="Yes" />
+                                    <String fx:value="No" />
                                 </FXCollections>
                             </items>
                         </ChoiceBox>

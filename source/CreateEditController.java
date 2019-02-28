@@ -498,7 +498,9 @@ public class CreateEditController extends Controller {
      */
     @FXML
     private Button drawButtonEditLaptop;
-
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
     /**
      * The tab to create a game resource.
      */
@@ -564,6 +566,10 @@ public class CreateEditController extends Controller {
      */
     @FXML
     private Button createGameCreateButton;
+
+    //////////////////////////////////////////////
+    //////////////////////////////////////////////
+    //////////////////////////////////////////////
 
     /**
      * The tab to edit a game resource.
@@ -656,7 +662,42 @@ public class CreateEditController extends Controller {
      */
     @FXML
     void createGameCreateButtonClicked(ActionEvent event) {
+        // mandatory information- all fields
 
+        if (createGameTitleTextField.getText().isEmpty() || createGameYearTextField.getText().isEmpty()
+                || createGameImagePathTextField.getText().isEmpty() || createGamePublisherTextField.getText().isEmpty()
+                || createGameGenreTextField.getText().isEmpty() || createGameCertRatingChoiceBox.getSelectionModel().isEmpty()
+                || createGameMultiplayerChoiceBox.getSelectionModel().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all the required fields.",
+                    ButtonType.OK);
+            alert.show();
+        } else if (!isStringNumber(createGameYearTextField.getText())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "The year text field must be a number.",
+                    ButtonType.OK);
+            alert.show();
+        } else {
+            // gather the information
+            String title = createGameTitleTextField.getText();
+            int year = Integer.parseInt(createGameYearTextField.getText());
+            String thumbnail = createGameImagePathTextField.getText();
+            String publisher = createGamePublisherTextField.getText();
+            String genre = createGameGenreTextField.getText();
+            String rating = createGameCertRatingChoiceBox.getSelectionModel().getSelectedItem().toString();
+            boolean hasMultiplayer = createGameMultiplayerChoiceBox.getSelectionModel()
+                    .getSelectedItem().toString().equals("Yes") ? true: false;
+
+            // create a Video Game and add it
+            getLibrary().getResourceManager().addResource(new VideoGame(title, year, thumbnail,
+                    publisher, genre,rating, hasMultiplayer));
+
+            // notify the user
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Video game resource created successfully.",
+                    ButtonType.OK);
+            alert.show();
+
+            // clear all the fields
+            this.clearAllCreateBookFields();
+        }
     }
 
     /**
@@ -666,7 +707,7 @@ public class CreateEditController extends Controller {
      */
     @FXML
     void createGameDrawButtonClicked(ActionEvent event) {
-
+        callDrawingInterface(createGameImagePathTextField);
     }
 
     /**
@@ -676,7 +717,7 @@ public class CreateEditController extends Controller {
      */
     @FXML
     void createGameFindImageButtonClicked(ActionEvent event) {
-
+        selectFile(createGameImagePathTextField);
     }
 
     /**
@@ -686,7 +727,6 @@ public class CreateEditController extends Controller {
      */
     @FXML
     void editGameDeleteButtonClicked(ActionEvent event) {
-
     }
 
     /**
@@ -696,7 +736,7 @@ public class CreateEditController extends Controller {
      */
     @FXML
     void editGameDrawButtonClicked(ActionEvent event) {
-
+        callDrawingInterface(editGameImagePathTextField);
     }
 
     /**
@@ -716,7 +756,7 @@ public class CreateEditController extends Controller {
      */
     @FXML
     void editGameImagePathButtonClicked(ActionEvent event) {
-
+        selectFile(editGameImagePathTextField);
     }
 
     /**

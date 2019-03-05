@@ -143,6 +143,23 @@ public class UserDashboardController extends Controller {
     private Button statisticsButton;
 
     /**
+     * Button to open the events window.
+     */
+    @FXML
+    private Button eventsButton;
+
+    /**
+     * Opens the events window.
+     *
+     * @param event When the events button is clicked.
+     */
+    @FXML
+    void eventsButtonClicked(ActionEvent event) {
+
+        new NewWindow("resources/UserEvent.fxml", event, "Events - TaweLib", getLibrary());
+    }
+
+    /**
      * Opens the statistics window.
      *
      * @param event When the statistics button is clicked.

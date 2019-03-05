@@ -83,6 +83,11 @@
                         <Insets right="10.0" top="10.0" />
                      </HBox.margin>
                   </Button>
+                  <Button fx:id="eventsButton" mnemonicParsing="false" onAction="#eventsButtonClicked" text="Events">
+                     <HBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
                </children>
             </HBox>
          </children>

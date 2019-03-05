@@ -137,6 +137,22 @@ public class UserDashboardController extends Controller {
     private Button newAdditionsButton;
 
     /**
+     * Button to open the statistics window
+     */
+    @FXML
+    private Button statisticsButton;
+
+    /**
+     * Opens the statistics window.
+     *
+     * @param event When the statistics button is clicked.
+     */
+    @FXML
+    void statisticsButtonClicked(ActionEvent event) {
+
+    }
+
+    /**
      * Opens the new additions window.
      *
      * @param event When the new additions button is clicked.

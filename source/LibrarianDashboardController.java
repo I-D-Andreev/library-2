@@ -121,11 +121,29 @@ public class LibrarianDashboardController extends Controller {
     private Label employmentDateLabel;
 
     /**
+     * Button to open the statistics window.
+     */
+    @FXML
+    private Button statisticsButton;
+
+    /**
      * Loads the librarian information on startup.
      */
     @Override
     public void onStart() {
         this.loadLibrarianInformation();
+    }
+
+    /**
+     * Opens the statistics window.
+     *
+     * @param event When the statistics button is clicked.
+     */
+    @FXML
+    void statisticsButtonClicked(ActionEvent event) {
+
+        new NewWindow("resources/LibrarianStatistics.fxml", event, "Statistics - TaweLib",
+                getLibrary());
     }
 
     /**

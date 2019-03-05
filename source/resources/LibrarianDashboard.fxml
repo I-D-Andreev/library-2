@@ -63,19 +63,24 @@
             </HBox>
             <HBox prefHeight="45.0" prefWidth="597.0">
                <children>
-                  <Button fx:id="createEditResourcesButton" mnemonicParsing="false" onAction="#createEditButtonClicked" text="Create/Edit Resources">
+                  <Button fx:id="createEditResourcesButton" mnemonicParsing="false" onAction="#createEditButtonClicked" prefHeight="44.0" prefWidth="93.0" text="Create/Edit Resources" textAlignment="CENTER" wrapText="true">
                      <HBox.margin>
                         <Insets left="110.0" right="30.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="manageResourcesButton" minWidth="150.0" mnemonicParsing="false" onAction="#manageResourcesButtonClicked" prefHeight="27.0" prefWidth="137.0" text="Manage Resources" wrapText="true">
+                  <Button fx:id="manageResourcesButton" minWidth="136.0" mnemonicParsing="false" onAction="#manageResourcesButtonClicked" prefHeight="27.0" prefWidth="136.0" text="Manage Resources" textAlignment="CENTER" wrapText="true">
                      <HBox.margin>
                         <Insets right="30.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="browseResourcesButton" mnemonicParsing="false" onAction="#browseButtonClicked" text="Browse Resources">
+                  <Button fx:id="browseResourcesButton" mnemonicParsing="false" onAction="#browseButtonClicked" prefHeight="27.0" prefWidth="134.0" text="Browse Resources" textAlignment="CENTER" wrapText="true">
                      <HBox.margin>
                         <Insets />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="statisticsButton" mnemonicParsing="false" onAction="#statisticsButtonClicked" text="Statistics" textAlignment="CENTER" wrapText="true">
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
                      </HBox.margin>
                   </Button>
                </children>

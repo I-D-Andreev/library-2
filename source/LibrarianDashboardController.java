@@ -127,6 +127,12 @@ public class LibrarianDashboardController extends Controller {
     private Button statisticsButton;
 
     /**
+     * Button to open the event window.
+     */
+    @FXML
+    private Button eventButton;
+
+    /**
      * Loads the librarian information on startup.
      */
     @Override
@@ -144,6 +150,17 @@ public class LibrarianDashboardController extends Controller {
 
         new NewWindow("resources/LibrarianStatistics.fxml", event, "Statistics - TaweLib",
                 getLibrary());
+    }
+
+    /**
+     * Opens the event window.
+     *
+     * @param event When the create event button is clicked.
+     */
+    @FXML
+    void eventButtonClicked(ActionEvent event) {
+
+        new NewWindow("resources/LibrarianEvent.fxml", event, "Events - TaweLib", getLibrary());
     }
 
     /**

@@ -7,6 +7,7 @@
 public class Library {
     private UserManager userManager;
     private ResourceManager resourceManager;
+    private EventManager eventManager;
     private User currentUserLoggedIn;
 
     /**
@@ -15,6 +16,7 @@ public class Library {
     public Library() {
         userManager = new UserManager();
         resourceManager = new ResourceManager(this);
+        eventManager = new EventManager();
     }
 
     /**
@@ -36,12 +38,22 @@ public class Library {
     }
 
     /**
+     * Gets the event manager of the library.
+     *
+     * @return The event manager.
+     */
+    public EventManager getEventManager() {
+        return eventManager;
+    }
+
+    /**
      * Saves all the changes that happened in the library.
      */
     public void save() {
         this.userManager.save();
         this.resourceManager.save();
-        SaveStaticVariables saveStaticVariables = new SaveStaticVariables(User.getNextID(), Resource.getNextID(), Copy.getNextId());
+        this.eventManager.save();
+        SaveStaticVariables saveStaticVariables = new SaveStaticVariables(User.getNextID(), Resource.getNextID(), Copy.getNextId(), Event.getNextId());
         saveStaticVariables.save();
     }
 

@@ -1,25 +1,28 @@
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
 
 /**
  * Controller class for the librarian event window.
  * Handles what happens when the user interacts with the UI.
  *
- * @author Sian Pike
+ * @author Sian Pike, James Hodder
  */
-public class LibrarianEventController {
+public class LibrarianEventController extends Controller{
 
     /**
      * Table containing events.
      */
     @FXML
-    private TableView<?> eventTable;
+    private TableView<Event> eventTable;
 
     /**
      * Column containing the event titles.
@@ -94,13 +97,51 @@ public class LibrarianEventController {
     private Button createButton;
 
     /**
+     * The data inside the table.
+     */
+    private ObservableList<Event> data;
+
+    public void initialize() {
+        data = FXCollections.observableArrayList();
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        timeColumn.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        maxAttendeesColumn.setCellValueFactory(new PropertyValueFactory<>("maxAttendees"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+
+    }
+
+    /**
+     * Refreshes the table on startup.
+     */
+    @Override
+    public void onStart() {
+        this.updateTable();
+    }
+
+    /**
      * Adds the new event to the events table.
      *
      * @param event When the create button is clicked.
      */
     @FXML
     void createButtonClicked(ActionEvent event) {
+        if(titleTextField.getText().isEmpty() || datePicker.getValue().equals(null) || timeTextField.getText().isEmpty()
+            || maxAttendeesTextField.getText().isEmpty() || descriptionTextArea.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all the fields.",
+                    ButtonType.OK);
+            alert.show();
+        } else {
+            String[] timeTextSplit = timeTextField.getText().split(":");
+            LocalTime time = LocalTime.of(Integer.parseInt(timeTextSplit[0]), Integer.parseInt(timeTextSplit[1]));
+            getLibrary().getEventManager().addEvent(new Event(titleTextField.getText(), datePicker.getValue(), time,
+                    Integer.parseInt(maxAttendeesTextField.getText()), descriptionTextArea.getText()));
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Event created successfully.", ButtonType.OK);
+            alert.show();
 
+            this.updateTable();
+            this.clearAllCreateEventFields();
+        }
     }
 
     /**
@@ -110,7 +151,32 @@ public class LibrarianEventController {
      */
     @FXML
     void okButtonClicked(ActionEvent event) {
-
+        new NewWindow("resources/LibrarianDashboard.fxml", event, "Dashboard - TaweLib", getLibrary());
     }
 
+    /**
+     * Clears all text fields on the window. Cannot reset DatePicker.
+     */
+    private void clearAllCreateEventFields() {
+        this.titleTextField.setText("");
+        this.timeTextField.setText("");
+        this.maxAttendeesTextField.setText("");
+        this.descriptionTextArea.setText("");
+    }
+
+    /**
+     * Updates the data shown on the table.
+     */
+    @FXML
+    public void updateTable() {
+        // clear previous data
+        data.clear();
+        eventTable.getItems().clear();
+
+        for (Event event: getLibrary().getEventManager().getAllEvents()) {
+            data.add(event);
+        }
+
+        eventTable.getItems().addAll(data);
+    }
 }

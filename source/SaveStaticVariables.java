@@ -23,23 +23,29 @@ public class SaveStaticVariables implements Serializable {
     private int copyNextID;
 
     /**
+     * The event next unique ID.
+     */
+    private int eventNextID;
+
+    /**
      * Saves the static variables we use for unique ID.
      *
      * @param userNextID     The user next unique ID.
      * @param resourceNextID The resource next unique ID.
      * @param copyNextID     The copy next unique ID.
+     * @param eventNextID    The event next unique ID.
      */
-    public SaveStaticVariables(int userNextID, int resourceNextID, int copyNextID) {
+    public SaveStaticVariables(int userNextID, int resourceNextID, int copyNextID, int eventNextID) {
         this.userNextID = userNextID;
         this.resourceNextID = resourceNextID;
         this.copyNextID = copyNextID;
+        this.eventNextID = eventNextID;
     }
 
     /**
      * Populates the static variables we are saving.
      */
     public SaveStaticVariables() {
-        this.selfPopulate();
     }
 
     /**
@@ -94,6 +100,24 @@ public class SaveStaticVariables implements Serializable {
      */
     public void setCopyNextID(int copyNextID) {
         this.copyNextID = copyNextID;
+    }
+
+    /**
+     * Gets the next unique event ID.
+     *
+     * @return The next unique event ID.
+     */
+    public int getEventNextID() {
+        return eventNextID;
+    }
+
+    /**
+     * Sets the next event's unique ID.
+     *
+     * @param eventNextID The event's next unique ID.
+     */
+    public void setEventNextID(int eventNextID) {
+        this.eventNextID = eventNextID;
     }
 
     /**
@@ -152,6 +176,7 @@ public class SaveStaticVariables implements Serializable {
             this.resourceNextID = saveStaticVariables.getResourceNextID();
             this.userNextID = saveStaticVariables.getUserNextID();
             this.copyNextID = saveStaticVariables.getCopyNextID();
+            this.eventNextID = saveStaticVariables.getEventNextID();
 
         } catch (IOException e) {
             System.out.println("Couldn't access file to read from.");
@@ -192,5 +217,6 @@ public class SaveStaticVariables implements Serializable {
         this.resourceNextID = 4;
         this.userNextID = 3;
         this.copyNextID = 4;
+        this.eventNextID = 4;
     }
 }

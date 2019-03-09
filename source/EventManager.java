@@ -19,7 +19,7 @@ public class EventManager implements Serializable {
     public EventManager() {
         events = new ArrayList<>();
 
-        this.selfPopulate1();
+        this.selfPopulate();
     }
 
     /**

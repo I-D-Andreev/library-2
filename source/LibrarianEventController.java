@@ -4,11 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-
-import java.sql.Time;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
 
 /**
  * Controller class for the librarian event window.

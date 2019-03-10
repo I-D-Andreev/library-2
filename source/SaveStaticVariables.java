@@ -46,6 +46,7 @@ public class SaveStaticVariables implements Serializable {
      * Populates the static variables we are saving.
      */
     public SaveStaticVariables() {
+        this.selfPopulate();
     }
 
     /**

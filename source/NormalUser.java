@@ -147,14 +147,4 @@ public class NormalUser extends User implements Serializable {
         return newAdditions;
     }
 
-    /**
-     * Gets the number of books borrowed by the users in between dates.
-     *
-     * @param fromDate The start date.
-     * @param toDate   The end date.
-     * @return Number of books borrowed between the start and the end date.
-     */
-    public int getNumberOfBooksBorrowedBetween(Date fromDate, Date toDate) {
-        return 0;
-    }
 }

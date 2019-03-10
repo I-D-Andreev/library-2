@@ -496,9 +496,35 @@ public class ResourceManager implements Serializable {
         return new Pair<Resource, Integer>(mostPopularResource, numberOfTimeBorrowed);
     }
 
-    // todo remove this test data
-    // to be removed just before end
-    // test data
+
+    public int getNumberOfBorrowedResourcesBetween(NormalUser byUser, Date fromDate, Date toDate) {
+        int count = 0;
+
+
+        // loop through all copies in the library
+        for (Copy copy : getAllCopies()) {
+
+            // for each entry in the copy's history
+            for (HistoryEntry historyEntry : copy.getLoanHistory().getHistory()) {
+
+                if (historyEntry instanceof HistoryEntryItemTransaction) {
+                    HistoryEntryItemTransaction itemTransaction =
+                            (HistoryEntryItemTransaction) historyEntry;
+
+                    // check if the copy was borrowed by the said person and inbetween the dates
+                    if (itemTransaction.isBorrowed() && itemTransaction.getBorrowedBy() == byUser
+                            && fromDate.compareTo(itemTransaction.getDate()) <= 0   // fromDate <= borrow Date
+                            && toDate.compareTo(itemTransaction.getDate()) >= 0) {  // toDate >= borrowDate
+                        count++;
+                    }
+                }
+            }
+
+        }
+
+        return count;
+    }
+
 
     /**
      * Method that fills the resource manager with dummy data.

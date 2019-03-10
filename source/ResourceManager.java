@@ -525,6 +525,31 @@ public class ResourceManager implements Serializable {
         return count;
     }
 
+    public int getNumberOfTimesResourceWasBorrowedBetween(Resource resource, Date fromDate, Date toDate) {
+        int count = 0;
+
+        // loop through all copies of the resource
+        for (Copy copy : resource.getCopyManager().getListOfAllCopies()) {
+
+            // loop through each copy's history
+            for (HistoryEntry historyEntry : copy.getLoanHistory().getHistory()) {
+
+                if (historyEntry instanceof HistoryEntryItemTransaction) {
+                    HistoryEntryItemTransaction itemTransaction =
+                            (HistoryEntryItemTransaction) historyEntry;
+
+                    if (itemTransaction.isBorrowed() &&
+                            fromDate.compareTo(itemTransaction.getDate()) <= 0          // fromDate <= borrowDate
+                            && toDate.compareTo(itemTransaction.getDate()) >= 0){       // toDate >= borrowDate
+                        count++;
+                    }
+                }
+            }
+
+        }
+
+        return count;
+    }
 
     /**
      * Method that fills the resource manager with dummy data.

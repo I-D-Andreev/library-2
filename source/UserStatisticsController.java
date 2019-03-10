@@ -10,7 +10,7 @@ import javafx.scene.control.TableView;
  *
  * @author Sian Pike
  */
-public class UserStatisticsController {
+public class UserStatisticsController extends Controller {
 
     /**
      * Button to close the window.

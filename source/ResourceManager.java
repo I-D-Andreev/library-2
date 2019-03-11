@@ -1,6 +1,10 @@
 import javafx.util.Pair;
 import jdk.nashorn.internal.runtime.ECMAException;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -497,7 +501,19 @@ public class ResourceManager implements Serializable {
     }
 
 
-    public int getNumberOfBorrowedResourcesBetween(NormalUser byUser, Date fromDate, Date toDate) {
+    public int getNumberOfBorrowedResourcesOn(NormalUser byUser, Date onDate) {
+        System.out.println("Reach here");
+        Date startOfDay = getStartOfDay(onDate);
+        Date endOfDay = getEndOfDay(onDate);
+
+        System.out.println(startOfDay);
+        System.out.println(endOfDay);
+
+        int count = getNumberOfBorrowedResourcesBetween(byUser, startOfDay, endOfDay);
+        return count;
+    }
+
+    private int getNumberOfBorrowedResourcesBetween(NormalUser byUser, Date fromDate, Date toDate) {
         int count = 0;
 
 
@@ -525,7 +541,16 @@ public class ResourceManager implements Serializable {
         return count;
     }
 
-    public int getNumberOfTimesResourceWasBorrowedBetween(Resource resource, Date fromDate, Date toDate) {
+
+    public int getNumberOfTimesResourceWasBorrowedOn(Resource resource, Date onDate){
+        Date startOfDay = getStartOfDay(onDate);
+        Date endOfDay = getEndOfDay(onDate);
+
+        int count = getNumberOfTimesResourceWasBorrowedBetween(resource, startOfDay, endOfDay);
+        return count;
+    }
+
+    private int getNumberOfTimesResourceWasBorrowedBetween(Resource resource, Date fromDate, Date toDate) {
         int count = 0;
 
         // loop through all copies of the resource
@@ -540,7 +565,7 @@ public class ResourceManager implements Serializable {
 
                     if (itemTransaction.isBorrowed() &&
                             fromDate.compareTo(itemTransaction.getDate()) <= 0          // fromDate <= borrowDate
-                            && toDate.compareTo(itemTransaction.getDate()) >= 0){       // toDate >= borrowDate
+                            && toDate.compareTo(itemTransaction.getDate()) >= 0) {       // toDate >= borrowDate
                         count++;
                     }
                 }
@@ -549,6 +574,32 @@ public class ResourceManager implements Serializable {
         }
 
         return count;
+    }
+
+
+    private Date getStartOfDay(Date date) {
+        // convert date to localDateTime
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+        // get start of day
+        LocalDateTime startOfDay = localDateTime.with(LocalTime.MIN);
+
+        // convert back to date
+        Date startOfDayDate = Date.from(startOfDay.atZone(ZoneId.systemDefault()).toInstant());
+        return startOfDayDate;
+    }
+
+    private Date getEndOfDay(Date date) {
+        // convert date to localDateTime
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+
+        // get end of day
+        LocalDateTime endOfDay = localDateTime.with(LocalTime.MAX);
+
+        // convert back to date
+        Date endOfDayDate = Date.from(endOfDay.atZone(ZoneId.systemDefault()).toInstant());
+
+        return endOfDayDate;
+
     }
 
     /**

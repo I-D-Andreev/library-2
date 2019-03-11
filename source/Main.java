@@ -4,6 +4,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * Main class.
@@ -21,7 +22,8 @@ public class Main extends Application {
 //        ---------------------------------
 //        Library l = new Library();
 //        l.save();
-        System.exit(0);
+
+//        System.exit(0);
     }
 
     /**

@@ -51,7 +51,8 @@ public class UserStatisticsController extends Controller {
      */
     @FXML
     void okButtonClicked(ActionEvent event) {
-
+        new NewWindow("resources/UserDashboard.fxml", event,
+                "Dashboard - TaweLib", getLibrary());
     }
 
 }

@@ -10,53 +10,100 @@ import java.time.LocalTime;
 import java.util.Iterator;
 import java.util.Optional;
 
+/**
+ * Controller class used for the window used when a librarian views an event.
+ *
+ * @author James Hodder
+ */
 public class ViewEventController extends Controller {
 
+    /**
+     * Column containing the usernames of all the attending users.
+     */
     @FXML
     private TableColumn<?, ?> usernameColumn;
 
-    @FXML
-    private TextField titleTextField;
-
+    /**
+     * Column containing the first names of all the attending users.
+     */
     @FXML
     private TableColumn<?, ?> firstNameColumn;
 
-    @FXML
-    private TextField maxAttendeesTextField;
-
-    @FXML
-    private TableColumn<?, ?> registerColumn;
-
-    @FXML
-    private DatePicker datePicker;
-
-    @FXML
-    private TextArea descriptionTextArea;
-
-    @FXML
-    private TableView<User> userTable;
-
-    @FXML
-    private Button saveButton;
-
-    @FXML
-    private TextField timeTextField;
-
+    /**
+     * Column containing the surnames of all the attending users.
+     */
     @FXML
     private TableColumn<?, ?> surnameColumn;
 
+    /**
+     * Text field for the new title of the event.
+     */
+    @FXML
+    private TextField titleTextField;
+
+    /**
+     * Date picker to choose a new event date.
+     */
+    @FXML
+    private DatePicker datePicker;
+
+    /**
+     * Text field for the new time of the event.
+     */
+    @FXML
+    private TextField timeTextField;
+
+    /**
+     * Text field for the new capacity of the event.
+     */
+    @FXML
+    private TextField maxAttendeesTextField;
+
+    /**
+     * Text area for the new description of the event.
+     */
+    @FXML
+    private TextArea descriptionTextArea;
+
+    /**
+     * Table containing all the attending users for the event.
+     */
+    @FXML
+    private TableView<User> userTable;
+
+    /**
+     * Button used to save the new details of the event.
+     */
+    @FXML
+    private Button saveButton;
+
+    /**
+     * Button used to both add and search for new users to attend the event.
+     */
     @FXML
     private Button addButton;
 
+    /**
+     * Label used to show the user the result of a search result.
+     */
     @FXML
     private Label searchResultLabel;
 
+    /**
+     * Text field used for the username of a new attendant.
+     */
     @FXML
     private TextField usernameSearchBox;
 
+    /**
+     * Button used to return to the previous window.
+     */
     @FXML
     private Button backButton;
 
+    /**
+     * The event clicked in the previous window.
+     */
     private Event clickedEvent;
 
     /**
@@ -126,15 +173,21 @@ public class ViewEventController extends Controller {
         userTable.getItems().addAll(data);
     }
 
+    /**
+     * Search for a new user to add to the event. If found press again to add user to the attendants list.
+     *
+     * @param event The action event of clicking the button.
+     */
     @FXML
     void addButtonClicked(ActionEvent event) {
         if(usernameSearchBox.getText().isEmpty()) {
-            System.out.println("empty box!");
+            searchResultLabel.setText("Field empty");
         } else {
             User searchUser = getLibrary().getUserManager().getUserByUsername(usernameSearchBox.getText());
             if(addButton.getText() != "Add") {
                 if ((searchUser != null) && (searchUser instanceof NormalUser)) {
                     addButton.setText("Add");
+                    searchResultLabel.setText("User found");
                 } else {
                     searchResultLabel.setText("Invalid User");
                 }
@@ -154,6 +207,11 @@ public class ViewEventController extends Controller {
         }
     }
 
+    /**
+     * Save the current field details as the new event details, if they are valid.
+     *
+     * @param event The action event of clicking the button.
+     */
     @FXML
     void saveButtonClicked(ActionEvent event) {
         if(titleTextField.getText().isEmpty() || datePicker.getValue().equals(null) || timeTextField.getText().isEmpty()
@@ -180,6 +238,11 @@ public class ViewEventController extends Controller {
         }
     }
 
+    /**
+     * Return to the previous window.
+     *
+     * @param event The action event of clicking the button.
+     */
     @FXML
     void backButtonClicked(ActionEvent event) {
         new NewWindow("resources/LibrarianEvent.fxml", event, "Events - TaweLib", getLibrary());

@@ -102,7 +102,6 @@ public class UserStatisticsController extends Controller {
 
         }
         statisticsLineChart.getData().add(chartSeries);
-
     }
 
     @FXML

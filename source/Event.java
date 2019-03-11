@@ -202,4 +202,23 @@ public class Event implements Serializable {
         attendees.add(user);
         return true;
     }
+
+    /**
+     * Removes a user from the attendees list if they're already on the list.
+     *
+     * @param user The user to be removed.
+     * @return True if the user has been removed.
+     */
+    public boolean removeAttendent(NormalUser user) {
+        if(!containsUser(user)) { return false; }
+        attendees.remove(user);
+        return true;
+    }
+
+    /**
+     * Gets the list of current attendees.
+     *
+     * @return The arraylist of current attendees.
+     */
+    public ArrayList<NormalUser> getAttendees() { return attendees; }
 }

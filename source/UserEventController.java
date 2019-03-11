@@ -14,40 +14,46 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class UserEventController extends Controller {
 
     /**
-     * Table containing list of events.
+     * Table containing list of upcoming events.
      */
     @FXML
-    private TableView<Event> eventsTable;
+    private TableView<Event> upcomingEventsTable;
 
     /**
-     * Column containing the title of events.
+     * Column containing the title of upcoming events.
      */
     @FXML
-    private TableColumn<?, ?> titleColumn;
+    private TableColumn<?, ?> upcomingTitleColumn;
 
     /**
-     * Column containing the date of events.
+     * Column containing the date of upcoming events.
      */
     @FXML
-    private TableColumn<?, ?> dateColumn;
+    private TableColumn<?, ?> upcomingDateColumn;
 
     /**
-     * Column containing the time of events.
+     * Column containing the time of upcoming events.
      */
     @FXML
-    private TableColumn<?, ?> timeColumn;
+    private TableColumn<?, ?> upcomingTimeColumn;
 
     /**
-     * Column containing the maximum number of attendees for the events.
+     * Column containing the maximum number of attendees for the upcoming events.
      */
     @FXML
-    private TableColumn<?, ?> maxAttendeesColumn;
+    private TableColumn<?, ?> upcomingMaxAttendeesColumn;
 
     /**
-     * Column containing the description of events.
+     * Column containing the description of upcoming events.
      */
     @FXML
-    private TableColumn<?, ?> descriptionColumn;
+    private TableColumn<?, ?> upcomingDescriptionColumn;
+
+    /**
+     *
+     */
+    @FXML
+    private Label registerLabel;
 
     /**
      * Button that registers user for an event.
@@ -59,21 +65,87 @@ public class UserEventController extends Controller {
      * Button to close the window.
      */
     @FXML
-    private Button okButton;
+    private Button backButton;
 
     /**
-     * The data inside the table.
+     * Table containing list of past events.
      */
-    private ObservableList<Event> data;
+    @FXML
+    private TableView<Event> pastEventsTable;
+
+    /**
+     * Column containing the title of past events.
+     */
+    @FXML
+    private TableColumn<?, ?> pastTitleColumn;
+
+    /**
+     * Column containing the date of past events.
+     */
+    @FXML
+    private TableColumn<?, ?> pastDateColumn;
+
+    /**
+     * Column containing the time of past events.
+     */
+    @FXML
+    private TableColumn<?, ?> pastTimeColumn;
+
+    /**
+     * Column containing the maximum number of attendees for the past events.
+     */
+    @FXML
+    private TableColumn<?, ?> pastMaxAttendeesColumn;
+
+    /**
+     * Column containing the description of past events.
+     */
+    @FXML
+    private TableColumn<?, ?> pastDescriptionColumn;
+
+    /**
+     * The data inside the upcoming event table.
+     */
+    private ObservableList<Event> upcomingEventData;
+
+    /**
+     * The data inside the past event table.
+     */
+    private ObservableList<Event> pastEventData;
 
     public void initialize() {
-        data = FXCollections.observableArrayList();
-        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-        dateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
-        timeColumn.setCellValueFactory(new PropertyValueFactory<>("startTime"));
-        maxAttendeesColumn.setCellValueFactory(new PropertyValueFactory<>("maxAttendees"));
-        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        upcomingEventData = FXCollections.observableArrayList();
+        upcomingTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        upcomingDateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        upcomingTimeColumn.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        upcomingMaxAttendeesColumn.setCellValueFactory(new PropertyValueFactory<>("maxAttendees"));
+        upcomingDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
 
+        upcomingEventsTable.setOnMouseClicked(event -> {
+            Event clickedEvent = upcomingEventsTable.getSelectionModel().getSelectedItem();
+            updateLabel(clickedEvent);
+            if(event.getClickCount() == 2) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, clickedEvent.getDescription(), ButtonType.OK);
+                alert.setHeaderText("Event: "+clickedEvent.getTitle());
+                alert.show();
+            }
+        });
+
+        pastEventData = FXCollections.observableArrayList();
+        pastTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        pastDateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        pastTimeColumn.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        pastMaxAttendeesColumn.setCellValueFactory(new PropertyValueFactory<>("maxAttendees"));
+        pastDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+
+        pastEventsTable.setOnMouseClicked(event -> {
+            Event clickedEvent = pastEventsTable.getSelectionModel().getSelectedItem();
+            if(event.getClickCount() == 2) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, clickedEvent.getDescription(), ButtonType.OK);
+                alert.setHeaderText("Event: "+clickedEvent.getTitle());
+                alert.show();
+            }
+        });
     }
 
     /**
@@ -81,7 +153,8 @@ public class UserEventController extends Controller {
      */
     @Override
     public void onStart() {
-        this.updateTable();
+        this.updateRegisterTable();
+        this.updateAttendedTable();
     }
 
     /**
@@ -90,7 +163,7 @@ public class UserEventController extends Controller {
      * @param event When the ok button is clicked.
      */
     @FXML
-    void okButtonClicked(ActionEvent event) {
+    void backButtonClicked(ActionEvent event) {
         new NewWindow("resources/UserDashboard.fxml", event, "Dashboard - TaweLib", getLibrary());
     }
 
@@ -101,7 +174,7 @@ public class UserEventController extends Controller {
      */
     @FXML
     void registerButtonClicked(ActionEvent event) {
-        Event clickedEvent = eventsTable.getSelectionModel().getSelectedItem();
+        Event clickedEvent = upcomingEventsTable.getSelectionModel().getSelectedItem();
         if(clickedEvent != null) {
             if(getLibrary().getEventManager().attendEvent(clickedEvent, getLibrary().getCurrentUserLoggedIn())) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Event booked successfully.", ButtonType.OK);
@@ -120,19 +193,53 @@ public class UserEventController extends Controller {
     }
 
     /**
-     * Updates the data shown on the table.
+     * Updates the data shown on the upcoming events table.
      */
     @FXML
-    public void updateTable() {
-        // clear previous data
-        data.clear();
-        eventsTable.getItems().clear();
+    public void updateRegisterTable() {
+        // clear previous upcomingEventData
+        upcomingEventData.clear();
+        upcomingEventsTable.getItems().clear();
 
-        for (Event event: getLibrary().getEventManager().getAllEvents()) {
-            data.add(event);
+        for (Event event: getLibrary().getEventManager().getUpcomingEvents()) {
+            upcomingEventData.add(event);
         }
 
-        eventsTable.getItems().addAll(data);
+        upcomingEventsTable.getItems().addAll(upcomingEventData);
     }
 
+    /**
+     * Updates the data shown on the past events table, for the logged in user.
+     */
+    @FXML
+    public void updateAttendedTable() {
+        // clear previous pastEventData
+        pastEventData.clear();
+        pastEventsTable.getItems().clear();
+
+        for (Event event: getLibrary().getEventManager().getAttendedEventsFor(getLibrary().getCurrentUserLoggedIn())) {
+            pastEventData.add(event);
+        }
+
+        pastEventsTable.getItems().addAll(pastEventData);
+    }
+
+    /**
+     * Updates a status label to notify a user if an event is unable to be booked in advance.
+     *
+     * @param event The clicked event.
+     */
+    public void updateLabel(Event event) {
+        String labelText = "";
+        registerButton.setDisable(false);
+        if(event.getMaxAttendees() <= event.attendeeCount()) {
+            labelText += "Event has been fully booked.\n";
+            registerButton.setDisable(true);
+        }
+        if(event.containsUser((NormalUser) getLibrary().getCurrentUserLoggedIn())) {
+            labelText += "You are already booked\n for this event.";
+            registerButton.setDisable(true);
+        }
+        registerLabel.setText(labelText);
+    }
 }

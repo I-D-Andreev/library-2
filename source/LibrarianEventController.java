@@ -97,6 +97,11 @@ public class LibrarianEventController extends Controller{
      */
     private ObservableList<Event> data;
 
+    /**
+     * The event passed onto the ViewEventController.
+     */
+    private static Event viewEventFocus;
+
     public void initialize() {
         data = FXCollections.observableArrayList();
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -104,6 +109,14 @@ public class LibrarianEventController extends Controller{
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("startTime"));
         maxAttendeesColumn.setCellValueFactory(new PropertyValueFactory<>("maxAttendees"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+
+        eventTable.setOnMouseClicked(event -> {
+            Event clickedEvent = eventTable.getSelectionModel().getSelectedItem();
+            setViewEventFocus(clickedEvent);
+            if(event.getClickCount() == 2) {
+                new NewWindow("resources/ViewEvent.fxml", event, "View Event - TaweLib", getLibrary());
+            }
+        });
 
     }
 
@@ -159,6 +172,20 @@ public class LibrarianEventController extends Controller{
         this.maxAttendeesTextField.setText("");
         this.descriptionTextArea.setText("");
     }
+
+    /**
+     * Sets the viewEventFocus.
+     *
+     * @param event The event to be passed.
+     */
+    public static void setViewEventFocus(Event event) { viewEventFocus = event; }
+
+    /**
+     * Gets the current viewEventFocus.
+     *
+     * @return The current viewEventFocus.
+     */
+    public static Event getViewEventFocus() { return viewEventFocus; }
 
     /**
      * Updates the data shown on the table.

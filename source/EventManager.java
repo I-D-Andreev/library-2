@@ -135,6 +135,22 @@ public class EventManager implements Serializable {
     }
 
     /**
+     * Gets all the upcoming events.
+     *
+     * @return An ArrayList of all the upcoming events.
+     */
+    public ArrayList<Event> getUpcomingEvents() {
+        ArrayList<Event> upcomingEvents = new ArrayList<>();
+        for(Event event : events) {
+            if(event.getStartDate().atTime(event.getStartTime()).isAfter(LocalDateTime.now())) {
+                upcomingEvents.add(event);
+            }
+        }
+
+        return upcomingEvents;
+    }
+
+    /**
      * Returns an event attended by the user.
      *
      * @param user The user attending the event.

@@ -502,12 +502,8 @@ public class ResourceManager implements Serializable {
 
 
     public int getNumberOfBorrowedResourcesOn(NormalUser byUser, Date onDate) {
-        System.out.println("Reach here");
         Date startOfDay = getStartOfDay(onDate);
         Date endOfDay = getEndOfDay(onDate);
-
-        System.out.println(startOfDay);
-        System.out.println(endOfDay);
 
         int count = getNumberOfBorrowedResourcesBetween(byUser, startOfDay, endOfDay);
         return count;

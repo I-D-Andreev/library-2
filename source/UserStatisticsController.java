@@ -9,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -31,6 +32,12 @@ public class UserStatisticsController extends Controller {
      */
     @FXML
     private LineChart<Number, Number> statisticsLineChart;
+
+    @FXML
+    private NumberAxis xAxis;
+
+    @FXML
+    private NumberAxis yAxis;
 
     /**
      * Button to filter statistics by day.
@@ -65,17 +72,38 @@ public class UserStatisticsController extends Controller {
     @FXML
     void dailyButtonClicked(ActionEvent event) {
         // we will show 7 days
-        NumberAxis xAxis = new NumberAxis();
-        NumberAxis yAxis = new NumberAxis();
-
         xAxis.setLabel("Day of the month");
-        yAxis.setLabel("Number of resources borrowed");
+        yAxis.setLabel("Number of resources");
 
-        statisticsLineChart = new LineChart<Number, Number>(xAxis, yAxis);
 
-        XYChart.Series<Integer, Integer> chartSeries = new XYChart.Series<>();
-//        chartSeries.getData().add(new XYChart.Data<Integer, Integer>());
+        XYChart.Series<Number, Number> chartSeries = new XYChart.Series<>();
+        chartSeries.setName("Number of resources borrowed");
         Date today = new Date();
+
+
+        for (int days = 0; days < 7; days++) {
+
+            // remove days from today
+            Date date = new Date(today.getTime() - days * (24 * 3600 * 1000));
+
+            // remove days from the day of month
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.DAY_OF_MONTH, -days);
+
+            int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH) +1;
+
+
+            chartSeries.getData().add(new XYChart.Data<>(dayOfMonth,
+//                    getLibrary().getResourceManager().getNumberOfBorrowedResourcesOn(
+//                            (NormalUser) getLibrary().getCurrentUserLoggedIn(), date)));
+                                    days));
+            System.out.println(dayOfMonth + " - " + days);
+
+        }
+
+
+
+        statisticsLineChart.getData().add(chartSeries);
 
 
     }

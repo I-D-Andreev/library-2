@@ -82,6 +82,24 @@ public class UserResourceController extends Controller {
     private Button trailerButton;
 
     /**
+     * Table to show ratings and reviews of the resource.
+     */
+    @FXML
+    private TableView<?> ratingReviewTable;
+
+    /**
+     * Column to show the ratings of the resource.
+     */
+    @FXML
+    private TableColumn<?, ?> ratingsColumn;
+
+    /**
+     * Column to show the reviews of the resource.
+     */
+    @FXML
+    private TableColumn<?, ?> reviewsColumn;
+
+    /**
      * Takes the user to the browse resource tab after the button is clicked.
      *
      * @param event The button is clicked.

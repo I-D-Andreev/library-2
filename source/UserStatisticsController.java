@@ -1,6 +1,8 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -10,7 +12,7 @@ import javafx.scene.control.TableView;
  *
  * @author Sian Pike
  */
-public class UserStatisticsController {
+public class UserStatisticsController extends Controller {
 
     /**
      * Button to close the window.
@@ -19,28 +21,28 @@ public class UserStatisticsController {
     private Button okButton;
 
     /**
-     * Table containing statistics data.
+     * LineChart to graphically show statistics.
      */
     @FXML
-    private TableView<?> statsTable;
+    private LineChart<?, ?> statisticsLineChart;
 
     /**
-     * Column containing 'per day' statistics data.
+     * Checkbox to filter statistics by day.
      */
     @FXML
-    private TableColumn<?, ?> perDayColumn;
+    private CheckBox perDayCheckBox;
 
     /**
-     * Column containing 'per week' statistics data.
+     * Checkbox to filter statistics by week.
      */
     @FXML
-    private TableColumn<?, ?> perWeekColumn;
+    private CheckBox perWeekCheckBox;
 
     /**
-     * Column containing 'per month' statistics data.
+     * Checkbox to filter statistics by month.
      */
     @FXML
-    private TableColumn<?, ?> perMonthColumn;
+    private CheckBox perMonthCheckBox;
 
     /**
      * Closes the statistics window.

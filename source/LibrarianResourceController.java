@@ -87,6 +87,24 @@ public class LibrarianResourceController extends Controller {
     private Button trailerButton;
 
     /**
+     * Table to show the ratings and reviews for the resources.
+     */
+    @FXML
+    private TableView<?> ratingsReviewsTable;
+
+    /**
+     * Column displaying the ratings for the resource.
+     */
+    @FXML
+    private TableColumn<?, ?> ratingsColumn;
+
+    /**
+     * Column displaying the reviews for the resource.
+     */
+    @FXML
+    private TableColumn<?, ?> reviewsColumn;
+
+    /**
      * Opens the trailer for the DVD resource.
      *
      * @param event When the trailer button is clicked.

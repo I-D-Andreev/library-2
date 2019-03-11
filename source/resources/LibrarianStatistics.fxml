@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="LibrarianStatisticsController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LibrarianStatisticsController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -37,11 +37,14 @@
             </Label>
             <HBox prefHeight="293.0" prefWidth="300.0">
                <children>
-                  <TableView fx:id="mostPopularResourceTable" prefHeight="200.0" prefWidth="200.0">
+                  <TableView fx:id="mostPopularResourceTable" prefHeight="284.0" prefWidth="173.0">
                     <columns>
                       <TableColumn fx:id="resourceTypeColumn" prefWidth="95.0" text="Type" />
                         <TableColumn fx:id="titleColumn" prefWidth="104.0" text="Title" />
                     </columns>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
                   </TableView>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
@@ -68,7 +71,7 @@
       </VBox>
       <TableView fx:id="finesTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <GridPane.margin>
-            <Insets left="20.0" />
+            <Insets left="20.0" right="20.0" />
          </GridPane.margin>
       </TableView>
       <Button fx:id="okButton" mnemonicParsing="false" onAction="#okButtonClicked" text="OK" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">

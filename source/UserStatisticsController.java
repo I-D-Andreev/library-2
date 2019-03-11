@@ -1,5 +1,6 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
@@ -31,10 +32,10 @@ public class UserStatisticsController extends Controller {
      * LineChart to graphically show statistics.
      */
     @FXML
-    private LineChart<Number, Number> statisticsLineChart;
+    private LineChart<String, Number> statisticsLineChart;
 
     @FXML
-    private NumberAxis xAxis;
+    private CategoryAxis xAxis;
 
     @FXML
     private NumberAxis yAxis;
@@ -76,12 +77,12 @@ public class UserStatisticsController extends Controller {
         yAxis.setLabel("Number of resources");
 
 
-        XYChart.Series<Number, Number> chartSeries = new XYChart.Series<>();
+        XYChart.Series<String, Number> chartSeries = new XYChart.Series<>();
         chartSeries.setName("Number of resources borrowed");
         Date today = new Date();
 
 
-        for (int days = 0; days < 7; days++) {
+        for (int days = 6; days >= 0; days--) {
 
             // remove days from today
             Date date = new Date(today.getTime() - days * (24 * 3600 * 1000));
@@ -90,21 +91,17 @@ public class UserStatisticsController extends Controller {
             Calendar calendar = Calendar.getInstance();
             calendar.add(Calendar.DAY_OF_MONTH, -days);
 
-            int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH) +1;
+            int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+            int resourcesBorrowed = getLibrary().getResourceManager().getNumberOfBorrowedResourcesOn(
+                    (NormalUser) getLibrary().getCurrentUserLoggedIn(), date);
 
+            chartSeries.getData().add(
+                    new XYChart.Data<>(Integer.toString(dayOfMonth), resourcesBorrowed));
 
-            chartSeries.getData().add(new XYChart.Data<>(dayOfMonth,
-//                    getLibrary().getResourceManager().getNumberOfBorrowedResourcesOn(
-//                            (NormalUser) getLibrary().getCurrentUserLoggedIn(), date)));
-                                    days));
-            System.out.println(dayOfMonth + " - " + days);
+            System.out.println(dayOfMonth + " - " + resourcesBorrowed);
 
         }
-
-
-
         statisticsLineChart.getData().add(chartSeries);
-
 
     }
 

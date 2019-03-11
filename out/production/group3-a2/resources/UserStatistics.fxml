@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
@@ -17,9 +18,9 @@
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="296.0" minWidth="10.0" prefWidth="61.60006103515627" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="129.0" minHeight="0.0" prefHeight="42.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="302.0" minHeight="10.0" prefHeight="302.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="129.0" minHeight="0.0" prefHeight="18.60001220703125" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="362.399951171875" minHeight="10.0" prefHeight="362.399951171875" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="44.00004882812499" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Label text="TaweLib">
@@ -41,15 +42,15 @@
                         <Insets left="70.0" />
                      </VBox.margin>
                   </Label>
-                  <LineChart fx:id="statisticsLineChart" animated="false" prefHeight="265.0" prefWidth="445.0">
+                  <LineChart fx:id="statisticsLineChart" animated="false" prefHeight="337.0" prefWidth="490.0">
                     <xAxis>
-                      <NumberAxis animated="false" side="BOTTOM" fx:id="xAxis" />
+                      <CategoryAxis animated="false" side="BOTTOM" fx:id="xAxis" />
                     </xAxis>
                     <yAxis>
                       <NumberAxis fx:id="yAxis" animated="false" side="LEFT" />
                     </yAxis>
                      <VBox.margin>
-                        <Insets left="20.0" top="20.0" />
+                        <Insets bottom="-10.0" />
                      </VBox.margin>
                   </LineChart>
                </children>

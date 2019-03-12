@@ -14,6 +14,8 @@ public class Ratings extends Application {
 
     private Resource currentResource;
     private User currentUser;
+    private Double rating;
+    private String review;
 
     public Ratings(Resource resource, User user) {
         this.currentResource = resource;
@@ -72,8 +74,9 @@ public class Ratings extends Application {
             }
 
             if (previouslyBorrowed) {
-                currentResource.getRating().add(rating.getRating());
-                currentResource.getReview().add(reviewText.getText());
+                this.rating = rating.getRating();
+                this.review = reviewText.getText();
+                currentResource.getRatings().add(this);
                 reviewText.setText("Rating & review submitted!");
             } else {
                 reviewText.setText("You haven't taken out this resource before, you can't rate it!");

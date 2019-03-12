@@ -36,12 +36,7 @@ public abstract class Resource implements Serializable {
     /**
      * Hold the ratings for the resource.
      */
-    private ArrayList ratings = new ArrayList<Double>();
-
-    /**
-     * Hold the reviews for the resource.
-     */
-    private ArrayList review = new ArrayList<String>();
+    private ArrayList ratings = new ArrayList<Ratings>();
 
 
     /**
@@ -211,20 +206,12 @@ public abstract class Resource implements Serializable {
         return o.getUniqueID().equals(this.getUniqueID());
     }
 
-    public ArrayList<String> getReview() {
-        return this.review;
-    }
-
-    public ArrayList<Double> getRating() {
+    public ArrayList<Ratings> getRatings() {
         return this.ratings;
     }
 
-    public void setReview(ArrayList<String> review) {
-        this.review = review ;
-    }
-
-    public void setRating(ArrayList<Double> rating) {
-        this.ratings = rating;
+    public void setReview(ArrayList<Ratings> rating) {
+        this.ratings = rating ;
     }
 
 }

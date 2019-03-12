@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -12,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LibrarianResourceController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LibrarianResourceController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.4000244140625" minWidth="10.0" prefWidth="266.39996337890625" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="478.4000122070313" minWidth="10.0" prefWidth="432.8000366210938" />
@@ -38,7 +43,7 @@
          </GridPane.margin>
          <children>
             <ImageView fx:id="resourceImage" fitHeight="191.0" fitWidth="228.0" pickOnBounds="true" preserveRatio="true" />
-            <TableView fx:id="ratingsReviewsTable" prefHeight="210.0" prefWidth="227.0">
+            <TableView fx:id="ratingReviewTable" prefHeight="210.0" prefWidth="227.0">
               <columns>
                 <TableColumn fx:id="ratingsColumn" prefWidth="114.0" text="Ratings" />
                 <TableColumn fx:id="reviewsColumn" prefWidth="111.5" text="Reviews" />
@@ -76,11 +81,6 @@
       <Button fx:id="trailerButton" disable="false" mnemonicParsing="false" onAction="#trailerButtonClicked" text="Trailer" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="40.0" />
-         </GridPane.margin>
-      </Button>
-      <Button fx:id="ratingButton" mnemonicParsing="false" onAction="#ratingsubmitted" text="Rating &amp; Review" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
-         <GridPane.margin>
-            <Insets right="20.0" />
          </GridPane.margin>
       </Button>
    </children>

@@ -13,6 +13,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.util.Iterator;
 
 /**
  * Controller class for the librarian resource window.
@@ -87,26 +88,29 @@ public class LibrarianResourceController extends Controller {
     @FXML
     private Button trailerButton;
 
-    @FXML
-    private Button ratingButton;
-
     /**
-     * Table to show the ratings and reviews for the resources.
+     * Table to show ratings and reviews of the resource.
      */
     @FXML
-    private TableView<Ratings> ratingsReviewsTable;
+    private TableView<Ratings> ratingReviewTable;
 
     /**
-     * Column displaying the ratings for the resource.
+     * Column to show the ratings of the resource.
      */
     @FXML
     private TableColumn<?, ?> ratingsColumn;
 
     /**
-     * Column displaying the reviews for the resource.
+     * Column to show the reviews of the resource.
      */
     @FXML
     private TableColumn<?, ?> reviewsColumn;
+
+    /**
+     * The data inside the ratings table.
+     */
+    @FXML
+    private ObservableList<Ratings> ratingsData;
 
     /**
      * Opens the trailer for the DVD resource.
@@ -122,20 +126,6 @@ public class LibrarianResourceController extends Controller {
             VideoPlayer trailer = new VideoPlayer(clickedResource.getTitle());
             trailer.start(new Stage());
         }
-    }
-
-
-    @FXML
-    void ratingsubmitted(ActionEvent event) throws Exception {
-        Stage reviewStage = new Stage();
-        reviewStage.initModality(Modality.WINDOW_MODAL);
-        Stage oldStage = (Stage) ratingButton.getScene().getWindow();
-        reviewStage.initOwner(oldStage);
-
-
-
-//        Ratings rate = new Ratings(clickedResource, getLibrary().getCurrentUserLoggedIn());
-//        rate.start(reviewStage);
     }
 
     /**
@@ -169,6 +159,7 @@ public class LibrarianResourceController extends Controller {
      */
     @Override
     public void onStart() {
+
         if (!(clickedResource.getType().equals("DVD") || clickedResource.getType().equals("Video Game"))) {
             trailerButton.setVisible(false);
         }
@@ -190,6 +181,16 @@ public class LibrarianResourceController extends Controller {
             );
 
         }
+
+        ratingsData = FXCollections.observableArrayList();
+        ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("rating"));
+        reviewsColumn.setCellValueFactory(new PropertyValueFactory<>("review"));
+
+        for (Ratings rating : clickedResource.getRatings()) {
+            ratingsData.add(rating);
+        }
+
+        ratingReviewTable.getItems().addAll(ratingsData);
 
         displayTable.getItems().addAll(data);
 
@@ -220,4 +221,5 @@ public class LibrarianResourceController extends Controller {
             }
         }
     }
+
 }

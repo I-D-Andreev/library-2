@@ -93,19 +93,19 @@ public class UserResourceController extends Controller {
      * Table to show ratings and reviews of the resource.
      */
     @FXML
-    private TableView<Resource> ratingReviewTable;
+    private TableView<Ratings> ratingReviewTable;
 
     /**
      * Column to show the ratings of the resource.
      */
     @FXML
-    private TableColumn<Resource, Double> ratingsColumn;
+    private TableColumn<?, ?> ratingsColumn;
 
     /**
      * Column to show the reviews of the resource.
      */
     @FXML
-    private TableColumn<Resource, String> reviewsColumn;
+    private TableColumn<?, ?> reviewsColumn;
 
     /**
      * Takes the user to the browse resource tab after the button is clicked.

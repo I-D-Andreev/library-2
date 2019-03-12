@@ -94,7 +94,7 @@ public class LibrarianResourceController extends Controller {
      * Table to show the ratings and reviews for the resources.
      */
     @FXML
-    private TableView<?> ratingsReviewsTable;
+    private TableView<Ratings> ratingsReviewsTable;
 
     /**
      * Column displaying the ratings for the resource.

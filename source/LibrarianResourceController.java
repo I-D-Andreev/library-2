@@ -134,8 +134,8 @@ public class LibrarianResourceController extends Controller {
 
 
 
-        Ratings rate = new Ratings(clickedResource, getLibrary().getCurrentUserLoggedIn());
-        rate.start(reviewStage);
+//        Ratings rate = new Ratings(clickedResource, getLibrary().getCurrentUserLoggedIn());
+//        rate.start(reviewStage);
     }
 
     /**

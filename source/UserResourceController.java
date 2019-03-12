@@ -149,12 +149,11 @@ public class UserResourceController extends Controller {
         Stage oldStage = (Stage) reviewButton.getScene().getWindow();
         reviewStage.initOwner(oldStage);
 
-
-
-        Ratings rate = new Ratings(clickedResource,getLibrary().getCurrentUserLoggedIn());
-        rate.setOldWindow(this);
-        rate.start(reviewStage);
-
+        RatingsWindow ratingWindow = new RatingsWindow();
+        ratingWindow.setOldWindow(this);
+        ratingWindow.setResource(clickedResource);
+        ratingWindow.setUser((NormalUser) getLibrary().getCurrentUserLoggedIn());
+        ratingWindow.start(reviewStage);
     }
 
 

@@ -152,6 +152,7 @@ public class UserResourceController extends Controller {
 
 
         Ratings rate = new Ratings(clickedResource,getLibrary().getCurrentUserLoggedIn());
+        rate.setOldWindow(this);
         rate.start(reviewStage);
 
     }
@@ -182,17 +183,14 @@ public class UserResourceController extends Controller {
 
         ratingsData = FXCollections.observableArrayList();
         ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("rating"));
-        ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("review"));
+        reviewsColumn.setCellValueFactory(new PropertyValueFactory<>("review"));
 
         for (Copy copy : clickedResource.getCopyManager().getListOfAllCopies()) {
             data.add(new TableRepresentationCopyAvailable(copy.getUniqueCopyID(),
                     (copy.isAvailable()) ? "available" : "not available"));
         }
 
-        for (Ratings rating : clickedResource.getRatings()) {
-            ratingsData.add(rating);
-        }
-        tableView.getItems().addAll(data);
+        updateReviewTable();
 
         this.loadImage();
 
@@ -221,5 +219,16 @@ public class UserResourceController extends Controller {
                 resourceImage.setImage(null);
             }
         }
+    }
+
+    public void updateReviewTable() {
+        // clear previous data
+        ratingsData.clear();
+        ratingReviewTable.getItems().clear();
+
+        for (Ratings rating : clickedResource.getRatings()) {
+            ratingsData.add(rating);
+        }
+        ratingReviewTable.getItems().addAll(ratingsData);
     }
 }

@@ -16,6 +16,7 @@ public class Ratings extends Application {
     private User currentUser;
     private Double rating;
     private String review;
+    private UserResourceController oldWindow;
 
     public Ratings(Resource resource, User user) {
         this.currentResource = resource;
@@ -78,6 +79,7 @@ public class Ratings extends Application {
                 this.review = reviewText.getText();
                 currentResource.getRatings().add(this);
                 reviewText.setText("Rating & review submitted!");
+                oldWindow.updateReviewTable();
             } else {
                 reviewText.setText("You haven't taken out this resource before, you can't rate it!");
             }
@@ -85,5 +87,17 @@ public class Ratings extends Application {
         });
 
         primaryStage.show();
+    }
+
+    public Double getRating() {
+        return rating;
+    }
+
+    public String getReview() {
+        return review;
+    }
+
+    public void setOldWindow(UserResourceController oldWindow){
+        this.oldWindow = oldWindow;
     }
 }

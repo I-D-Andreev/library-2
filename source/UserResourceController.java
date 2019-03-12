@@ -9,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -82,22 +83,29 @@ public class UserResourceController extends Controller {
     private Button trailerButton;
 
     /**
+     * The review button to leave a review on resource.
+     */
+    @FXML
+    private Button reviewButton;
+
+
+    /**
      * Table to show ratings and reviews of the resource.
      */
     @FXML
-    private TableView<?> ratingReviewTable;
+    private TableView<Resource> ratingReviewTable;
 
     /**
      * Column to show the ratings of the resource.
      */
     @FXML
-    private TableColumn<?, ?> ratingsColumn;
+    private TableColumn<Resource, Double> ratingsColumn;
 
     /**
      * Column to show the reviews of the resource.
      */
     @FXML
-    private TableColumn<?, ?> reviewsColumn;
+    private TableColumn<Resource, String> reviewsColumn;
 
     /**
      * Takes the user to the browse resource tab after the button is clicked.
@@ -126,6 +134,22 @@ public class UserResourceController extends Controller {
                 trailer.start(new Stage());
             }
     }
+
+
+    @FXML
+    void reviewPressed(ActionEvent event) throws Exception {
+        Stage reviewStage = new Stage();
+        reviewStage.initModality(Modality.WINDOW_MODAL);
+        Stage oldStage = (Stage) reviewButton.getScene().getWindow();
+        reviewStage.initOwner(oldStage);
+
+
+
+        Ratings rate = new Ratings(clickedResource);
+        rate.start(reviewStage);
+
+    }
+
 
     /**
      * Sets the clicked resource to be the resource we last clicked on.
@@ -158,8 +182,6 @@ public class UserResourceController extends Controller {
         tableView.getItems().addAll(data);
 
         this.loadImage();
-
-
 
     }
 

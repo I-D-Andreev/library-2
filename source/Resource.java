@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.ArrayList;
 
 /**
  * @author Kleanthis Liontis, Ivan Andreev.
@@ -31,6 +32,17 @@ public abstract class Resource implements Serializable {
      * The copy manager of the resource.
      */
     private CopyManager copyManager;
+
+    /**
+     * Hold the ratings for the resource.
+     */
+    private ArrayList ratings = new ArrayList<Double>();
+
+    /**
+     * Hold the reviews for the resource.
+     */
+    private ArrayList review = new ArrayList<String>();
+
 
     /**
      * The constructor of a resource.
@@ -182,6 +194,9 @@ public abstract class Resource implements Serializable {
      */
     public abstract int getCapContribution();
 
+
+
+
     /**
      * Checks that the resource is equal to an object of type resource.
      *
@@ -195,4 +210,21 @@ public abstract class Resource implements Serializable {
         Resource o = (Resource) obj;
         return o.getUniqueID().equals(this.getUniqueID());
     }
+
+    public ArrayList<String> getReview() {
+        return this.review;
+    }
+
+    public ArrayList<Double> getRating() {
+        return this.ratings;
+    }
+
+    public void setReview(ArrayList<String> review) {
+        this.review = review ;
+    }
+
+    public void setRating(ArrayList<Double> rating) {
+        this.ratings = rating;
+    }
+
 }

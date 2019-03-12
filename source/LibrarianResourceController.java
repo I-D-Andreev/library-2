@@ -9,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -86,6 +87,9 @@ public class LibrarianResourceController extends Controller {
     @FXML
     private Button trailerButton;
 
+    @FXML
+    private Button ratingButton;
+
     /**
      * Table to show the ratings and reviews for the resources.
      */
@@ -118,6 +122,20 @@ public class LibrarianResourceController extends Controller {
             VideoPlayer trailer = new VideoPlayer(clickedResource.getTitle());
             trailer.start(new Stage());
         }
+    }
+
+
+    @FXML
+    void ratingsubmitted(ActionEvent event) throws Exception {
+        Stage reviewStage = new Stage();
+        reviewStage.initModality(Modality.WINDOW_MODAL);
+        Stage oldStage = (Stage) ratingButton.getScene().getWindow();
+        reviewStage.initOwner(oldStage);
+
+
+
+        Ratings rate = new Ratings(clickedResource);
+        rate.start(reviewStage);
     }
 
     /**

@@ -66,12 +66,6 @@ public class TransactionHistoryController extends Controller {
     @FXML
     private ObservableList<TableRepresentationMoneyTransaction> data;
 
-    /**
-     * Opens the ratings and reviews window.
-     */
-    @FXML
-    private Button reviewButton;
-
 
     /**
      * Returns the user back to the dashboard when the button is clicked.
@@ -134,13 +128,4 @@ public class TransactionHistoryController extends Controller {
         }
     }
 
-    /**
-     * Opens the ratings and reviews window so that the user can leave a review about a resource.
-     *
-     * @param event When the review button is clicked.
-     */
-    @FXML
-    void reviewButtonClicked(ActionEvent event) {
-
-    }
 }

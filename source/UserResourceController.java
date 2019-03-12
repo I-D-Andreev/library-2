@@ -145,7 +145,7 @@ public class UserResourceController extends Controller {
 
 
 
-        Ratings rate = new Ratings(clickedResource);
+        Ratings rate = new Ratings(clickedResource,getLibrary().getCurrentUserLoggedIn());
         rate.start(reviewStage);
 
     }

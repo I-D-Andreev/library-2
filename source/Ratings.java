@@ -12,14 +12,16 @@ import org.controlsfx.control.Rating;
 
 public class Ratings extends Application {
 
-    Resource currentResource;
+    private Resource currentResource;
+    private User currentUser;
 
-    public Ratings(Resource resource) {
+    public Ratings(Resource resource, User user) {
         this.currentResource = resource;
+        this.currentUser = user;
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) {
         BorderPane root = new BorderPane();
         primaryStage.setTitle("Rate this resource");
         primaryStage.setScene(new Scene(root, 400, 350));
@@ -58,12 +60,26 @@ public class Ratings extends Application {
 
         submitButton.setOnAction(event -> {
 
+            Boolean previouslyBorrowed = false;
+
+            for (Copy copy : currentResource.getCopyManager().getListOfAllCopies()) {
+                for (HistoryEntry history : copy.getLoanHistory().getHistory()) {
+                    HistoryEntryItemTransaction entry = (HistoryEntryItemTransaction) history;
+                    if(entry.getBorrowedBy().equals(currentUser)) {
+                        previouslyBorrowed = true;
+                    }
+                }
+            }
+
+            if (previouslyBorrowed) {
                 currentResource.getRating().add(rating.getRating());
                 currentResource.getReview().add(reviewText.getText());
-
                 reviewText.setText("Rating & review submitted!");
-        });
+            } else {
+                reviewText.setText("You haven't taken out this resource before, you can't rate it!");
+            }
 
+        });
 
         primaryStage.show();
     }

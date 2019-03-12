@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -12,15 +12,15 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserStatisticsController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="434.0" prefWidth="638.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserStatisticsController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="475.0" minWidth="10.0" prefWidth="382.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="296.0" minWidth="10.0" prefWidth="218.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="584.7999389648437" minWidth="10.0" prefWidth="576.7999389648437" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="296.0" minWidth="10.0" prefWidth="61.60006103515627" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="129.0" minHeight="0.0" prefHeight="42.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="302.0" minHeight="10.0" prefHeight="302.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="129.0" minHeight="0.0" prefHeight="18.60001220703125" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="362.399951171875" minHeight="10.0" prefHeight="362.399951171875" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="44.00004882812499" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Label text="TaweLib">
@@ -33,47 +33,36 @@
             <Insets right="20.0" />
          </GridPane.margin>
       </Button>
-      <HBox prefHeight="302.0" prefWidth="423.0" GridPane.rowIndex="1">
+      <HBox prefHeight="302.0" prefWidth="583.0" GridPane.rowIndex="1">
          <children>
-            <VBox prefHeight="302.0" prefWidth="286.0">
+            <VBox prefHeight="302.0" prefWidth="489.0">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" text="Resources Borrowed" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets left="70.0" />
                      </VBox.margin>
                   </Label>
-                  <LineChart fx:id="statisticsLineChart" prefHeight="265.0" prefWidth="247.0">
+                  <LineChart fx:id="statisticsLineChart" animated="false" prefHeight="337.0" prefWidth="490.0">
                     <xAxis>
-                      <NumberAxis side="BOTTOM" />
+                      <CategoryAxis animated="false" side="BOTTOM" fx:id="xAxis" />
                     </xAxis>
                     <yAxis>
-                      <NumberAxis side="LEFT" />
+                      <NumberAxis fx:id="yAxis" animated="false" side="LEFT" />
                     </yAxis>
                      <VBox.margin>
-                        <Insets left="20.0" top="20.0" />
+                        <Insets bottom="-10.0" />
                      </VBox.margin>
                   </LineChart>
                </children>
             </VBox>
-            <VBox>
+            <VBox prefHeight="242.0" prefWidth="86.0" spacing="20.0">
                <HBox.margin>
                   <Insets top="60.0" />
                </HBox.margin>
                <children>
-                  <CheckBox fx:id="perDayCheckBox" mnemonicParsing="false" text="Per Day" />
-                  <CheckBox fx:id="perWeekCheckBox" mnemonicParsing="false" text="Per Week">
-                     <opaqueInsets>
-                        <Insets left="20.0" />
-                     </opaqueInsets>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </CheckBox>
-                  <CheckBox fx:id="perMonthCheckBox" mnemonicParsing="false" text="Per Month">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </CheckBox>
+                  <Button fx:id="dailyButton" mnemonicParsing="false" onAction="#dailyButtonClicked" text="Per Day" />
+                  <Button fx:id="weeklyButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#weeklyButtonClicked" text="Per Week" />
+                  <Button fx:id="monthlyButton" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" onAction="#monthlyButtonClicked" prefHeight="26.0" prefWidth="99.0" text="Per Month" />
                </children>
             </VBox>
          </children>

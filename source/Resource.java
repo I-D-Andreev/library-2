@@ -36,7 +36,7 @@ public abstract class Resource implements Serializable {
     /**
      * Hold the ratings for the resource.
      */
-    private ArrayList ratings = new ArrayList<Ratings>();
+    private ArrayList<Ratings> ratings = new ArrayList<>();
 
 
     /**

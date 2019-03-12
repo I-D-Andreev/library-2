@@ -108,6 +108,12 @@ public class UserResourceController extends Controller {
     private TableColumn<?, ?> reviewsColumn;
 
     /**
+     * The data inside the ratings table.
+     */
+    @FXML
+    private ObservableList<Ratings> ratingsData;
+
+    /**
      * Takes the user to the browse resource tab after the button is clicked.
      *
      * @param event The button is clicked.
@@ -174,11 +180,18 @@ public class UserResourceController extends Controller {
         uniqueIDColumn.setCellValueFactory(new PropertyValueFactory<TableRepresentationCopyAvailable, String>("uniqueCopyID"));
         isAvailableColumn.setCellValueFactory(new PropertyValueFactory<TableRepresentationCopyAvailable, String>("isAvailable"));
 
+        ratingsData = FXCollections.observableArrayList();
+        ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("rating"));
+        ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("review"));
+
         for (Copy copy : clickedResource.getCopyManager().getListOfAllCopies()) {
             data.add(new TableRepresentationCopyAvailable(copy.getUniqueCopyID(),
                     (copy.isAvailable()) ? "available" : "not available"));
         }
 
+        for (Ratings rating : clickedResource.getRatings()) {
+            ratingsData.add(rating);
+        }
         tableView.getItems().addAll(data);
 
         this.loadImage();

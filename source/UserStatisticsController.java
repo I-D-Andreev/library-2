@@ -72,33 +72,28 @@ public class UserStatisticsController extends Controller {
         // we will show 7 days
         xAxis.setLabel("Day of the month");
         yAxis.setLabel("Number of resources");
-        final int MILLISECONDS_IN_A_DAY = (24 * 3600 * 1000);
-
 
         XYChart.Series<String, Number> chartSeries = new XYChart.Series<>();
         chartSeries.setName("Number of resources borrowed");
-        Date today = new Date();
-
 
         for (int days = 6; days >= 0; days--) {
-
-            // remove days from today
-            Date date = new Date(today.getTime() - days * MILLISECONDS_IN_A_DAY);
 
             // remove days from the day of month
             Calendar calendar = Calendar.getInstance();
             calendar.add(Calendar.DAY_OF_MONTH, -days);
 
+            // get the date in a Date object
+            Date date = calendar.getTime();
+
             int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
             int resourcesBorrowed = getLibrary().getResourceManager().getNumberOfBorrowedResourcesOn(
                     (NormalUser) getLibrary().getCurrentUserLoggedIn(), date);
-
             chartSeries.getData().add(
                     new XYChart.Data<>(Integer.toString(dayOfMonth), resourcesBorrowed));
 
-
         }
         statisticsLineChart.getData().add(chartSeries);
+
     }
 
     @FXML
@@ -108,22 +103,20 @@ public class UserStatisticsController extends Controller {
         // we will show 7 weeks back
         xAxis.setLabel("Week of the year");
         yAxis.setLabel("Number of resources");
-        final int MILLISECONDS_IN_A_WEEK = (7 * 24 * 3600 * 1000);
 
 
         XYChart.Series<String, Number> chartSeries = new XYChart.Series<>();
         chartSeries.setName("Number of resources borrowed");
-        Date today = new Date();
 
 
         for (int weeks = 6; weeks >= 0; weeks--) {
 
-            // remove days from today
-            Date date = new Date(today.getTime() - weeks * MILLISECONDS_IN_A_WEEK);
-
-            // remove days from the day of month
+            // remove weeks from the week in a year
             Calendar calendar = Calendar.getInstance();
             calendar.add(Calendar.WEEK_OF_YEAR, -weeks);
+
+            // get the time as a date
+            Date date = calendar.getTime();
 
             int weekOfYear = calendar.get(Calendar.WEEK_OF_YEAR);
             int resourcesBorrowed = getLibrary().getResourceManager().getNumberOfBorrowedResourcesForTheWeek(
@@ -132,15 +125,42 @@ public class UserStatisticsController extends Controller {
             chartSeries.getData().add(
                     new XYChart.Data<>(Integer.toString(weekOfYear), resourcesBorrowed));
 
-            System.out.println(weekOfYear + " - " + resourcesBorrowed);
-
         }
         statisticsLineChart.getData().add(chartSeries);
     }
 
     @FXML
     public void monthlyButtonClicked(ActionEvent event) {
+        statisticsLineChart.getData().clear();
 
+        // we will show 7 months back
+        xAxis.setLabel("Month of the year");
+        yAxis.setLabel("Number of resources");
+
+
+        XYChart.Series<String, Number> chartSeries = new XYChart.Series<>();
+        chartSeries.setName("Number of resources borrowed");
+
+        for (int months = 6; months >= 0; months--) {
+
+
+            // remove 1 month from the month of the year
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.MONTH, -months);
+
+            Date date = calendar.getTime();
+
+            // months are represented 0-11 so we need to add +1 to show the real one
+            int monthOfYear = calendar.get(Calendar.MONTH) + 1;
+
+            int resourcesBorrowed = getLibrary().getResourceManager().getNumberOfBorrowedResourcesForTheMonth(
+                    (NormalUser) getLibrary().getCurrentUserLoggedIn(), date);
+
+            chartSeries.getData().add(
+                    new XYChart.Data<>(Integer.toString(monthOfYear), resourcesBorrowed));
+
+        }
+        statisticsLineChart.getData().add(chartSeries);
     }
 
 

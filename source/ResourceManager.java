@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * The Class ResourceManager.
@@ -502,6 +503,7 @@ public class ResourceManager implements Serializable {
         Date startOfDay = getStartOfDay(onDate);
         Date endOfDay = getEndOfDay(onDate);
 
+
         int count = getNumberOfBorrowedResourcesBetween(byUser, startOfDay, endOfDay);
         return count;
     }
@@ -521,7 +523,7 @@ public class ResourceManager implements Serializable {
                             (HistoryEntryItemTransaction) historyEntry;
 
                     // check if the copy was borrowed by the said person and inbetween the dates
-                    if (itemTransaction.isBorrowed() && itemTransaction.getBorrowedBy() == byUser
+                    if (itemTransaction.isBorrowed() && itemTransaction.getBorrowedBy().equals(byUser)
                             && fromDate.compareTo(itemTransaction.getDate()) <= 0   // fromDate <= borrow Date
                             && toDate.compareTo(itemTransaction.getDate()) >= 0) {  // toDate >= borrowDate
                         count++;
@@ -577,6 +579,46 @@ public class ResourceManager implements Serializable {
         }
 
         int count = getNumberOfBorrowedResourcesBetween(byUser, startOfTheWeek, endOfTheWeek);
+        return count;
+    }
+
+    /**
+     * @param byUser
+     * @param monthDate any day in a month
+     * @return
+     */
+    public int getNumberOfBorrowedResourcesForTheMonth(NormalUser byUser, Date monthDate) {
+        int[] daysInAMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+        // get the first day of the month for the given date
+        // copies the Date
+        Date startOfTheMonth = new Date(monthDate.getTime());
+        // sets the day of the month to the first one
+        startOfTheMonth.setDate(1);
+        // sets the time to the first second of the day
+        startOfTheMonth = getStartOfDay(startOfTheMonth);
+
+
+        // get the last date of the month for a given date
+
+        // copies the date
+        Date endOfTheMonth = new Date(monthDate.getTime());
+        int monthNumber = endOfTheMonth.getMonth(); // values 0 - 11
+
+        // gets the year + 1900, because getYear return the difference of current year and 1900
+        int year = endOfTheMonth.getYear() + 1900;
+        endOfTheMonth.setDate(daysInAMonth[monthNumber]);
+
+        // check if leap year
+        boolean isLeapYear = new GregorianCalendar().isLeapYear(year);
+        if(isLeapYear && monthNumber == 1){
+            endOfTheMonth.setDate(29);
+        }
+
+        // set to the last second in said day
+        endOfTheMonth = getEndOfDay(endOfTheMonth);
+
+        int count = getNumberOfBorrowedResourcesBetween(byUser, startOfTheMonth, endOfTheMonth);
         return count;
     }
 

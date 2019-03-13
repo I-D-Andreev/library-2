@@ -20,11 +20,6 @@
    <children>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
          <children>
-            <Button fx:id="reviewButton" mnemonicParsing="false" onAction="#reviewButtonClicked" text="Leave a Review">
-               <HBox.margin>
-                  <Insets right="20.0" />
-               </HBox.margin>
-            </Button>
             <Button fx:id="okButton" mnemonicParsing="false" onAction="#okButtonClicked" prefHeight="52.0" prefWidth="83.0" text="OK">
                <HBox.margin>
                   <Insets right="60.0" />

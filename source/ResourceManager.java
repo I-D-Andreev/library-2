@@ -1,14 +1,11 @@
 import javafx.util.Pair;
-import jdk.nashorn.internal.runtime.ECMAException;
 
+import java.io.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Scanner;
-import java.io.*;
 
 /**
  * The Class ResourceManager.

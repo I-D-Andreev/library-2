@@ -106,7 +106,7 @@ public class UserStatisticsController extends Controller {
         statisticsLineChart.getData().clear();
 
         // we will show 7 weeks back
-        xAxis.setLabel("Week of year");
+        xAxis.setLabel("Week of the year");
         yAxis.setLabel("Number of resources");
         final int MILLISECONDS_IN_A_WEEK = (7 * 24 * 3600 * 1000);
 
@@ -126,9 +126,8 @@ public class UserStatisticsController extends Controller {
             calendar.add(Calendar.WEEK_OF_YEAR, -weeks);
 
             int weekOfYear = calendar.get(Calendar.WEEK_OF_YEAR);
-            int resourcesBorrowed = 5;
-//            int resourcesBorrowed = getLibrary().getResourceManager().getNumberOfBorrowedResourcesOn(
-//                    (NormalUser) getLibrary().getCurrentUserLoggedIn(), date);
+            int resourcesBorrowed = getLibrary().getResourceManager().getNumberOfBorrowedResourcesForTheWeek(
+                    (NormalUser) getLibrary().getCurrentUserLoggedIn(), date);
 
             chartSeries.getData().add(
                     new XYChart.Data<>(Integer.toString(weekOfYear), resourcesBorrowed));

@@ -535,11 +535,48 @@ public class ResourceManager implements Serializable {
     }
 
 
-    public int getNumberOfTimesResourceWasBorrowedOn(Resource resource, Date onDate){
+    public int getNumberOfTimesResourceWasBorrowedOn(Resource resource, Date onDate) {
         Date startOfDay = getStartOfDay(onDate);
         Date endOfDay = getEndOfDay(onDate);
 
         int count = getNumberOfTimesResourceWasBorrowedBetween(resource, startOfDay, endOfDay);
+        return count;
+    }
+
+    /**
+     * @param byUser
+     * @param weekDate any day inside the week
+     * @return
+     */
+    public int getNumberOfBorrowedResourcesForTheWeek(NormalUser byUser, Date weekDate) {
+        final int MILLISECONDS_IN_A_DAY = (24 * 3600 * 1000);
+
+        // becomes the very first second of the given day
+        Date startOfTheWeek = getStartOfDay(weekDate);
+
+        // becomes the very last second of the given day
+        Date endOfTheWeek = getEndOfDay(weekDate);
+
+
+        // calculates the very start of the week
+        // if it is currently Sunday
+        if (startOfTheWeek.getDay() == 0) {
+            // move six days behind to become monday
+            startOfTheWeek = new Date(startOfTheWeek.getTime() - 6 * MILLISECONDS_IN_A_DAY);
+        } else {
+            int howManyDaysToMoveBack = startOfTheWeek.getDay() - 1;
+            startOfTheWeek = new Date(startOfTheWeek.getTime() - howManyDaysToMoveBack * MILLISECONDS_IN_A_DAY);
+        }
+
+        // calculates the very end of the week
+        // it is not sunday
+        if (endOfTheWeek.getDay() != 0) {
+            int howManyDaysToMoveFront = 7 - endOfTheWeek.getDay();
+            endOfTheWeek = new Date(endOfTheWeek.getTime() + howManyDaysToMoveFront * MILLISECONDS_IN_A_DAY);
+
+        }
+
+        int count = getNumberOfBorrowedResourcesBetween(byUser, startOfTheWeek, endOfTheWeek);
         return count;
     }
 

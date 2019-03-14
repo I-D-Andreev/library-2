@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -508,43 +509,6 @@ public class ResourceManager implements Serializable {
         return count;
     }
 
-    private int getNumberOfBorrowedResourcesBetween(NormalUser byUser, Date fromDate, Date toDate) {
-        int count = 0;
-
-
-        // loop through all copies in the library
-        for (Copy copy : getAllCopies()) {
-
-            // for each entry in the copy's history
-            for (HistoryEntry historyEntry : copy.getLoanHistory().getHistory()) {
-
-                if (historyEntry instanceof HistoryEntryItemTransaction) {
-                    HistoryEntryItemTransaction itemTransaction =
-                            (HistoryEntryItemTransaction) historyEntry;
-
-                    // check if the copy was borrowed by the said person and inbetween the dates
-                    if (itemTransaction.isBorrowed() && itemTransaction.getBorrowedBy().equals(byUser)
-                            && fromDate.compareTo(itemTransaction.getDate()) <= 0   // fromDate <= borrow Date
-                            && toDate.compareTo(itemTransaction.getDate()) >= 0) {  // toDate >= borrowDate
-                        count++;
-                    }
-                }
-            }
-
-        }
-
-        return count;
-    }
-
-
-    public int getNumberOfTimesResourceWasBorrowedOn(Resource resource, Date onDate) {
-        Date startOfDay = getStartOfDay(onDate);
-        Date endOfDay = getEndOfDay(onDate);
-
-        int count = getNumberOfTimesResourceWasBorrowedBetween(resource, startOfDay, endOfDay);
-        return count;
-    }
-
     /**
      * @param byUser
      * @param weekDate any day inside the week
@@ -622,6 +586,74 @@ public class ResourceManager implements Serializable {
         return count;
     }
 
+    private int getNumberOfBorrowedResourcesBetween(NormalUser byUser, Date fromDate, Date toDate) {
+        int count = 0;
+
+
+        // loop through all copies in the library
+        for (Copy copy : getAllCopies()) {
+
+            // for each entry in the copy's history
+            for (HistoryEntry historyEntry : copy.getLoanHistory().getHistory()) {
+
+                if (historyEntry instanceof HistoryEntryItemTransaction) {
+                    HistoryEntryItemTransaction itemTransaction =
+                            (HistoryEntryItemTransaction) historyEntry;
+
+                    // check if the copy was borrowed by the said person and inbetween the dates
+                    if (itemTransaction.isBorrowed() && itemTransaction.getBorrowedBy().equals(byUser)
+                            && fromDate.compareTo(itemTransaction.getDate()) <= 0   // fromDate <= borrow Date
+                            && toDate.compareTo(itemTransaction.getDate()) >= 0) {  // toDate >= borrowDate
+                        count++;
+                    }
+                }
+            }
+
+        }
+
+        return count;
+    }
+
+
+
+
+    public int getNumberOfTimesResourceWasBorrowedOn(Resource resource, Date onDate) {
+        Date startOfDay = getStartOfDay(onDate);
+        Date endOfDay = getEndOfDay(onDate);
+
+        int count = getNumberOfTimesResourceWasBorrowedBetween(resource, startOfDay, endOfDay);
+        return count;
+    }
+
+    public int getNumberOfTimesResourceWasBorrowedPastWeek(Resource resource, Date today){
+        final int MILLISECONDS_IN_A_DAY = (24 * 3600 * 1000);
+
+        // get the last second of the day (i.e. 23:59:59)
+        Date endOfWeek = getEndOfDay(today);
+
+
+        // move 1 week back (6 days)
+        // and set the day to the first second of that day
+        Date startOfWeek = new Date(today.getTime() - 6 * MILLISECONDS_IN_A_DAY);
+        startOfWeek = getStartOfDay(startOfWeek);
+
+        int count = getNumberOfTimesResourceWasBorrowedBetween(resource, startOfWeek, endOfWeek);
+        return count;
+    }
+
+    public int getNumberOfTimesResourceWasBorrowedForAllTime(Resource resource){
+        final int MILLISECONDS_IN_A_DAY = (24 * 3600 * 1000);
+
+        // the start date will just be set a lot of time back
+        Date startDate = new GregorianCalendar(1, Calendar.JANUARY, 1).getTime();
+
+        // the end date will just be 1 day into the future
+        Date today = new Date();
+        Date endDate = new Date(today.getTime() + MILLISECONDS_IN_A_DAY);
+
+        int count = getNumberOfTimesResourceWasBorrowedBetween(resource, startDate, endDate);
+        return count;
+    }
     private int getNumberOfTimesResourceWasBorrowedBetween(Resource resource, Date fromDate, Date toDate) {
         int count = 0;
 

@@ -8,6 +8,7 @@ public class TableRepresentationResourceInformation {
     private String resourceName;
     private String resourceType;
     private Integer positionInQueue;
+    private int numberOfTimesBorrowed;
 
     /**
      * Constructor for a table representation of a resource.
@@ -23,6 +24,19 @@ public class TableRepresentationResourceInformation {
         this.resourceName = resourceName;
         this.resourceType = resourceType;
         this.positionInQueue = positionInQueue;
+    }
+
+
+    public TableRepresentationResourceInformation(String resourceID,
+                                                  String resourceName, String resourceType, int numberOfTimesBorrowed) {
+        this.resourceID = resourceID;
+        this.resourceName = resourceName;
+        this.resourceType = resourceType;
+        this.numberOfTimesBorrowed = numberOfTimesBorrowed;
+    }
+
+    public Integer getNumberOfTimesBorrowed() {
+        return (Integer)numberOfTimesBorrowed;
     }
 
     /**

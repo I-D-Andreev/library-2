@@ -575,7 +575,7 @@ public class ResourceManager implements Serializable {
 
         // check if leap year
         boolean isLeapYear = new GregorianCalendar().isLeapYear(year);
-        if(isLeapYear && monthNumber == 1){
+        if (isLeapYear && monthNumber == 1) {
             endOfTheMonth.setDate(29);
         }
 
@@ -615,8 +615,6 @@ public class ResourceManager implements Serializable {
     }
 
 
-
-
     public int getNumberOfTimesResourceWasBorrowedOn(Resource resource, Date onDate) {
         Date startOfDay = getStartOfDay(onDate);
         Date endOfDay = getEndOfDay(onDate);
@@ -625,7 +623,7 @@ public class ResourceManager implements Serializable {
         return count;
     }
 
-    public int getNumberOfTimesResourceWasBorrowedPastWeek(Resource resource, Date today){
+    public int getNumberOfTimesResourceWasBorrowedPastWeek(Resource resource, Date today) {
         final int MILLISECONDS_IN_A_DAY = (24 * 3600 * 1000);
 
         // get the last second of the day (i.e. 23:59:59)
@@ -641,7 +639,7 @@ public class ResourceManager implements Serializable {
         return count;
     }
 
-    public int getNumberOfTimesResourceWasBorrowedForAllTime(Resource resource){
+    public int getNumberOfTimesResourceWasBorrowedForAllTime(Resource resource) {
         final int MILLISECONDS_IN_A_DAY = (24 * 3600 * 1000);
 
         // the start date will just be set a lot of time back
@@ -654,6 +652,7 @@ public class ResourceManager implements Serializable {
         int count = getNumberOfTimesResourceWasBorrowedBetween(resource, startDate, endDate);
         return count;
     }
+
     private int getNumberOfTimesResourceWasBorrowedBetween(Resource resource, Date fromDate, Date toDate) {
         int count = 0;
 
@@ -680,6 +679,39 @@ public class ResourceManager implements Serializable {
         return count;
     }
 
+    /**
+     * Get the number of fines in a certain time period.
+     * @param listOfFines The list of fines.
+     * @param fromDate The start of the period.
+     * @param toDate The end of the period.
+     * @return The number of fines occurring inbetween fromDate and toDate.
+     */
+    private int getNumberOfFinesBetween(ArrayList<HistoryEntryFine> listOfFines,
+                                        Date fromDate, Date toDate) {
+        int count = 0;
+        for (HistoryEntryFine fine : listOfFines) {
+            if (fromDate.compareTo(fine.getDate()) <= 0                         // fromDate <= fineDate
+                    && toDate.compareTo(fine.getDate()) >= 0) {                  // toDate >= fineDate
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Given a day (any time in a day) and list of fines, return how many fines occurred that day.
+     * @param listOfFines The list of fines.
+     * @param onDay The day.
+     * @return The number of fines occurring on that day.
+     */
+    public int getNumberOfFinesOn(ArrayList<HistoryEntryFine> listOfFines, Date onDay){
+        int count = 0;
+        Date startOfDay = getStartOfDay(onDay);
+        Date endOfDay = getEndOfDay(onDay);
+
+        count = getNumberOfFinesBetween(listOfFines, startOfDay, endOfDay);
+        return count;
+    }
 
     private Date getStartOfDay(Date date) {
         // convert date to localDateTime

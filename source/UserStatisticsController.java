@@ -29,9 +29,18 @@ public class UserStatisticsController extends Controller {
     @FXML
     private LineChart<String, Number> statisticsLineChart;
 
+    /**
+     * The x axis of the chart. (the day)
+     */
+    // we are using String and not Number, because Numbers are automatically sorted
+    // so a problem occurs when we want to display days that go back to previous month
+    // e.g. we can't get 29, 30, 31, 1, 2, 3
     @FXML
     private CategoryAxis xAxis;
 
+    /**
+     * The y axis of the chart. (number of resources borrowed)
+     */
     @FXML
     private NumberAxis yAxis;
 

@@ -61,16 +61,16 @@
                   </Button>
                </children>
             </HBox>
-            <HBox prefHeight="45.0" prefWidth="597.0">
+            <HBox prefHeight="59.0" prefWidth="700.0">
                <children>
                   <Button fx:id="createEditResourcesButton" mnemonicParsing="false" onAction="#createEditButtonClicked" prefHeight="44.0" prefWidth="93.0" text="Create/Edit Resources" textAlignment="CENTER" wrapText="true">
                      <HBox.margin>
-                        <Insets left="20.0" right="30.0" />
+                        <Insets left="10.0" right="30.0" />
                      </HBox.margin>
                   </Button>
                   <Button fx:id="manageResourcesButton" minWidth="136.0" mnemonicParsing="false" onAction="#manageResourcesButtonClicked" prefHeight="27.0" prefWidth="136.0" text="Manage Resources" textAlignment="CENTER" wrapText="true">
                      <HBox.margin>
-                        <Insets right="30.0" />
+                        <Insets right="15.0" />
                      </HBox.margin>
                   </Button>
                   <Button fx:id="browseResourcesButton" mnemonicParsing="false" onAction="#browseButtonClicked" prefHeight="27.0" prefWidth="134.0" text="Browse Resources" textAlignment="CENTER" wrapText="true">
@@ -83,7 +83,11 @@
                         <Insets left="20.0" right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="eventButton" mnemonicParsing="false" onAction="#eventButtonClicked" text="Events" textAlignment="CENTER" wrapText="true" />
+                  <Button fx:id="eventButton" mnemonicParsing="false" onAction="#eventButtonClicked" text="Events" textAlignment="CENTER" wrapText="true">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin></Button>
+                  <Button fx:id="finesStaticsButton" layoutX="557.0" layoutY="10.0" mnemonicParsing="false" onAction="#finesStaticsButtonClicked" text="Fines" textAlignment="CENTER" wrapText="true" />
                </children>
             </HBox>
          </children>

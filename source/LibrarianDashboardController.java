@@ -133,6 +133,13 @@ public class LibrarianDashboardController extends Controller {
     private Button eventButton;
 
     /**
+     * Button to open the fines statistics window.
+     */
+    @FXML
+    private Button finesStaticsButton;
+
+
+    /**
      * Loads the librarian information on startup.
      */
     @Override
@@ -297,4 +304,13 @@ public class LibrarianDashboardController extends Controller {
 
     }
 
+    /**
+     * The fines statistics button being clicked.
+     * @param event The button is clicked.
+     */
+    @FXML
+    public void finesStaticsButtonClicked(ActionEvent event){
+        new NewWindow("resources/ViewAllUsersCurrentlyBorrowing.fxml", event,
+                "Fines Statistics", getLibrary());
+    }
 }

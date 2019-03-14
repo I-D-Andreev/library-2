@@ -40,8 +40,8 @@
             <ImageView fx:id="resourceImage" fitHeight="202.0" fitWidth="280.0" pickOnBounds="true" preserveRatio="true" />
             <TableView fx:id="ratingReviewTable" prefHeight="200.0" prefWidth="200.0">
               <columns>
-                <TableColumn fx:id="ratingsColumn" prefWidth="132.0" text="Ratings" />
-                <TableColumn fx:id="reviewsColumn" prefWidth="147.0" text="Reviews" />
+                <TableColumn fx:id="ratingsColumn" prefWidth="62.0" style="-fx-alignment: CENTER;" text="Ratings" />
+                <TableColumn fx:id="reviewsColumn" prefWidth="217.0" style="-fx-alignment: CENTER;" text="Reviews" />
               </columns>
                <VBox.margin>
                   <Insets right="20.0" top="20.0" />

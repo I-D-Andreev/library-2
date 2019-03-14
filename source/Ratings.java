@@ -15,8 +15,9 @@ public class Ratings implements Serializable {
 
 
 
-    public String getRating() {
-        return new DecimalFormat("#.#").format(rating);
+    public Double getRating() {
+        DecimalFormat formatter = new DecimalFormat("#.#");
+        return Double.parseDouble(formatter.format(rating));
     }
 
     public String getReview() {
@@ -26,5 +27,9 @@ public class Ratings implements Serializable {
     public void setRating(double rating) { this.rating = rating; }
 
     public void setReview(String review) { this.review = review; }
+
+    public Resource getResource() {return resource;}
+
+    public User getUser() {return currentUser;}
 
 }

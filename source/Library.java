@@ -1,3 +1,7 @@
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 /**
  * Library.
  * A class to manage the whole library system.
@@ -21,25 +25,25 @@ public class Library {
     }
 
     private void spoofDateData(){
-//        // adds history entries to the borrowing history of
-//        // user sianspike
-//        NormalUser sianspike = (NormalUser)this.getUserManager().getUserByUsername("sianspike");
-//
-//        // get a random copy
-//        Copy copy = this.getResourceManager().getCopyById("L-2-0");
-//
-//        // now directly change the copy's borrowing history to say that sianspike has borrowed it on some day
-//        Date date;
-//
-//        date = new GregorianCalendar(2019, Calendar.MARCH, 11).getTime();
-//        copy.getLoanHistory().addEntry(new HistoryEntryItemTransaction( date, true, sianspike));
-//
-//        date = new GregorianCalendar(2019, Calendar.FEBRUARY, 11).getTime();
-//        copy.getLoanHistory().addEntry(new HistoryEntryItemTransaction( date, true, sianspike));
-//
-//        date = new GregorianCalendar(2019, Calendar.JANUARY, 30).getTime();
-//        copy.getLoanHistory().addEntry(new HistoryEntryItemTransaction( date, true, sianspike));
-//
+        // adds history entries to the borrowing history of
+        // user sianspike
+        NormalUser sianspike = (NormalUser)this.getUserManager().getUserByUsername("sianspike");
+
+        // get a random copy
+        Copy copy = this.getResourceManager().getCopyById("L-2-0");
+
+        // now directly change the copy's borrowing history to say that sianspike has borrowed it on some day
+        Date date;
+
+        date = new GregorianCalendar(2019, Calendar.MARCH, 11).getTime();
+        copy.getLoanHistory().addEntry(new HistoryEntryItemTransaction( date, true, sianspike));
+
+        date = new GregorianCalendar(2019, Calendar.FEBRUARY, 11).getTime();
+        copy.getLoanHistory().addEntry(new HistoryEntryItemTransaction( date, true, sianspike));
+
+        date = new GregorianCalendar(2019, Calendar.JANUARY, 30).getTime();
+        copy.getLoanHistory().addEntry(new HistoryEntryItemTransaction( date, true, sianspike));
+
     }
 
     /**

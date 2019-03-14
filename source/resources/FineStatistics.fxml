@@ -12,10 +12,10 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="FineStatisticsController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="550.9999450683594" minWidth="10.0" prefWidth="498.2000244140625" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="345.20001220703125" minWidth="10.0" prefWidth="201.3999755859375" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="550.9999450683594" minWidth="10.0" prefWidth="457.599951171875" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="345.20001220703125" minWidth="10.0" prefWidth="242.40004882812502" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="194.79999389648438" minHeight="10.0" prefHeight="43.99999084472656" vgrow="SOMETIMES" />
@@ -23,7 +23,7 @@
     <RowConstraints maxHeight="139.19998779296878" minHeight="10.0" prefHeight="70.39995117187505" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label prefHeight="28.0" prefWidth="77.0" text="Fine statistics">
+      <Label prefHeight="28.0" prefWidth="150.0" text="Fine statistics">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -36,7 +36,7 @@
             <Insets />
          </GridPane.margin>
       </Button>
-      <LineChart maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="482.0" GridPane.rowIndex="1">
+      <LineChart maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="331.0" prefWidth="423.0" GridPane.rowIndex="1">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -48,8 +48,8 @@
          <children>
             <HBox prefHeight="47.0" prefWidth="178.0">
                <children>
-                  <Label prefHeight="34.0" prefWidth="108.0" text="Number of fines :" />
-                  <Label fx:id="numberOfFinesLabel" prefHeight="34.0" prefWidth="64.0" />
+                  <Label maxWidth="-Infinity" prefHeight="34.0" prefWidth="134.0" text="Number of fines :" />
+                  <Label fx:id="numberOfFinesLabel" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="82.0" />
                </children>
                <VBox.margin>
                   <Insets top="40.0" />
@@ -57,26 +57,20 @@
             </HBox>
             <HBox layoutX="10.0" layoutY="10.0" prefHeight="52.0" prefWidth="178.0">
                <children>
-                  <Label prefHeight="37.0" prefWidth="108.0" text="Biggest fine :" />
-                  <Label fx:id="biggestFineLabel" prefHeight="35.0" prefWidth="62.0" />
+                  <Label maxWidth="-Infinity" prefHeight="38.0" prefWidth="130.0" text="Biggest fine :" />
+                  <Label fx:id="biggestFineLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="88.0" />
                </children>
             </HBox>
-            <HBox layoutX="10.0" layoutY="57.0" prefHeight="52.0" prefWidth="178.0">
+            <HBox layoutX="10.0" layoutY="57.0" prefHeight="52.0" prefWidth="173.0">
                <children>
-                  <Label prefHeight="38.0" prefWidth="126.0" text="Total amount of fines :" />
-                  <Label fx:id="amountOfFinesLabel" prefHeight="35.0" prefWidth="58.0" />
-               </children>
-            </HBox>
-            <HBox layoutX="10.0" layoutY="109.0" prefHeight="52.0" prefWidth="178.0">
-               <children>
-                  <Label prefHeight="38.0" prefWidth="134.0" text="Number of unpaid fines:" />
-                  <Label fx:id="numberOfUnpaidFinesLabel" prefHeight="35.0" prefWidth="62.0" />
+                  <Label maxWidth="-Infinity" prefHeight="38.0" prefWidth="173.0" text="Total amount of fines :" />
+                  <Label fx:id="amountOfFinesLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="75.0" />
                </children>
             </HBox>
             <HBox layoutX="10.0" layoutY="161.0" prefHeight="52.0" prefWidth="178.0">
                <children>
-                  <Label prefHeight="38.0" prefWidth="134.0" text="Amount unpaid fines :" />
-                  <Label fx:id="amountUnpaidFinesLabel" prefHeight="35.0" prefWidth="62.0" />
+                  <Label maxWidth="-Infinity" prefHeight="38.0" prefWidth="146.0" text="Amount paid fines :" />
+                  <Label fx:id="amountPaidFinesLabel" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="83.0" />
                </children>
             </HBox>
          </children>

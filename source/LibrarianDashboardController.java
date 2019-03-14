@@ -310,7 +310,7 @@ public class LibrarianDashboardController extends Controller {
      */
     @FXML
     public void finesStaticsButtonClicked(ActionEvent event){
-        new NewWindow("resources/ViewAllUsersCurrentlyBorrowing.fxml", event,
+        new NewWindow("resources/FineStatistics.fxml", event,
                 "Fines Statistics", getLibrary());
     }
 }

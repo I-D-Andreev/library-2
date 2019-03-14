@@ -40,8 +40,6 @@ public class Library {
 //        date = new GregorianCalendar(2019, Calendar.JANUARY, 30).getTime();
 //        copy.getLoanHistory().addEntry(new HistoryEntryItemTransaction( date, true, sianspike));
 //
-//        date = new GregorianCalendar(2018, Calendar.DECEMBER, 22).getTime();
-//        copy.getLoanHistory().addEntry(new HistoryEntryItemTransaction( date, true, sianspike))
     }
 
     /**

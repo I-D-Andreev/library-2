@@ -83,6 +83,7 @@ public class UserStatisticsController extends Controller {
 
     @FXML
     public void dailyButtonClicked(ActionEvent event) {
+        int totalResourcesBorrowed = 0;
         statisticsLineChart.getData().clear();
 
         // we will show 7 days
@@ -104,16 +105,20 @@ public class UserStatisticsController extends Controller {
             int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
             int resourcesBorrowed = getLibrary().getResourceManager().getNumberOfBorrowedResourcesOn(
                     (NormalUser) getLibrary().getCurrentUserLoggedIn(), date);
+            totalResourcesBorrowed += resourcesBorrowed;
+
             chartSeries.getData().add(
                     new XYChart.Data<>(Integer.toString(dayOfMonth), resourcesBorrowed));
 
         }
+        totalBorrowedLabel.setText(Integer.toString(totalResourcesBorrowed));
         statisticsLineChart.getData().add(chartSeries);
 
     }
 
     @FXML
     public void weeklyButtonClicked(ActionEvent event) {
+        int totalResourcesBorrowed = 0;
         statisticsLineChart.getData().clear();
 
         // we will show 7 weeks back
@@ -137,16 +142,19 @@ public class UserStatisticsController extends Controller {
             int weekOfYear = calendar.get(Calendar.WEEK_OF_YEAR);
             int resourcesBorrowed = getLibrary().getResourceManager().getNumberOfBorrowedResourcesForTheWeek(
                     (NormalUser) getLibrary().getCurrentUserLoggedIn(), date);
+            totalResourcesBorrowed += resourcesBorrowed;
 
             chartSeries.getData().add(
                     new XYChart.Data<>(Integer.toString(weekOfYear), resourcesBorrowed));
 
         }
+        totalBorrowedLabel.setText(Integer.toString(totalResourcesBorrowed));
         statisticsLineChart.getData().add(chartSeries);
     }
 
     @FXML
     public void monthlyButtonClicked(ActionEvent event) {
+        int totalResourcesBorrowed = 0;
         statisticsLineChart.getData().clear();
 
         // we will show 7 months back
@@ -171,11 +179,13 @@ public class UserStatisticsController extends Controller {
 
             int resourcesBorrowed = getLibrary().getResourceManager().getNumberOfBorrowedResourcesForTheMonth(
                     (NormalUser) getLibrary().getCurrentUserLoggedIn(), date);
+            totalResourcesBorrowed+= resourcesBorrowed;
 
             chartSeries.getData().add(
                     new XYChart.Data<>(Integer.toString(monthOfYear), resourcesBorrowed));
 
         }
+        totalBorrowedLabel.setText(Integer.toString(totalResourcesBorrowed));
         statisticsLineChart.getData().add(chartSeries);
     }
 

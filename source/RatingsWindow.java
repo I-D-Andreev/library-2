@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -56,6 +57,7 @@ public class RatingsWindow extends Application {
         submitButton.setOnAction(event -> {
 
             Boolean previouslyBorrowed = false;
+            Boolean alreadyRated = false;
 
             for (Copy copy : currentResource.getCopyManager().getListOfAllCopies()) {
                 for (HistoryEntry history : copy.getLoanHistory().getHistory()) {
@@ -66,7 +68,13 @@ public class RatingsWindow extends Application {
                 }
             }
 
-            if (previouslyBorrowed) {
+            for (Ratings rate : currentResource.getRatings()) {
+                if (rate.getResource().equals(currentResource) && rate.getUser().equals(currentUser)) {
+                    alreadyRated = true;
+                }
+            }
+
+            if (previouslyBorrowed && !alreadyRated) {
                 Ratings rate = new Ratings(currentResource, currentUser);
                 rate.setRating(rating.getRating());
                 rate.setReview(reviewText.getText());
@@ -74,8 +82,21 @@ public class RatingsWindow extends Application {
                 currentResource.getRatings().add(rate);
                 reviewText.setText("Rating & review submitted!");
                 oldWindow.updateReviewTable();
+                primaryStage.close();
+
+            } else if(alreadyRated) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Can't rate resource");
+                alert.setContentText("You have already rated this resource");
+                alert.showAndWait();
+
             } else {
-                reviewText.setText("You haven't taken out this resource before, you can't rate it!");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Can't rate resource");
+                alert.setContentText("You haven't borrowed this resource before");
+                alert.showAndWait();
             }
 
         });

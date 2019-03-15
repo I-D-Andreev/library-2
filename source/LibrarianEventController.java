@@ -1,9 +1,12 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
+
 import java.time.LocalTime;
 
 /**
@@ -118,6 +121,34 @@ public class LibrarianEventController extends Controller{
             }
         });
 
+        maxAttendeesTextField.addEventFilter(EventType.ROOT, event -> {
+            if(event.getEventType().toString().equals("KEY_TYPED")) {
+                if(((KeyEvent) event).getCharacter().matches("\\D")) {
+                    event.consume();
+                }
+            }
+        });
+
+        timeTextField.addEventFilter(EventType.ROOT, event -> {
+            if(event.getEventType().toString().equals("KEY_TYPED")) {
+                if(timeTextField.getText().length() >=5) {
+                    event.consume();
+                    return;
+                }
+
+                if(((KeyEvent) event).getCharacter().matches("\\D")) {
+                    event.consume();
+                } else {
+                    if(timeTextField.getText().matches("^\\d")) {
+                        timeTextField.setText(timeTextField.getText() + ((KeyEvent) event).getCharacter());
+                        timeTextField.setText(timeTextField.getText() + ":");
+                        timeTextField.positionCaret(3);
+                        event.consume();
+                    }
+                }
+            }
+        });
+
     }
 
     /**
@@ -142,6 +173,14 @@ public class LibrarianEventController extends Controller{
             alert.show();
         } else {
             String[] timeTextSplit = timeTextField.getText().split(":");
+
+            if((Integer.parseInt(timeTextSplit[0]) > 23) || (Integer.parseInt(timeTextSplit[1]) > 59)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Please enter a valid time.",
+                        ButtonType.OK);
+                alert.show();
+                return;
+            }
+
             LocalTime time = LocalTime.of(Integer.parseInt(timeTextSplit[0]), Integer.parseInt(timeTextSplit[1]));
             getLibrary().getEventManager().addEvent(new Event(titleTextField.getText(), datePicker.getValue(), time,
                     Integer.parseInt(maxAttendeesTextField.getText()), descriptionTextArea.getText()));

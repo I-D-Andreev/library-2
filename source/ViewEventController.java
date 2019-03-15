@@ -1,9 +1,11 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 
 import javax.swing.*;
 import java.time.LocalTime;
@@ -147,6 +149,34 @@ public class ViewEventController extends Controller {
             addButton.setText("Search");
             searchResultLabel.setText("");
         });
+
+        maxAttendeesTextField.addEventFilter(EventType.ROOT, event -> {
+            if(event.getEventType().toString().equals("KEY_TYPED")) {
+                if(((KeyEvent) event).getCharacter().matches("\\D")) {
+                    event.consume();
+                }
+            }
+        });
+
+        timeTextField.addEventFilter(EventType.ROOT, event -> {
+            if(event.getEventType().toString().equals("KEY_TYPED")) {
+                if(timeTextField.getText().length() >=5) {
+                    event.consume();
+                    return;
+                }
+
+                if(((KeyEvent) event).getCharacter().matches("\\D")) {
+                    event.consume();
+                } else {
+                    if(timeTextField.getText().matches("^\\d")) {
+                        timeTextField.setText(timeTextField.getText() + ((KeyEvent) event).getCharacter());
+                        timeTextField.setText(timeTextField.getText() + ":");
+                        timeTextField.positionCaret(3);
+                        event.consume();
+                    }
+                }
+            }
+        });
     }
 
     /**
@@ -192,12 +222,12 @@ public class ViewEventController extends Controller {
                     searchResultLabel.setText("Invalid User");
                 }
             } else {
-                if(getLibrary().getEventManager().attendEvent(clickedEvent, searchUser)) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Event booked successfully.", ButtonType.OK);
-                    alert.show();
-                } else {
+                if(!getLibrary().getEventManager().attendEvent(clickedEvent, searchUser)) {
                     Alert alert = new Alert(Alert.AlertType.ERROR, "User is either already booked into this event," +
                             "or the event has been fully booked.");
+                    alert.show();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Event booked successfully.", ButtonType.OK);
                     alert.show();
                 }
                 usernameSearchBox.setText("");
@@ -225,6 +255,14 @@ public class ViewEventController extends Controller {
             alert.show();
         } else {
             String[] timeTextSplit = timeTextField.getText().split(":");
+
+            if((Integer.parseInt(timeTextSplit[0]) > 23) || (Integer.parseInt(timeTextSplit[1]) > 59)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Please enter a valid time.",
+                        ButtonType.OK);
+                alert.show();
+                return;
+            }
+
             LocalTime time = LocalTime.of(Integer.parseInt(timeTextSplit[0]), Integer.parseInt(timeTextSplit[1]));
 
             clickedEvent.setTitle(titleTextField.getText());

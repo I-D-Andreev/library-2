@@ -2,8 +2,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import java.time.Instant;
-import java.util.Date;
 import java.util.Optional;
 
 /**
@@ -144,8 +142,8 @@ public class ManageResourcesController extends Controller {
             alert.show();
         } else if (!((((NormalUser) user).resourceCapCheck() + resource.getCapContribution()) <=
                 ((NormalUser) user).getResourceCap())) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "User has reached resource cap\n"
-                    + "the user must return items to borrow more copies.",
+            Alert alert = new Alert(Alert.AlertType.ERROR, "User has reached resource cap.\n"
+                    + "The user must return items to borrow more copies.",
                     ButtonType.OK);
             alert.show();
         } else {

@@ -131,7 +131,7 @@ public class UserResourceController extends Controller {
      * @param event When the trailer button is clicked.
      */
     @FXML
-    void trailerButtonClicked(ActionEvent event) throws Exception {
+    public void trailerButtonClicked(ActionEvent event) throws Exception {
         if (clickedResource.getType().equals("Video Game")) {
             VideoPlayer trailer = new VideoPlayer(clickedResource.getTitle() + " video game");
             trailer.start(new Stage());
@@ -175,28 +175,27 @@ public class UserResourceController extends Controller {
      */
     @Override
     public void onStart() {
-
-        if (!(clickedResource.getType().equals("DVD") || clickedResource.getType().equals("Video Game"))) {
-            trailerButton.setVisible(false);
-        }
-
         data = FXCollections.observableArrayList();
         uniqueIDColumn.setCellValueFactory(new PropertyValueFactory<TableRepresentationCopyAvailable, String>("uniqueCopyID"));
         isAvailableColumn.setCellValueFactory(new PropertyValueFactory<TableRepresentationCopyAvailable, String>("isAvailable"));
-
-        ratingsData = FXCollections.observableArrayList();
-        ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("rating"));
-        reviewsColumn.setCellValueFactory(new PropertyValueFactory<>("review"));
 
         for (Copy copy : clickedResource.getCopyManager().getListOfAllCopies()) {
             data.add(new TableRepresentationCopyAvailable(copy.getUniqueCopyID(),
                     (copy.isAvailable()) ? "available" : "not available"));
         }
-
-        updateReviewTable();
+        tableView.getItems().addAll(data);
 
         this.loadImage();
 
+        if (!(clickedResource.getType().equals("DVD") || clickedResource.getType().equals("Video Game"))) {
+            trailerButton.setVisible(false);
+        }
+
+        ratingsData = FXCollections.observableArrayList();
+        ratingsColumn.setCellValueFactory(new PropertyValueFactory<>("rating"));
+        reviewsColumn.setCellValueFactory(new PropertyValueFactory<>("review"));
+
+        updateReviewTable();
     }
 
     /**

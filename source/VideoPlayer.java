@@ -13,16 +13,43 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 
+/**
+ * A class for the window and loading of the resource trailers.
+ *
+ * @author Christina Meggs, Steven Lewkowicz
+ */
 public class VideoPlayer extends Application {
 
+    /**
+     * Constant offset used to create substrings for the embed video URL.
+     */
     private final int OFFSET = 9;
+
+    /**
+     * The title of the resource.
+     */
     private String title;
+
+    /**
+     * Constant word to add to end of search query.
+     */
     private final String TRAILER = "trailer";
 
+    /**
+     * Constructor to load the resource title.
+     *
+     * @param title The title of the resource.
+     */
     public VideoPlayer(String title) {
         this.title = title;
     }
 
+    /**
+     * Opens the video window.
+     *
+     * @param stage The stage of the window.
+     * @throws Exception The exception that gets thrown in case of an error.
+     */
     @Override
     public void start(Stage stage) throws Exception {
 
@@ -52,6 +79,12 @@ public class VideoPlayer extends Application {
         stage.show();
     }
 
+    /**
+     * Method that returns the url of the video.
+     *
+     * @return The url of the embed video.
+     * @throws Exception The exception that gets thrown in case of an error.
+     */
     public String getUrl() throws Exception {
 
         String youtube = "https://www.youtube.com/results?search_query=";

@@ -206,11 +206,19 @@ public abstract class Resource implements Serializable {
         return o.getUniqueID().equals(this.getUniqueID());
     }
 
+    /**
+     * Get the ratings of the resource.
+     * @return The ratings of the resource.
+     */
     public ArrayList<Ratings> getRatings() {
         return this.ratings;
     }
 
-    public void setReview(ArrayList<Ratings> rating) {
+    /**
+     * Change the ratings of a resource.
+     * @param rating The new ratings.
+     */
+    public void setRating(ArrayList<Ratings> rating) {
         this.ratings = rating ;
     }
 

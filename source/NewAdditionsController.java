@@ -7,9 +7,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-
+/**
+ * A class to showcase the new additions (new resources).
+ * @author Ivan Andreev, Sian Pike
+ */
 public class NewAdditionsController extends Controller{
 
     /**
@@ -18,15 +19,27 @@ public class NewAdditionsController extends Controller{
     @FXML
     private Button okButton;
 
+    /**
+     * The table to show the new additions.
+     */
     @FXML
     private TableView<Resource> newAdditionsTable;
 
+    /**
+     * A column of the table to show the ID of the resource.
+     */
     @FXML
     private TableColumn<Resource, String> idColumn;
 
+    /**
+     * A column of the table to show the name of the resource.
+     */
     @FXML
     private TableColumn<Resource, String> nameColumn;
 
+    /**
+     * A column of the table to show the type of the resource.
+     */
     @FXML
     private TableColumn<Resource, String> typeColumn;
 
@@ -35,6 +48,7 @@ public class NewAdditionsController extends Controller{
      */
     @FXML
     private ObservableList<Resource> data;
+
 
     /**
      * Button that closes the current window.
@@ -52,7 +66,7 @@ public class NewAdditionsController extends Controller{
     }
 
     /**
-     * Initializes the table and then fills it with data.
+     * Initializes the table and then fills it with data on load of the window.
      */
     @Override
     public void onStart() {
@@ -76,7 +90,6 @@ public class NewAdditionsController extends Controller{
         NormalUser currentlyLoggedIn = (NormalUser) getLibrary().getCurrentUserLoggedIn();
         for(Resource resource : currentlyLoggedIn.getNewAdditions()){
             data.add(resource);
-           // data.add(new );
         }
     }
 

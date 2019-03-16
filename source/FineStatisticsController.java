@@ -91,6 +91,7 @@ public class FineStatisticsController extends Controller {
 
     /**
      * Actions to be executed on the window loading.
+     * Calculates the data and fills in the labels and the chart.
      */
     @Override
     public void onStart() {

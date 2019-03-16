@@ -3,6 +3,7 @@ import java.io.Serializable;
 
 /**
  * A class to implement the ratings.
+ * @author Christina Meggs, Steven Lewkowicz
  */
 public class Ratings implements Serializable {
     /**

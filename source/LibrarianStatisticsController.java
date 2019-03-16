@@ -15,37 +15,57 @@ import java.util.Date;
  * Controller class for the Librarian Statistics Window.
  * Handles the events when the user interacts with the UI.
  *
- * @author Sian Pike
+ * @author Sian Pike, Ivan Andreev
  */
 public class LibrarianStatisticsController extends Controller {
 
+    /**
+     * Table representing the most popular resource.
+     */
     @FXML
     private TableView<TableRepresentationResourceInformation> mostPopularResourceTable;
 
+    /**
+     * A column in the table for the number of times a resource was borrowed.
+     */
     @FXML
     private TableColumn<TableRepresentationResourceInformation, Integer> borrowTimesColumn;
 
+    /**
+     * A column in the table for the type of the resource.
+     */
     @FXML
     private TableColumn<TableRepresentationResourceInformation, String> resourceTypeColumn;
 
+    /**
+     * A column in the table for the title of the resource.
+     */
     @FXML
     private TableColumn<TableRepresentationResourceInformation, String> titleColumn;
 
+    /**
+     * A column in the table for the ID of the resource.
+     */
     @FXML
     private TableColumn<TableRepresentationResourceInformation, String> idColumn;
 
+    /**
+     * Radio button when a user chooses to show past day's most popular resource.
+     */
     @FXML
     private RadioButton pastDayRadioButton;
 
+    /**
+     * Radio button when a user chooses to show past week's most popular resource.
+     */
     @FXML
     private RadioButton pastWeekRadioButton;
 
+    /**
+     * Radio button when a user chooses to show all times most popular resource.
+     */
     @FXML
     private RadioButton allTimeRadioButton;
-
-    @FXML
-    private TableView<?> finesTable;
-
 
     /**
      * The data inside the table.
@@ -89,23 +109,37 @@ public class LibrarianStatisticsController extends Controller {
     }
 
 
+    /**
+     * Handles showing the statistics for the past day  when the radio button is clicked.
+     * @param event Clicking on the radio button
+     */
     @FXML
     public void pastDayRadioButtonClicked(ActionEvent event) {
         fillTable();
     }
 
+    /**
+     * Handles showing the statistics for the past week  when the radio button is clicked.
+     * @param event Clicking on the radio button
+     */
     @FXML
     public void pastWeekRadioButtonClicked(ActionEvent event) {
         fillTable();
     }
 
-
+    /**
+     * Handles showing the statistics for all time  when the radio button is clicked.
+     * @param event Clicking on the radio button
+     */
     @FXML
     public void allTimeRadioButtonClicked(ActionEvent event) {
         fillTable();
 
     }
 
+    /**
+     * Fills the table with the necessary information based on what radio button is chosen.
+     */
     private void fillTable() {
         mostPopularResourceTable.getItems().clear();
         data.clear();
@@ -154,7 +188,8 @@ public class LibrarianStatisticsController extends Controller {
                         .getNumberOfTimesResourceWasBorrowedForAllTime(resource);
             }
 
-
+            // now we have the number of times a resource was borrowed
+            // and need to check which resource is that
             // check which resource we have and whether it is the most borrowed
             if ((resource instanceof Book) && borrowedCount > mostBorrowedBookCount) {
                 mostBorrowedBookCount = borrowedCount;

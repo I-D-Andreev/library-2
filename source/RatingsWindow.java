@@ -11,16 +11,40 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
 
+/**
+ * A class for the window for rating a resource.
+ * @author Christina Meggs, Steven Lewkowicz
+ */
 public class RatingsWindow extends Application {
+    /**
+     * The old window from which we come from.
+     */
     private UserResourceController oldWindow;
+
+    /**
+     * The resource being rated.
+     */
     private Resource currentResource;
+
+    /**
+     * The current user being logged in.
+     */
     private NormalUser currentUser;
 
+    /**
+     * Opens the ratings window.
+     * @param primaryStage The stage of the window.
+     */
     @Override
     public void start(Stage primaryStage) {
+        final int SCENE_WIDTH = 400;
+        final int SCENE_HEIGHT = 350;
+        final int REVIEW_TEXT_WIDTH = 300;
+        final int REVIEW_TEXT_HEIGHT = 200;
+
         BorderPane root = new BorderPane();
         primaryStage.setTitle("Rate this resource");
-        primaryStage.setScene(new Scene(root, 400, 350));
+        primaryStage.setScene(new Scene(root, SCENE_WIDTH, SCENE_HEIGHT));
 
         Rating rating = new Rating(5);
 
@@ -46,19 +70,21 @@ public class RatingsWindow extends Application {
         vertical2.setAlignment(Pos.CENTER);
         root.setCenter(vertical2);
 
-        reviewText.setMaxWidth(300);
-        reviewText.setMaxHeight(200);
+        reviewText.setMaxWidth(REVIEW_TEXT_WIDTH);
+        reviewText.setMaxHeight(REVIEW_TEXT_HEIGHT);
         reviewText.setWrapText(true);
 
         rating.setPartialRating(true);
         rating.setUpdateOnHover(true);
 
-
+        // what happens when we click on the submit button
         submitButton.setOnAction(event -> {
 
             Boolean previouslyBorrowed = false;
             Boolean alreadyRated = false;
 
+            // check if it was previously borrowed
+            // (if it has not been borrowed by the user it can't be rated)
             for (Copy copy : currentResource.getCopyManager().getListOfAllCopies()) {
                 for (HistoryEntry history : copy.getLoanHistory().getHistory()) {
                     HistoryEntryItemTransaction entry = (HistoryEntryItemTransaction) history;
@@ -68,6 +94,7 @@ public class RatingsWindow extends Application {
                 }
             }
 
+            // check if it has already been rated
             for (Ratings rate : currentResource.getRatings()) {
                 if (rate.getResource().equals(currentResource) && rate.getUser().equals(currentUser)) {
                     alreadyRated = true;
@@ -104,14 +131,26 @@ public class RatingsWindow extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Change the window we come from.
+     * @param oldWindow The new window.
+     */
     public void setOldWindow(UserResourceController oldWindow){
         this.oldWindow = oldWindow;
     }
 
+    /**
+     * Change the resource we are rating.
+     * @param resource The new resource.
+     */
     public void setResource(Resource resource) {
         this.currentResource = resource;
     }
 
+    /**
+     * Change the user that is currently rating.
+     * @param user The new user.
+     */
     public void setUser(NormalUser user) {
         this.currentUser = user;
     }

@@ -4,10 +4,29 @@
  * @author Ivan Andreev.
  */
 public class TableRepresentationResourceInformation {
+    /**
+     * The ID of the resource.
+     */
     private String resourceID;
+
+    /**
+     * The name of the resource.
+     */
     private String resourceName;
+
+    /**
+     * The type of the resource.
+     */
     private String resourceType;
+
+    /**
+     * The position in reserve queue of the resource.
+     */
     private Integer positionInQueue;
+
+    /**
+     * The number of times a resource was borrowed.
+     */
     private int numberOfTimesBorrowed;
 
     /**
@@ -26,7 +45,14 @@ public class TableRepresentationResourceInformation {
         this.positionInQueue = positionInQueue;
     }
 
-
+    /**
+     * Constructs a Table representation of a resource object.
+     *
+     * @param resourceID            The unique ID of the resource.
+     * @param resourceName          The name of the resource.
+     * @param resourceType          The type of the resource.
+     * @param numberOfTimesBorrowed The number of times a resource was borrowed.
+     */
     public TableRepresentationResourceInformation(String resourceID,
                                                   String resourceName, String resourceType, int numberOfTimesBorrowed) {
         this.resourceID = resourceID;
@@ -35,8 +61,13 @@ public class TableRepresentationResourceInformation {
         this.numberOfTimesBorrowed = numberOfTimesBorrowed;
     }
 
+    /**
+     * Gets the number of times a resource was borrowed.
+     *
+     * @return The number of times a resource was borrowed.
+     */
     public Integer getNumberOfTimesBorrowed() {
-        return (Integer)numberOfTimesBorrowed;
+        return (Integer) numberOfTimesBorrowed;
     }
 
     /**

@@ -141,9 +141,12 @@ public class UserResourceController extends Controller {
             }
     }
 
-
+    /**
+     * Handles what happens when the review button is clicked.
+     * @param event The review button gets clicked.
+     */
     @FXML
-    void reviewPressed(ActionEvent event) throws Exception {
+    public void reviewPressed(ActionEvent event) {
         Stage reviewStage = new Stage();
         reviewStage.initModality(Modality.WINDOW_MODAL);
         Stage oldStage = (Stage) reviewButton.getScene().getWindow();

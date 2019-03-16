@@ -163,7 +163,7 @@ public class UserEventController extends Controller {
      * @param event When the ok button is clicked.
      */
     @FXML
-    void backButtonClicked(ActionEvent event) {
+    public void backButtonClicked(ActionEvent event) {
         new NewWindow("resources/UserDashboard.fxml", event, "Dashboard - TaweLib", getLibrary());
     }
 
@@ -173,7 +173,7 @@ public class UserEventController extends Controller {
      * @param event When the register button is clicked.
      */
     @FXML
-    void registerButtonClicked(ActionEvent event) {
+    public void registerButtonClicked(ActionEvent event) {
         Event clickedEvent = upcomingEventsTable.getSelectionModel().getSelectedItem();
         if(clickedEvent != null) {
             if(getLibrary().getEventManager().attendEvent(clickedEvent, getLibrary().getCurrentUserLoggedIn())) {

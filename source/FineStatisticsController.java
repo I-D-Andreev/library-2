@@ -19,21 +19,39 @@ import java.util.Date;
 
 public class FineStatisticsController extends Controller {
 
+    /**
+     * Button to go back to the dashboard.
+     */
     @FXML
     private Button backButton;
 
+    /**
+     * A label presenting the number of fines.
+     */
     @FXML
     private Label numberOfFinesLabel;
 
+    /**
+     * A label presenting the amount of the biggest fine.
+     */
     @FXML
     private Label biggestFineLabel;
 
+    /**
+     * A label presenting the total amount of fines.
+     */
     @FXML
     private Label amountOfFinesLabel;
 
+    /**
+     * A label representing the total amount of money paid for fines.
+     */
     @FXML
     private Label amountPaidFinesLabel;
 
+    /**
+     * The chart to represent fines.
+     */
     @FXML
     private LineChart<String, Number> finesChart;
 
@@ -42,10 +60,13 @@ public class FineStatisticsController extends Controller {
      */
     // we are using String and not Number, because Numbers are automatically sorted
     // so a problem occurs when we want to display days that go back to previous month
-    // e.g. we can't get 29, 30, 31, 1, 2, 3
+    // e.g. we can't get 29, 30, 31, 1, 2, 3 (they will be sorted)
     @FXML
     private CategoryAxis xAxis;
 
+    /**
+     * The y axis of the chart. (The number of fines.)
+     */
     @FXML
     private NumberAxis yAxis;
 
@@ -59,11 +80,18 @@ public class FineStatisticsController extends Controller {
      */
     private ArrayList<HistoryEntryMoneyTransaction> finePayments;
 
+    /**
+     * Handles clicking on the back button - gets us back to dashboard.
+     * @param event Clicking on the button.
+     */
     @FXML
     public void backButtonClicked(ActionEvent event) {
         new NewWindow("resources/LibrarianDashboard.fxml", event, "Dashboard - TaweLib", getLibrary());
     }
 
+    /**
+     * Actions to be executed on the window loading.
+     */
     @Override
     public void onStart() {
         // get all the fines and the fine payments

@@ -165,7 +165,7 @@ public class VideoGame extends Resource {
     /**
      * Gets the resource cap contribution of the resource.
      *
-     * @rerturn Returns the resource cap contribution of the particular resource.
+     * @return Returns the resource cap contribution of the particular resource.
      */
     public int getCapContribution() {
         return resourceCapContribution;

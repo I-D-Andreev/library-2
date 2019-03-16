@@ -29,6 +29,8 @@ public class ResourceManager implements Serializable {
 
     /**
      * Initializes the resource manager.
+     *
+     * @param library The library the resource manager will manage.
      */
     public ResourceManager(Library library) {
         this.library = library;
@@ -561,9 +563,11 @@ public class ResourceManager implements Serializable {
     }
 
     /**
-     * @param byUser
-     * @param monthDate any day in a month
-     * @return
+     * Get number of borrowed resources by a certain user on a certain month.
+     *
+     * @param byUser    The user who borrows the resources.
+     * @param monthDate any day in a month.
+     * @return The number of resources borrowed by the user from the start of the month to the end of the month.
      */
     public int getNumberOfBorrowedResourcesForTheMonth(NormalUser byUser, Date monthDate) {
         int[] daysInAMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};

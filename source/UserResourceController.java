@@ -129,6 +129,7 @@ public class UserResourceController extends Controller {
      * Opens window to view trailer for DVD resource.
      *
      * @param event When the trailer button is clicked.
+     * @throws Exception will be thrown when an error occurs.
      */
     @FXML
     public void trailerButtonClicked(ActionEvent event) throws Exception {

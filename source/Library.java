@@ -20,6 +20,12 @@ public class Library {
         spoofDateData();
     }
 
+    /**
+     * Adds additional borrowings to a user's history.
+     * Artificially adds entries so that the statistics can be showcased that they work
+     * for months back. (Because when we borrow a resource it gets the current date, and we might want to
+     * check whether the previous month is working).
+     */
     private void spoofDateData(){
 //        // adds history entries to the borrowing history of
 //        // user sianspike

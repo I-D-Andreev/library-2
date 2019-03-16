@@ -824,7 +824,12 @@ public class ResourceManager implements Serializable {
         this.addCopyOfResource(2, l1);
         this.addCopyOfResource(3, l1);
         this.addCopyOfResource(4, l1);
+
         this.addCopyOfResource(1, b);
+        this.addCopyOfResource(1, b);
+        this.addCopyOfResource(1, b);
+
+        this.addCopyOfResource(1, b2);
 
     }
 }

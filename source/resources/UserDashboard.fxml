@@ -17,8 +17,8 @@
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="130.0" minHeight="0.0" prefHeight="64.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="401.60002441406255" minHeight="10.0" prefHeight="376.8000366210938" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="319.0" minHeight="10.0" prefHeight="92.99996337890627" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="401.60002441406255" minHeight="10.0" prefHeight="375.6" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="319.0" minHeight="10.0" prefHeight="139.60000000000002" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Label text="TaweLib">
@@ -44,27 +44,27 @@
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="borrowedResourcesButton" mnemonicParsing="false" onAction="#borrowedResourcesButtonClicked" prefHeight="44.0" prefWidth="116.0" text="Borrowed Resources" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="borrowedResourcesButton" mnemonicParsing="false" onAction="#borrowedResourcesButtonClicked" prefHeight="59.0" prefWidth="101.0" text="Borrowed Resources" textAlignment="CENTER" wrapText="true">
                      <HBox.margin>
                         <Insets left="20.0" top="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="requestedResourcesButton" mnemonicParsing="false" onAction="#requestedResourcesButtonClicked" prefHeight="44.0" prefWidth="118.0" text="Requested Resources" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="requestedResourcesButton" mnemonicParsing="false" onAction="#requestedResourcesButtonClicked" prefHeight="59.0" prefWidth="114.0" text="Requested Resources" textAlignment="CENTER" wrapText="true">
                      <HBox.margin>
                         <Insets left="20.0" top="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="reservedResourcesButton" mnemonicParsing="false" onAction="#reservedResourcesButtonClicked" prefHeight="44.0" prefWidth="116.0" text="Reserved Resources" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="reservedResourcesButton" mnemonicParsing="false" onAction="#reservedResourcesButtonClicked" prefHeight="63.0" prefWidth="113.0" text="Reserved Resources" textAlignment="CENTER" wrapText="true">
                      <HBox.margin>
                         <Insets left="20.0" top="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="overdueResourcesButton" mnemonicParsing="false" onAction="#overdueResourcesButtonClicked" prefHeight="44.0" prefWidth="112.0" text="Overdue Resources" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="overdueResourcesButton" mnemonicParsing="false" onAction="#overdueResourcesButtonClicked" prefHeight="61.0" prefWidth="114.0" text="Overdue Resources" textAlignment="CENTER" wrapText="true">
                      <HBox.margin>
                         <Insets left="20.0" top="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="transHistoryButton" mnemonicParsing="false" onAction="#transHistoryButtonClicked" prefHeight="44.0" prefWidth="119.0" text="Transaction History" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="transHistoryButton" mnemonicParsing="false" onAction="#transHistoryButtonClicked" prefHeight="62.0" prefWidth="126.0" text="Transaction History" textAlignment="CENTER" wrapText="true">
                      <HBox.margin>
                         <Insets left="20.0" right="20.0" top="10.0" />
                      </HBox.margin>

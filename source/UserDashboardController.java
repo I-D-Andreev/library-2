@@ -1,23 +1,16 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 import javafx.util.Pair;
 
-import javax.annotation.Resources;
 import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ResourceBundle;
 
 /**
  * Controller class for the User Dashboard.
@@ -154,7 +147,7 @@ public class UserDashboardController extends Controller {
      * @param event When the events button is clicked.
      */
     @FXML
-    void eventsButtonClicked(ActionEvent event) {
+    public void eventsButtonClicked(ActionEvent event) {
 
         new NewWindow("resources/UserEvent.fxml", event, "Events - TaweLib", getLibrary());
     }
@@ -165,7 +158,7 @@ public class UserDashboardController extends Controller {
      * @param event When the statistics button is clicked.
      */
     @FXML
-    void statisticsButtonClicked(ActionEvent event) {
+    public void statisticsButtonClicked(ActionEvent event) {
 
         new NewWindow("resources/UserStatistics.fxml", event, "Statistics - TaweLib", getLibrary());
     }
@@ -176,7 +169,7 @@ public class UserDashboardController extends Controller {
      * @param event When the new additions button is clicked.
      */
     @FXML
-    void newAdditionsButtonClicked(ActionEvent event) {
+    public void newAdditionsButtonClicked(ActionEvent event) {
         new NewWindow("resources/NewAdditions.fxml", event, "New additions - TaweLib",
                 getLibrary());
     }

@@ -11,10 +11,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Controller class for the user statisitics window.
+ * Controller class for the user statistics window.
  * Handles what happens when the user interacts with the UI.
  *
- * @author Sian Pike
+ * @author Sian Pike, Ivan Andreev
  */
 public class UserStatisticsController extends Controller {
 
@@ -75,12 +75,15 @@ public class UserStatisticsController extends Controller {
      * @param event When the user clicks the ok button.
      */
     @FXML
-    void okButtonClicked(ActionEvent event) {
+    public void okButtonClicked(ActionEvent event) {
         new NewWindow("resources/UserDashboard.fxml", event,
                 "Dashboard - TaweLib", getLibrary());
     }
 
-
+    /**
+     * Handles clicking on the daily button - sets labels and fills chart with per day.
+     * @param event Clicking on the daily button.
+     */
     @FXML
     public void dailyButtonClicked(ActionEvent event) {
         int totalResourcesBorrowed = 0;
@@ -116,6 +119,10 @@ public class UserStatisticsController extends Controller {
 
     }
 
+    /**
+     * Handles clicking on the weekly button - sets labels and fills chart with data per week.
+     * @param event Clicking on the weekly button.
+     */
     @FXML
     public void weeklyButtonClicked(ActionEvent event) {
         int totalResourcesBorrowed = 0;
@@ -152,6 +159,10 @@ public class UserStatisticsController extends Controller {
         statisticsLineChart.getData().add(chartSeries);
     }
 
+    /**
+     * Handles clicking on the monthly button - sets labels and fills chart with data per month.
+     * @param event Clicking on the monthly button.
+     */
     @FXML
     public void monthlyButtonClicked(ActionEvent event) {
         int totalResourcesBorrowed = 0;

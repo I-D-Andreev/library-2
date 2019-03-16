@@ -82,6 +82,7 @@ public class FineStatisticsController extends Controller {
 
     /**
      * Handles clicking on the back button - gets us back to dashboard.
+     *
      * @param event Clicking on the button.
      */
     @FXML

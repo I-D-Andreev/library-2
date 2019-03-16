@@ -190,8 +190,6 @@ public abstract class Resource implements Serializable {
     public abstract int getCapContribution();
 
 
-
-
     /**
      * Checks that the resource is equal to an object of type resource.
      *
@@ -208,6 +206,7 @@ public abstract class Resource implements Serializable {
 
     /**
      * Get the ratings of the resource.
+     *
      * @return The ratings of the resource.
      */
     public ArrayList<Ratings> getRatings() {
@@ -216,10 +215,11 @@ public abstract class Resource implements Serializable {
 
     /**
      * Change the ratings of a resource.
+     *
      * @param rating The new ratings.
      */
     public void setRating(ArrayList<Ratings> rating) {
-        this.ratings = rating ;
+        this.ratings = rating;
     }
 
 }

@@ -9,9 +9,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * A class to showcase the new additions (new resources).
+ *
  * @author Ivan Andreev, Sian Pike
  */
-public class NewAdditionsController extends Controller{
+public class NewAdditionsController extends Controller {
 
     /**
      * Button to close the window
@@ -58,7 +59,7 @@ public class NewAdditionsController extends Controller{
     @FXML
     void okButtonClicked(ActionEvent event) {
         // after a user has already seen the new additions, the list should empty
-        NormalUser normalUser = (NormalUser)getLibrary().getCurrentUserLoggedIn();
+        NormalUser normalUser = (NormalUser) getLibrary().getCurrentUserLoggedIn();
         normalUser.getNewAdditions().clear();
 
         // switch to previous window
@@ -88,7 +89,7 @@ public class NewAdditionsController extends Controller{
      */
     private void fillInData() {
         NormalUser currentlyLoggedIn = (NormalUser) getLibrary().getCurrentUserLoggedIn();
-        for(Resource resource : currentlyLoggedIn.getNewAdditions()){
+        for (Resource resource : currentlyLoggedIn.getNewAdditions()) {
             data.add(resource);
         }
     }

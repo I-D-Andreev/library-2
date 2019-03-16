@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /**
- *  * A class to model a dvd.
+ * * A class to model a dvd.
  *
  * @author Kleanthis Liontis
  */
@@ -207,5 +207,7 @@ public class DVD extends Resource {
      *
      * @rerturn Returns the resource cap contribution of the particular resource.
      */
-    public int getCapContribution() { return resourceCapContribution; }
+    public int getCapContribution() {
+        return resourceCapContribution;
+    }
 }

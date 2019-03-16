@@ -141,8 +141,8 @@ public class EventManager implements Serializable {
      */
     public ArrayList<Event> getUpcomingEvents() {
         ArrayList<Event> upcomingEvents = new ArrayList<>();
-        for(Event event : events) {
-            if(event.getStartDate().atTime(event.getStartTime()).isAfter(LocalDateTime.now())) {
+        for (Event event : events) {
+            if (event.getStartDate().atTime(event.getStartTime()).isAfter(LocalDateTime.now())) {
                 upcomingEvents.add(event);
             }
         }
@@ -172,7 +172,7 @@ public class EventManager implements Serializable {
      * Allows a user to attend an event.
      *
      * @param event The event the user is trying to attend.
-     * @param user   The user that wants to attend the event.
+     * @param user  The user that wants to attend the event.
      * @return true if the user is not an admin and the admission was successful.
      */
     public boolean attendEvent(Event event, User user) {
@@ -193,7 +193,7 @@ public class EventManager implements Serializable {
         if (!user.hasAdminAccess()) {
             for (Event event : this.getAllEvents()) {
                 if ((event.containsUser((NormalUser) user) &&
-                        (event.startDate.atTime(event.startTime).isEqual(LocalDateTime.now())||
+                        (event.startDate.atTime(event.startTime).isEqual(LocalDateTime.now()) ||
                                 (event.startDate.atTime(event.startTime).isAfter(LocalDateTime.now()))))) {
                     attendedEvents.add(event);
                 }
@@ -228,15 +228,15 @@ public class EventManager implements Serializable {
     // Might be needed to rebuild the program if it is crashing.
     // More in the README file.
     public void selfPopulate1() {
-        Event e1 = new Event("Christmas Celebrations", LocalDate.of(2019, 12,25),
+        Event e1 = new Event("Christmas Celebrations", LocalDate.of(2019, 12, 25),
                 LocalTime.of(14, 0), 5, "Christmas celebration for those staying on campus during holidays.");
-        Event e2 = new Event("New Years Celebrations", LocalDate.of(2018, 12,31),
+        Event e2 = new Event("New Years Celebrations", LocalDate.of(2018, 12, 31),
                 LocalTime.of(23, 0), 5, "New Years Countdown for those staying on campus during holidays.");
 
         this.addEvent(e1);
         this.addEvent(e2);
 
-        this.addEvent(new Event("Varsity", LocalDate.of(2019, 4,10),
+        this.addEvent(new Event("Varsity", LocalDate.of(2019, 4, 10),
                 LocalTime.of(15, 30), 10, "Varsity 2019 Rugby Final."));
     }
 }

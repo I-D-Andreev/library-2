@@ -15,7 +15,7 @@ import java.time.LocalTime;
  *
  * @author Sian Pike, James Hodder
  */
-public class LibrarianEventController extends Controller{
+public class LibrarianEventController extends Controller {
 
     /**
      * Table containing events.
@@ -116,30 +116,30 @@ public class LibrarianEventController extends Controller{
         eventTable.setOnMouseClicked(event -> {
             Event clickedEvent = eventTable.getSelectionModel().getSelectedItem();
             setViewEventFocus(clickedEvent);
-            if(event.getClickCount() == 2) {
+            if (event.getClickCount() == 2) {
                 new NewWindow("resources/ViewEvent.fxml", event, "View Event - TaweLib", getLibrary());
             }
         });
 
         maxAttendeesTextField.addEventFilter(EventType.ROOT, event -> {
-            if(event.getEventType().toString().equals("KEY_TYPED")) {
-                if(((KeyEvent) event).getCharacter().matches("\\D")) {
+            if (event.getEventType().toString().equals("KEY_TYPED")) {
+                if (((KeyEvent) event).getCharacter().matches("\\D")) {
                     event.consume();
                 }
             }
         });
 
         timeTextField.addEventFilter(EventType.ROOT, event -> {
-            if(event.getEventType().toString().equals("KEY_TYPED")) {
-                if(timeTextField.getText().length() >=5) {
+            if (event.getEventType().toString().equals("KEY_TYPED")) {
+                if (timeTextField.getText().length() >= 5) {
                     event.consume();
                     return;
                 }
 
-                if(((KeyEvent) event).getCharacter().matches("\\D")) {
+                if (((KeyEvent) event).getCharacter().matches("\\D")) {
                     event.consume();
                 } else {
-                    if(timeTextField.getText().matches("^\\d")) {
+                    if (timeTextField.getText().matches("^\\d")) {
                         timeTextField.setText(timeTextField.getText() + ((KeyEvent) event).getCharacter());
                         timeTextField.setText(timeTextField.getText() + ":");
                         timeTextField.positionCaret(3);
@@ -166,15 +166,15 @@ public class LibrarianEventController extends Controller{
      */
     @FXML
     void createButtonClicked(ActionEvent event) {
-        if(titleTextField.getText().isEmpty() || datePicker.getValue().equals(null) || timeTextField.getText().isEmpty()
-            || maxAttendeesTextField.getText().isEmpty() || descriptionTextArea.getText().isEmpty()) {
+        if (titleTextField.getText().isEmpty() || datePicker.getValue().equals(null) || timeTextField.getText().isEmpty()
+                || maxAttendeesTextField.getText().isEmpty() || descriptionTextArea.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all the fields.",
                     ButtonType.OK);
             alert.show();
         } else {
             String[] timeTextSplit = timeTextField.getText().split(":");
 
-            if((Integer.parseInt(timeTextSplit[0]) > 23) || (Integer.parseInt(timeTextSplit[1]) > 59)) {
+            if ((Integer.parseInt(timeTextSplit[0]) > 23) || (Integer.parseInt(timeTextSplit[1]) > 59)) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Please enter a valid time.",
                         ButtonType.OK);
                 alert.show();
@@ -217,14 +217,18 @@ public class LibrarianEventController extends Controller{
      *
      * @param event The event to be passed.
      */
-    public static void setViewEventFocus(Event event) { viewEventFocus = event; }
+    public static void setViewEventFocus(Event event) {
+        viewEventFocus = event;
+    }
 
     /**
      * Gets the current viewEventFocus.
      *
      * @return The current viewEventFocus.
      */
-    public static Event getViewEventFocus() { return viewEventFocus; }
+    public static Event getViewEventFocus() {
+        return viewEventFocus;
+    }
 
     /**
      * Updates the data shown on the table.
@@ -235,7 +239,7 @@ public class LibrarianEventController extends Controller{
         data.clear();
         eventTable.getItems().clear();
 
-        for (Event event: getLibrary().getEventManager().getAllEvents()) {
+        for (Event event : getLibrary().getEventManager().getAllEvents()) {
             data.add(event);
         }
 

@@ -9,6 +9,7 @@ import java.util.Optional;
 
 /**
  * Controller class that models the edit tabs for the controller.
+ *
  * @author Ivan Andreev
  */
 public class EditAccountController extends Controller {

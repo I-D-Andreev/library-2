@@ -111,6 +111,7 @@ public class LibrarianStatisticsController extends Controller {
 
     /**
      * Handles showing the statistics for the past day  when the radio button is clicked.
+     *
      * @param event Clicking on the radio button
      */
     @FXML
@@ -120,6 +121,7 @@ public class LibrarianStatisticsController extends Controller {
 
     /**
      * Handles showing the statistics for the past week  when the radio button is clicked.
+     *
      * @param event Clicking on the radio button
      */
     @FXML
@@ -129,6 +131,7 @@ public class LibrarianStatisticsController extends Controller {
 
     /**
      * Handles showing the statistics for all time  when the radio button is clicked.
+     *
      * @param event Clicking on the radio button
      */
     @FXML

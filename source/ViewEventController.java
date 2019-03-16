@@ -7,9 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 
-import javax.swing.*;
 import java.time.LocalTime;
-import java.util.Iterator;
 import java.util.Optional;
 
 /**
@@ -113,30 +111,30 @@ public class ViewEventController extends Controller {
      */
     private ObservableList<NormalUser> data;
 
-    public void initialize(){
+    public void initialize() {
         clickedEvent = LibrarianEventController.getViewEventFocus();
 
         titleTextField.setText(clickedEvent.getTitle());
         datePicker.setValue(clickedEvent.getStartDate());
         timeTextField.setText(clickedEvent.getStartTime().toString());
-        maxAttendeesTextField.setText(""+clickedEvent.getMaxAttendees());
+        maxAttendeesTextField.setText("" + clickedEvent.getMaxAttendees());
         descriptionTextArea.setText(clickedEvent.getDescription());
 
         data = FXCollections.observableArrayList();
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         surnameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        
+
         userTable.setOnMouseClicked(event -> {
-            if(event.getClickCount() == 2) {
+            if (event.getClickCount() == 2) {
                 NormalUser clickedUser = (NormalUser) userTable.getSelectionModel().getSelectedItem();
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, clickedEvent.getTitle()+" remove user: " + clickedUser.getUsername());
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, clickedEvent.getTitle() + " remove user: " + clickedUser.getUsername());
                 alert.setHeaderText("Would you like to remove this user?");
                 alert.setTitle("Removal Confirmation");
 
                 Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == ButtonType.OK){
-                    if(clickedEvent.removeAttendent(clickedUser)) {
+                if (result.get() == ButtonType.OK) {
+                    if (clickedEvent.removeAttendent(clickedUser)) {
                         alert = new Alert(Alert.AlertType.CONFIRMATION, "The user has been successfully removed from the event.");
                         alert.show();
                         updateTable();
@@ -151,24 +149,24 @@ public class ViewEventController extends Controller {
         });
 
         maxAttendeesTextField.addEventFilter(EventType.ROOT, event -> {
-            if(event.getEventType().toString().equals("KEY_TYPED")) {
-                if(((KeyEvent) event).getCharacter().matches("\\D")) {
+            if (event.getEventType().toString().equals("KEY_TYPED")) {
+                if (((KeyEvent) event).getCharacter().matches("\\D")) {
                     event.consume();
                 }
             }
         });
 
         timeTextField.addEventFilter(EventType.ROOT, event -> {
-            if(event.getEventType().toString().equals("KEY_TYPED")) {
-                if(timeTextField.getText().length() >=5) {
+            if (event.getEventType().toString().equals("KEY_TYPED")) {
+                if (timeTextField.getText().length() >= 5) {
                     event.consume();
                     return;
                 }
 
-                if(((KeyEvent) event).getCharacter().matches("\\D")) {
+                if (((KeyEvent) event).getCharacter().matches("\\D")) {
                     event.consume();
                 } else {
-                    if(timeTextField.getText().matches("^\\d")) {
+                    if (timeTextField.getText().matches("^\\d")) {
                         timeTextField.setText(timeTextField.getText() + ((KeyEvent) event).getCharacter());
                         timeTextField.setText(timeTextField.getText() + ":");
                         timeTextField.positionCaret(3);
@@ -196,7 +194,7 @@ public class ViewEventController extends Controller {
         data.clear();
         userTable.getItems().clear();
 
-        for (NormalUser user: clickedEvent.getAttendees()) {
+        for (NormalUser user : clickedEvent.getAttendees()) {
             data.add(user);
         }
 
@@ -210,11 +208,11 @@ public class ViewEventController extends Controller {
      */
     @FXML
     void addButtonClicked(ActionEvent event) {
-        if(usernameSearchBox.getText().isEmpty()) {
+        if (usernameSearchBox.getText().isEmpty()) {
             searchResultLabel.setText("Field empty");
         } else {
             User searchUser = getLibrary().getUserManager().getUserByUsername(usernameSearchBox.getText());
-            if(addButton.getText() != "Add") {
+            if (addButton.getText() != "Add") {
                 if ((searchUser != null) && (searchUser instanceof NormalUser)) {
                     addButton.setText("Add");
                     searchResultLabel.setText("User found");
@@ -222,7 +220,7 @@ public class ViewEventController extends Controller {
                     searchResultLabel.setText("Invalid User");
                 }
             } else {
-                if(!getLibrary().getEventManager().attendEvent(clickedEvent, searchUser)) {
+                if (!getLibrary().getEventManager().attendEvent(clickedEvent, searchUser)) {
                     Alert alert = new Alert(Alert.AlertType.ERROR, "User is either already booked into this event," +
                             "or the event has been fully booked.");
                     alert.show();
@@ -244,19 +242,19 @@ public class ViewEventController extends Controller {
      */
     @FXML
     void saveButtonClicked(ActionEvent event) {
-        if(titleTextField.getText().isEmpty() || datePicker.getValue().equals(null) || timeTextField.getText().isEmpty()
+        if (titleTextField.getText().isEmpty() || datePicker.getValue().equals(null) || timeTextField.getText().isEmpty()
                 || maxAttendeesTextField.getText().isEmpty() || descriptionTextArea.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in all the fields.",
                     ButtonType.OK);
             alert.show();
-        } else if(Integer.parseInt(maxAttendeesTextField.getText()) < clickedEvent.attendeeCount()) {
+        } else if (Integer.parseInt(maxAttendeesTextField.getText()) < clickedEvent.attendeeCount()) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Max capacity cannot be lower than current attendee count.",
                     ButtonType.OK);
             alert.show();
         } else {
             String[] timeTextSplit = timeTextField.getText().split(":");
 
-            if((Integer.parseInt(timeTextSplit[0]) > 23) || (Integer.parseInt(timeTextSplit[1]) > 59)) {
+            if ((Integer.parseInt(timeTextSplit[0]) > 23) || (Integer.parseInt(timeTextSplit[1]) > 59)) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Please enter a valid time.",
                         ButtonType.OK);
                 alert.show();

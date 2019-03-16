@@ -142,5 +142,7 @@ public class Laptop extends Resource {
      *
      * @rerturn Returns the resource cap contribution of the particular resource.
      */
-    public int getCapContribution() { return resourceCapContribution; }
+    public int getCapContribution() {
+        return resourceCapContribution;
+    }
 }

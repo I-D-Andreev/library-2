@@ -6,7 +6,7 @@
 public class TableRepresentationCopyAvailable {
 
     /**
-     *  The unique copy ID.
+     * The unique copy ID.
      */
     private String uniqueCopyID;
 

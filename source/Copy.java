@@ -239,6 +239,7 @@ public class Copy implements Serializable {
 
     /**
      * What happens when a copy has just been returned.
+     *
      * @return The fine the user will get.
      */
     public double returnCopy() {

@@ -26,7 +26,7 @@ public class Library {
      * for months back. (Because when we borrow a resource it gets the current date, and we might want to
      * check whether the previous month is working).
      */
-    private void spoofDateData(){
+    private void spoofDateData() {
 //        // adds history entries to the borrowing history of
 //        // user sianspike
 //        NormalUser sianspike = (NormalUser)this.getUserManager().getUserByUsername("sianspike");

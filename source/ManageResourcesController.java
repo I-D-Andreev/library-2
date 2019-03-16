@@ -9,6 +9,7 @@ import java.util.Optional;
 /**
  * Controller class for the Manage Resources Window.
  * Handles interaction with the UI from the user.
+ *
  * @author Chris McAuley, Sian Pike, Ivan Andreev
  */
 

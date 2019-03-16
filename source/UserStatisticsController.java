@@ -82,6 +82,7 @@ public class UserStatisticsController extends Controller {
 
     /**
      * Handles clicking on the daily button - sets labels and fills chart with per day.
+     *
      * @param event Clicking on the daily button.
      */
     @FXML
@@ -121,6 +122,7 @@ public class UserStatisticsController extends Controller {
 
     /**
      * Handles clicking on the weekly button - sets labels and fills chart with data per week.
+     *
      * @param event Clicking on the weekly button.
      */
     @FXML
@@ -161,6 +163,7 @@ public class UserStatisticsController extends Controller {
 
     /**
      * Handles clicking on the monthly button - sets labels and fills chart with data per month.
+     *
      * @param event Clicking on the monthly button.
      */
     @FXML
@@ -190,7 +193,7 @@ public class UserStatisticsController extends Controller {
 
             int resourcesBorrowed = getLibrary().getResourceManager().getNumberOfBorrowedResourcesForTheMonth(
                     (NormalUser) getLibrary().getCurrentUserLoggedIn(), date);
-            totalResourcesBorrowed+= resourcesBorrowed;
+            totalResourcesBorrowed += resourcesBorrowed;
 
             chartSeries.getData().add(
                     new XYChart.Data<>(Integer.toString(monthOfYear), resourcesBorrowed));

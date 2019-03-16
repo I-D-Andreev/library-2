@@ -1,6 +1,5 @@
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -54,11 +53,11 @@ public class Event implements Serializable {
     /**
      * The constructor of an Event.
      *
-     * @param title             The title of the event.
-     * @param date              The date of the event.
-     * @param time              The start time of the event.
-     * @param maxAttendees      The maximum capacity of the event.
-     * @param description       A description of the event.
+     * @param title        The title of the event.
+     * @param date         The date of the event.
+     * @param time         The start time of the event.
+     * @param maxAttendees The maximum capacity of the event.
+     * @param description  A description of the event.
      */
     public Event(String title, LocalDate date, LocalTime time, int maxAttendees, String description) {
         this.title = title;
@@ -109,43 +108,54 @@ public class Event implements Serializable {
      *
      * @return The title of the event.
      */
-    public String getTitle() { return this.title; }
+    public String getTitle() {
+        return this.title;
+    }
 
     /**
      * Sets the title of the event.
      *
      * @param title The new title of the event.
      */
-    public void setTitle(String title) { this.title = title; }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     /**
      * Gets the start date of the event.
      *
      * @return The start date of the event.
      */
-    public LocalDate getStartDate() { return this.startDate; }
+    public LocalDate getStartDate() {
+        return this.startDate;
+    }
 
     /**
      * Sets the start date of the event.
      *
      * @param date The date of the event.
      */
-    public void setStartDate(LocalDate date) { this.startDate = date; }
+    public void setStartDate(LocalDate date) {
+        this.startDate = date;
+    }
 
     /**
      * Gets the start time of the event.
      *
      * @return The start time of the event.
      */
-    public LocalTime getStartTime() { return this.startTime; }
+    public LocalTime getStartTime() {
+        return this.startTime;
+    }
 
     /**
      * Sets the start time of the event.
      *
      * @param time The time of the event.
      */
-    public void setStartTime(LocalTime time) { this.startTime = time; }
-
+    public void setStartTime(LocalTime time) {
+        this.startTime = time;
+    }
 
 
     /**
@@ -153,35 +163,47 @@ public class Event implements Serializable {
      *
      * @return The max capacity of the event.
      */
-    public int getMaxAttendees() { return this.maxAttendees; }
+    public int getMaxAttendees() {
+        return this.maxAttendees;
+    }
 
     /**
      * Sets the max capacity of the event.
      *
      * @param maxAttendees The max capacity of the event.
      */
-    public void setMaxAttendees(int maxAttendees) { this.maxAttendees = maxAttendees; }
+    public void setMaxAttendees(int maxAttendees) {
+        this.maxAttendees = maxAttendees;
+    }
 
     /**
      * Gets the current number of attendees.
      *
      * @return The current number of attendees.
      */
-    public int attendeeCount() { return attendees.size(); };
+    public int attendeeCount() {
+        return attendees.size();
+    }
+
+    ;
 
     /**
      * Gets the description of the event.
      *
      * @return The description of the event.
      */
-    public String getDescription() { return this.description; }
+    public String getDescription() {
+        return this.description;
+    }
 
     /**
      * Sets the description of the event.
      *
      * @param description The description of the event.
      */
-    public void setDescription(String description) { this.description = description; }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     /**
      * Checks to see if a user is part of the attendents list.
@@ -189,7 +211,9 @@ public class Event implements Serializable {
      * @param user The user to check.
      * @return True if the user is on the attendents list.
      */
-    public boolean containsUser(NormalUser user) { return this.attendees.contains(user); }
+    public boolean containsUser(NormalUser user) {
+        return this.attendees.contains(user);
+    }
 
     /**
      * Adds a user to the attendees list if they aren't already attending and the event isn't at max capacity.
@@ -198,7 +222,9 @@ public class Event implements Serializable {
      * @return True if the user has been added.
      */
     public boolean addAttendent(NormalUser user) {
-        if((attendeeCount() > maxAttendees) || (containsUser(user))) { return false; }
+        if ((attendeeCount() > maxAttendees) || (containsUser(user))) {
+            return false;
+        }
         attendees.add(user);
         return true;
     }
@@ -210,7 +236,9 @@ public class Event implements Serializable {
      * @return True if the user has been removed.
      */
     public boolean removeAttendent(NormalUser user) {
-        if(!containsUser(user)) { return false; }
+        if (!containsUser(user)) {
+            return false;
+        }
         attendees.remove(user);
         return true;
     }
@@ -220,5 +248,7 @@ public class Event implements Serializable {
      *
      * @return The arraylist of current attendees.
      */
-    public ArrayList<NormalUser> getAttendees() { return attendees; }
+    public ArrayList<NormalUser> getAttendees() {
+        return attendees;
+    }
 }

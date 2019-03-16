@@ -132,17 +132,18 @@ public class UserResourceController extends Controller {
      */
     @FXML
     void trailerButtonClicked(ActionEvent event) throws Exception {
-            if (clickedResource.getType().equals("Video Game")) {
-                VideoPlayer trailer = new VideoPlayer(clickedResource.getTitle() + " video game");
-                trailer.start(new Stage());
-            } else if (clickedResource.getType().equals("DVD")) {
-                VideoPlayer trailer = new VideoPlayer(clickedResource.getTitle());
-                trailer.start(new Stage());
-            }
+        if (clickedResource.getType().equals("Video Game")) {
+            VideoPlayer trailer = new VideoPlayer(clickedResource.getTitle() + " video game");
+            trailer.start(new Stage());
+        } else if (clickedResource.getType().equals("DVD")) {
+            VideoPlayer trailer = new VideoPlayer(clickedResource.getTitle());
+            trailer.start(new Stage());
+        }
     }
 
     /**
      * Handles what happens when the review button is clicked.
+     *
      * @param event The review button gets clicked.
      */
     @FXML

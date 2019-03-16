@@ -73,7 +73,9 @@ public class NormalUser extends User implements Serializable {
      *
      * @return The resource cap of the user.
      */
-    public int getResourceCap() { return resourceCap;}
+    public int getResourceCap() {
+        return resourceCap;
+    }
 
     /**
      * Checks if the user has admin access.
@@ -120,7 +122,7 @@ public class NormalUser extends User implements Serializable {
         ArrayList<Copy> borrowedCopies = getBorrowedCopies();
 
         int counter = 0;
-        for(int i = 0; i < borrowedCopies.size(); i++) {
+        for (int i = 0; i < borrowedCopies.size(); i++) {
             counter += borrowedCopies.get(i).getCopyOf().getCapContribution();
         }
 

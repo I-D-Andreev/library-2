@@ -13,6 +13,7 @@ import org.controlsfx.control.Rating;
 
 /**
  * A class for the window for rating a resource.
+ *
  * @author Christina Meggs, Steven Lewkowicz
  */
 public class RatingsWindow extends Application {
@@ -33,6 +34,7 @@ public class RatingsWindow extends Application {
 
     /**
      * Opens the ratings window.
+     *
      * @param primaryStage The stage of the window.
      */
     @Override
@@ -111,7 +113,7 @@ public class RatingsWindow extends Application {
                 oldWindow.updateReviewTable();
                 primaryStage.close();
 
-            } else if(alreadyRated) {
+            } else if (alreadyRated) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("Can't rate resource");
@@ -133,14 +135,16 @@ public class RatingsWindow extends Application {
 
     /**
      * Change the window we come from.
+     *
      * @param oldWindow The new window.
      */
-    public void setOldWindow(UserResourceController oldWindow){
+    public void setOldWindow(UserResourceController oldWindow) {
         this.oldWindow = oldWindow;
     }
 
     /**
      * Change the resource we are rating.
+     *
      * @param resource The new resource.
      */
     public void setResource(Resource resource) {
@@ -149,6 +153,7 @@ public class RatingsWindow extends Application {
 
     /**
      * Change the user that is currently rating.
+     *
      * @param user The new user.
      */
     public void setUser(NormalUser user) {

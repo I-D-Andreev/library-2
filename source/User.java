@@ -200,6 +200,7 @@ public abstract class User implements Serializable {
 
     /**
      * Says whether the user has admin access.
+     *
      * @return True if the user has admin access, false otherwise.
      */
     abstract boolean hasAdminAccess();

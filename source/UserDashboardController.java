@@ -229,6 +229,7 @@ public class UserDashboardController extends Controller {
 
     /**
      * Opens the browse resources window.
+     *
      * @param event Button clicked event.
      */
     @FXML
@@ -241,6 +242,7 @@ public class UserDashboardController extends Controller {
 
     /**
      * Takes the user back to the login screen.
+     *
      * @param event Button clicked event.
      */
     @FXML

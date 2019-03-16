@@ -201,13 +201,14 @@ public class LibrarianDashboardController extends Controller {
         staffIDLabel.setText(((Librarian) (getLibrary().getCurrentUserLoggedIn())).getStaffNumber());
         employmentDateLabel.setText(
                 dateFormat.format(
-                        ((Librarian)(getLibrary().getCurrentUserLoggedIn())).getEmploymentDate()
+                        ((Librarian) (getLibrary().getCurrentUserLoggedIn())).getEmploymentDate()
                 )
         );
     }
 
     /**
      * Opens the browse resources window.
+     *
      * @param event Button clicked event.
      */
     @FXML
@@ -219,6 +220,7 @@ public class LibrarianDashboardController extends Controller {
 
     /**
      * Takes the user to the edit account tab when the button is clicked.
+     *
      * @param event The button is clicked.
      */
     public void editAccountButtonClicked(ActionEvent event) {
@@ -228,6 +230,7 @@ public class LibrarianDashboardController extends Controller {
 
     /**
      * Opens the create/edit resources window.
+     *
      * @param event Button clicked event.
      */
     @FXML
@@ -239,6 +242,7 @@ public class LibrarianDashboardController extends Controller {
 
     /**
      * Takes the user back to the login window.
+     *
      * @param event Button clicked event.
      */
     @FXML
@@ -250,6 +254,7 @@ public class LibrarianDashboardController extends Controller {
 
     /**
      * Opens the manage resources window.
+     *
      * @param event Button clicked event.
      */
     @FXML
@@ -261,6 +266,7 @@ public class LibrarianDashboardController extends Controller {
 
     /**
      * Opens the view user window.
+     *
      * @param event Button clicked event.
      */
     @FXML
@@ -306,10 +312,11 @@ public class LibrarianDashboardController extends Controller {
 
     /**
      * The fines statistics button being clicked.
+     *
      * @param event The button is clicked.
      */
     @FXML
-    public void finesStaticsButtonClicked(ActionEvent event){
+    public void finesStaticsButtonClicked(ActionEvent event) {
         new NewWindow("resources/FineStatistics.fxml", event,
                 "Fines Statistics", getLibrary());
     }

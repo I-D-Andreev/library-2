@@ -124,9 +124,9 @@ public class UserEventController extends Controller {
         upcomingEventsTable.setOnMouseClicked(event -> {
             Event clickedEvent = upcomingEventsTable.getSelectionModel().getSelectedItem();
             updateLabel(clickedEvent);
-            if(event.getClickCount() == 2) {
+            if (event.getClickCount() == 2) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, clickedEvent.getDescription(), ButtonType.OK);
-                alert.setHeaderText("Event: "+clickedEvent.getTitle());
+                alert.setHeaderText("Event: " + clickedEvent.getTitle());
                 alert.show();
             }
         });
@@ -140,9 +140,9 @@ public class UserEventController extends Controller {
 
         pastEventsTable.setOnMouseClicked(event -> {
             Event clickedEvent = pastEventsTable.getSelectionModel().getSelectedItem();
-            if(event.getClickCount() == 2) {
+            if (event.getClickCount() == 2) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, clickedEvent.getDescription(), ButtonType.OK);
-                alert.setHeaderText("Event: "+clickedEvent.getTitle());
+                alert.setHeaderText("Event: " + clickedEvent.getTitle());
                 alert.show();
             }
         });
@@ -175,8 +175,8 @@ public class UserEventController extends Controller {
     @FXML
     public void registerButtonClicked(ActionEvent event) {
         Event clickedEvent = upcomingEventsTable.getSelectionModel().getSelectedItem();
-        if(clickedEvent != null) {
-            if(getLibrary().getEventManager().attendEvent(clickedEvent, getLibrary().getCurrentUserLoggedIn())) {
+        if (clickedEvent != null) {
+            if (getLibrary().getEventManager().attendEvent(clickedEvent, getLibrary().getCurrentUserLoggedIn())) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Event booked successfully.", ButtonType.OK);
                 alert.show();
             } else {
@@ -201,7 +201,7 @@ public class UserEventController extends Controller {
         upcomingEventData.clear();
         upcomingEventsTable.getItems().clear();
 
-        for (Event event: getLibrary().getEventManager().getUpcomingEvents()) {
+        for (Event event : getLibrary().getEventManager().getUpcomingEvents()) {
             upcomingEventData.add(event);
         }
 
@@ -217,7 +217,7 @@ public class UserEventController extends Controller {
         pastEventData.clear();
         pastEventsTable.getItems().clear();
 
-        for (Event event: getLibrary().getEventManager().getAttendedEventsFor(getLibrary().getCurrentUserLoggedIn())) {
+        for (Event event : getLibrary().getEventManager().getAttendedEventsFor(getLibrary().getCurrentUserLoggedIn())) {
             pastEventData.add(event);
         }
 
@@ -232,11 +232,11 @@ public class UserEventController extends Controller {
     public void updateLabel(Event event) {
         String labelText = "";
         registerButton.setDisable(false);
-        if(event.getMaxAttendees() <= event.attendeeCount()) {
+        if (event.getMaxAttendees() <= event.attendeeCount()) {
             labelText += "Event has been fully booked.\n";
             registerButton.setDisable(true);
         }
-        if(event.containsUser((NormalUser) getLibrary().getCurrentUserLoggedIn())) {
+        if (event.containsUser((NormalUser) getLibrary().getCurrentUserLoggedIn())) {
             labelText += "You are already booked\n for this event.";
             registerButton.setDisable(true);
         }

@@ -1,5 +1,6 @@
 /**
  * Class to model the table representation of a money transactions.
+ *
  * @author Ivan Andreev
  */
 public class TableRepresentationMoneyTransaction {

@@ -8,6 +8,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -58,7 +59,7 @@ public class VideoPlayer extends Application {
         String[] titles = title.split(" ");
 
         for (String word : titles) {
-            URL+= word + "+";
+            URL += word + "+";
         }
 
         URL += TRAILER;
@@ -68,7 +69,7 @@ public class VideoPlayer extends Application {
         String trailerUrl = "fail";
         Boolean first = false;
 
-        while(!first) {
+        while (!first) {
             inputLine = in.readLine();
             String line = inputLine;
             if (line.contains("href=\"/watch")) {

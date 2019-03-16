@@ -524,7 +524,7 @@ public class ResourceManager implements Serializable {
     /**
      * Get number of borrowed resources by a certain user on a certain week.
      *
-     * @param byUser The user who borrows the resources.
+     * @param byUser   The user who borrows the resources.
      * @param weekDate Any day of the week.
      * @return The number of resources borrowed by the user from the start(Monday) to the end(Sunday) of the week.
      */
@@ -602,9 +602,10 @@ public class ResourceManager implements Serializable {
 
     /**
      * Gets a number of resources borrowed by a user between two dates (incl.)
-     * @param byUser The user borrowing.
+     *
+     * @param byUser   The user borrowing.
      * @param fromDate The start date.
-     * @param toDate The end date.
+     * @param toDate   The end date.
      * @return The number of resources borrowed by the user in the period [fromDate, toDate].
      */
     private int getNumberOfBorrowedResourcesBetween(NormalUser byUser, Date fromDate, Date toDate) {
@@ -637,8 +638,9 @@ public class ResourceManager implements Serializable {
 
     /**
      * Get the number of times a certain resource was borrowed on a certain day.
+     *
      * @param resource The resource.
-     * @param onDate The date of the day (any time in that day).
+     * @param onDate   The date of the day (any time in that day).
      * @return The number of times a resource was borrowed in between the start of the day and the end of the day.
      */
     public int getNumberOfTimesResourceWasBorrowedOn(Resource resource, Date onDate) {
@@ -651,8 +653,9 @@ public class ResourceManager implements Serializable {
 
     /**
      * Get the number of times a certain resource was borrowed from today to one week back.
+     *
      * @param resource The resource being borrowed.
-     * @param today The date today (Also the date the one week period ends).
+     * @param today    The date today (Also the date the one week period ends).
      * @return The number of times said resource was borrowed for the time period.
      */
     public int getNumberOfTimesResourceWasBorrowedPastWeek(Resource resource, Date today) {
@@ -673,6 +676,7 @@ public class ResourceManager implements Serializable {
 
     /**
      * Get the number of times said resource was borrowed for all the time.
+     *
      * @param resource The resource.
      * @return The number of times a resource was borrowed.
      */
@@ -692,9 +696,10 @@ public class ResourceManager implements Serializable {
 
     /**
      * Get a number of times a resource was borrowed between two dates.
+     *
      * @param resource The resource.
      * @param fromDate Start date.
-     * @param toDate End date.
+     * @param toDate   End date.
      * @return The number of times a resource was borrowed in the period [fromDate,toDate].
      */
     private int getNumberOfTimesResourceWasBorrowedBetween(Resource resource, Date fromDate, Date toDate) {
@@ -761,6 +766,7 @@ public class ResourceManager implements Serializable {
 
     /**
      * Given a day return the very start of that day.
+     *
      * @param date Any time in the day.
      * @return A date representing the day we have given at its earliest time. (first second of the day).
      */
@@ -777,6 +783,7 @@ public class ResourceManager implements Serializable {
 
     /**
      * Given a day returns the very end of that day.
+     *
      * @param date A day (any time in the day).
      * @return The very end of the day.
      */

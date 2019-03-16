@@ -224,6 +224,10 @@ public class UserManager implements Serializable {
                 "07813931066", "", new Address("14 Bryn Y Mor Crescent",
                 "Swansea", "Wales", "SA14QT")));
 
+        this.addUser(new NormalUser("Spoof", "Borrowings", "spoof",
+                "07813931066", "", new Address("14 Bryn Y Mor Crescent",
+                "Swansea", "Wales", "SA14QT")));
+
         this.addUser(new Librarian("Joe", "Bloggs", "librarian1",
                 "12345678", "", new Address("Somewhere", "Cardiff", "Wales",
                 "AB12CD")));

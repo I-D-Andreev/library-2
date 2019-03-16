@@ -815,7 +815,7 @@ public class ResourceManager implements Serializable {
         this.addResource(b2);
 
         this.addResource(l1);
-        this.addResource(new DVD("DVD1", 2015, "", "P", 201));
+        this.addResource(new DVD("The Godfather", 2015, "", "P", 201));
 
         this.addCopyOfResource(2, l1);
         this.addCopyOfResource(3, l1);

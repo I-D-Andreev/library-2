@@ -17,8 +17,14 @@ import java.util.GregorianCalendar;
 
 public class ResourceManager implements Serializable {
 
-    // reference to the library
+    /**
+     * Reference to the library the resource manager manages.
+     */
     private Library library;
+
+    /**
+     * List of resources.
+     */
     private ArrayList<Resource> resources;
 
     /**
@@ -499,7 +505,13 @@ public class ResourceManager implements Serializable {
         return new Pair<Resource, Integer>(mostPopularResource, numberOfTimeBorrowed);
     }
 
-
+    /**
+     * Get number of borrowed resources by a certain user on a certain day.
+     *
+     * @param byUser The user who borrowed the resource.
+     * @param onDate The day.
+     * @return The number of resources said user has borrowed for the whole day.
+     */
     public int getNumberOfBorrowedResourcesOn(NormalUser byUser, Date onDate) {
         Date startOfDay = getStartOfDay(onDate);
         Date endOfDay = getEndOfDay(onDate);
@@ -510,9 +522,11 @@ public class ResourceManager implements Serializable {
     }
 
     /**
-     * @param byUser
-     * @param weekDate any day inside the week
-     * @return
+     * Get number of borrowed resources by a certain user on a certain week.
+     *
+     * @param byUser The user who borrows the resources.
+     * @param weekDate Any day of the week.
+     * @return The number of resources borrowed by the user from the start(Monday) to the end(Sunday) of the week.
      */
     public int getNumberOfBorrowedResourcesForTheWeek(NormalUser byUser, Date weekDate) {
         final int MILLISECONDS_IN_A_DAY = (24 * 3600 * 1000);
@@ -586,6 +600,13 @@ public class ResourceManager implements Serializable {
         return count;
     }
 
+    /**
+     * Gets a number of resources borrowed by a user between two dates (incl.)
+     * @param byUser The user borrowing.
+     * @param fromDate The start date.
+     * @param toDate The end date.
+     * @return The number of resources borrowed by the user in the period [fromDate, toDate].
+     */
     private int getNumberOfBorrowedResourcesBetween(NormalUser byUser, Date fromDate, Date toDate) {
         int count = 0;
 
@@ -614,7 +635,12 @@ public class ResourceManager implements Serializable {
         return count;
     }
 
-
+    /**
+     * Get the number of times a certain resource was borrowed on a certain day.
+     * @param resource The resource.
+     * @param onDate The date of the day (any time in that day).
+     * @return The number of times a resource was borrowed in between the start of the day and the end of the day.
+     */
     public int getNumberOfTimesResourceWasBorrowedOn(Resource resource, Date onDate) {
         Date startOfDay = getStartOfDay(onDate);
         Date endOfDay = getEndOfDay(onDate);
@@ -623,6 +649,12 @@ public class ResourceManager implements Serializable {
         return count;
     }
 
+    /**
+     * Get the number of times a certain resource was borrowed from today to one week back.
+     * @param resource The resource being borrowed.
+     * @param today The date today (Also the date the one week period ends).
+     * @return The number of times said resource was borrowed for the time period.
+     */
     public int getNumberOfTimesResourceWasBorrowedPastWeek(Resource resource, Date today) {
         final int MILLISECONDS_IN_A_DAY = (24 * 3600 * 1000);
 
@@ -639,6 +671,11 @@ public class ResourceManager implements Serializable {
         return count;
     }
 
+    /**
+     * Get the number of times said resource was borrowed for all the time.
+     * @param resource The resource.
+     * @return The number of times a resource was borrowed.
+     */
     public int getNumberOfTimesResourceWasBorrowedForAllTime(Resource resource) {
         final int MILLISECONDS_IN_A_DAY = (24 * 3600 * 1000);
 
@@ -653,6 +690,13 @@ public class ResourceManager implements Serializable {
         return count;
     }
 
+    /**
+     * Get a number of times a resource was borrowed between two dates.
+     * @param resource The resource.
+     * @param fromDate Start date.
+     * @param toDate End date.
+     * @return The number of times a resource was borrowed in the period [fromDate,toDate].
+     */
     private int getNumberOfTimesResourceWasBorrowedBetween(Resource resource, Date fromDate, Date toDate) {
         int count = 0;
 
@@ -681,9 +725,10 @@ public class ResourceManager implements Serializable {
 
     /**
      * Get the number of fines in a certain time period.
+     *
      * @param listOfFines The list of fines.
-     * @param fromDate The start of the period.
-     * @param toDate The end of the period.
+     * @param fromDate    The start of the period.
+     * @param toDate      The end of the period.
      * @return The number of fines occurring inbetween fromDate and toDate.
      */
     private int getNumberOfFinesBetween(ArrayList<HistoryEntryFine> listOfFines,
@@ -700,11 +745,12 @@ public class ResourceManager implements Serializable {
 
     /**
      * Given a day (any time in a day) and list of fines, return how many fines occurred that day.
+     *
      * @param listOfFines The list of fines.
-     * @param onDay The day.
+     * @param onDay       The day.
      * @return The number of fines occurring on that day.
      */
-    public int getNumberOfFinesOn(ArrayList<HistoryEntryFine> listOfFines, Date onDay){
+    public int getNumberOfFinesOn(ArrayList<HistoryEntryFine> listOfFines, Date onDay) {
         int count = 0;
         Date startOfDay = getStartOfDay(onDay);
         Date endOfDay = getEndOfDay(onDay);
@@ -713,6 +759,11 @@ public class ResourceManager implements Serializable {
         return count;
     }
 
+    /**
+     * Given a day return the very start of that day.
+     * @param date Any time in the day.
+     * @return A date representing the day we have given at its earliest time. (first second of the day).
+     */
     private Date getStartOfDay(Date date) {
         // convert date to localDateTime
         LocalDateTime localDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
@@ -724,6 +775,11 @@ public class ResourceManager implements Serializable {
         return startOfDayDate;
     }
 
+    /**
+     * Given a day returns the very end of that day.
+     * @param date A day (any time in the day).
+     * @return The very end of the day.
+     */
     private Date getEndOfDay(Date date) {
         // convert date to localDateTime
         LocalDateTime localDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());

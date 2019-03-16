@@ -41,6 +41,9 @@ public class Library {
         // now directly change the copy's borrowing history to say that spoof has borrowed it on some day
         Date date;
 
+        date = new GregorianCalendar(2019, Calendar.MARCH, 15).getTime();
+        copy.getLoanHistory().addEntry(new HistoryEntryItemTransaction( date, true, spoof));
+
         date = new GregorianCalendar(2019, Calendar.MARCH, 14).getTime();
         copy.getLoanHistory().addEntry(new HistoryEntryItemTransaction( date, true, spoof));
 
